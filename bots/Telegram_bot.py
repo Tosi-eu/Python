@@ -2,10 +2,8 @@
 import requests 
 import telebot
 from telebot import types
-import pymysql #biblioteca de conexao com o MySQL
+import pymysql #SQL library
 from datetime import date, datetime
-import json #values in json - xml
-import urllib #work with urls
 import pgeocode
 
 conn = pymysql.connect(host='127.0.0.1', 
