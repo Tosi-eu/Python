@@ -5,6 +5,7 @@
 - Other informations - 
 
  -> Developed in Linux Mint 20.03
+ 
  -> All data that the bot receives is stored at a Xampp server
 
 -------------------------------------------------------------------
