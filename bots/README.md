@@ -1,7 +1,7 @@
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 
-This bot was the first bot developed for me, but he isn't ready yet, in a next update, i'll remove pgeocode library 'cause i didn't like her at all, and i'll replace with geocoders library.
+ This bot was the first bot developed for me, but he isn't ready yet, in a next update, i'll remove pgeocode library 'cause i didn't like her at all, and i'll replace with geocoders library.
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
