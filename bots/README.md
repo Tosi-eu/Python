@@ -22,7 +22,9 @@ This bot was the first bot developed for me, but he isn't ready yet, in a next u
                                                               - HOW TO USE -
                             
 STEP 1: Enter the command sudo su in terminal for enter like root
+
 STEP 2: enter the command /opt/lampp/lampp start, for start the server
+
 STEP 3: In a new terminal, incialize the bot with python3 name_bot.py
 
 -----------------------------------------------------------------------
