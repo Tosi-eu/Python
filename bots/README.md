@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
-                                                             - OTHER INFORMATIONS - 
+                                                            - OTHER INFORMATIONS - 
                           
 
  -> Developed in Linux Mint 20.03
@@ -16,7 +16,7 @@
 
 
 
-                                                                - HOW TO USE -
+                                                               - HOW TO USE -
                             
 STEP 1: Enter the command sudo su in terminal for enter like root
 STEP 2: enter the command /opt/lampp/lampp start, for start the server
