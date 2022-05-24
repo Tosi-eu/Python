@@ -5,7 +5,7 @@ import time
 import xlrd
 
 driver = webdriver.Chrome('C:/Users/Usuario/Desktop/Curso/WebScrapping/chromedriver')
-workbook = xlrd.open_workbook('C:/Users/Usuario/Desktop/Curso/WebScrapping/receitas.xls')
+workbook = xlrd.open_workbook('C:/Users/Usuario/Desktop/Curso/WebScrapping/recipes.xls')
 sheet = workbook.sheet_by_name('Planilha1')
 rows = sheet.nrows
 columns = sheet.ncols
