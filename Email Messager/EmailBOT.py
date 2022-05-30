@@ -7,7 +7,7 @@ from email import encoders
 import xlrd
 from openpyxl import Workbook
 
-Email_from = ""
+Email_from = "" #inseet the sender email (yours, probably :P)
 
 msg = MIMEMultipart() #allows us to send emails
 
@@ -42,14 +42,14 @@ for curr_row in range(0, rows):
 html = """
 <html>
       <body>
-            <p>Salve salve,<br>
-            Como cê tá?<br>
+            <p>Salve salve,<br><br>
+            Como cê tá?<br><br>
 
 
             Vi seu código e achei legal, por que você não o posta no fórum??<br>
 
             <a href='https://forum.scriptbrasil.com.br/'>Clique aqui</a>
-            para acessar o fórum do script brasil 8)<br>
+            para acessar o fórum do script brasil 8)<br><br>
 
             Até mais!
         </p>
