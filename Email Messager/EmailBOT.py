@@ -21,7 +21,7 @@ msg['from'] = Email_from
 # logs
 Con = smtplib.SMTP('smtp.gmail.com', 587) #smtp is the server email, and 587 is the server gateaway
 Con.starttls()
-Con.login(Email_from, 'Guitosi12@')
+Con.login(Email_from, '')
 msg['subject'] = "Parabéns pelo seu código em C"
 
 
