@@ -8,7 +8,6 @@ import xlrd
 from openpyxl import Workbook
 
 Email_from = "galdiniguilherme@gmail.com"
-Email_to = "galdiniguilherme@gmail.com"
 
 msg = MIMEMultipart() #allows us to send emails
 
@@ -36,6 +35,7 @@ base.add_header('Content-Disposition', 'attachment; filename= %s'% (file_name)) 
 msg.attach(base) #attaching doc
 
 for curr_row in range(0, rows):
+    Email_to =  sheet.cell_value(curr_row, 0) #reading each cell in row
     msg['to'] = sheet.cell_value(curr_row, 0) #reading each cell in row
 
 
