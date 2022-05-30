@@ -7,7 +7,7 @@ from email import encoders
 import xlrd
 from openpyxl import Workbook
 
-Email_from = "galdiniguilherme@gmail.com"
+Email_from = ""
 
 msg = MIMEMultipart() #allows us to send emails
 
