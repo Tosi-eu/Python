@@ -11,7 +11,7 @@ Email_from = "" #inseet the sender email (yours, probably :P)
 
 msg = MIMEMultipart() #allows us to send emails
 
-workbook = xlrd.open_workbook('C:/Users/Usuario/Desktop/Curso/WebScrapping/emails.xls')
+workbook = xlrd.open_workbook('C:/Users/Usuario/Desktop/Curso/WebScrapping/emails.xls') #this is my directory path, erase it and put yours 
 sheet = workbook.sheet_by_name('Plan1')
 rows = sheet.nrows
 columns = sheet.ncols
