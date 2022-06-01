@@ -5,7 +5,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from time import sleep
-from bs4 import BeautifulSoup
 
 class Youtubot():
   def __init__(self):
