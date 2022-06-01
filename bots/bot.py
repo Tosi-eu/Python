@@ -12,9 +12,9 @@ time.sleep(4)
 
 # ----------------------------------------------------------------------------------------------------------------------
 # login
-driver.find_element(By.XPATH, "/html/body/div[3]/div/div/div[2]/form/div/div[1]/input").send_keys('silviacgt@gmail.com')
+driver.find_element(By.XPATH, "/html/body/div[3]/div/div/div[2]/form/div/div[1]/input").send_keys('')
 time.sleep(2)
-driver.find_element(By.XPATH, '/html/body/div[3]/div/div/div[2]/form/div/div[2]/input').send_keys('@Confidencial10')
+driver.find_element(By.XPATH, '/html/body/div[3]/div/div/div[2]/form/div/div[2]/input').send_keys('')
 time.sleep(2)
 # ----------------------------------------------------------------------------------------------------------------------
 
