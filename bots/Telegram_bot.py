@@ -41,6 +41,10 @@ def send_welcome(message):
 	bot.send_message(cid, "Teve uma carga legal e quer salvar? Faço isso pra ti :)")
 	bot.send_message(cid, "Nosso id é: " + str(cid))
 	bot.send_message(cid, "Qual seu nome?: ")
+	
+	while(message.isalpha() == False):
+		bot.send_message(cid, "Oxi, tem caracter inválido aí, reescreva: )
+		
 	bot.register_next_step_handler(msg,process_name_step) #next
 
 def process_name_step(message):
