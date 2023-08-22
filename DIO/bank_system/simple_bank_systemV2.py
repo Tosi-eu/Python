@@ -15,6 +15,7 @@ def menu():
 
 def fazer_saque():
     global extrato
+    global usuarios
     global LIMITE_SAQUE
     valor = float(input("\nValor a ser sacado: "))
     if(LIMITE_SAQUE != 0):
@@ -29,13 +30,22 @@ def fazer_saque():
         
 def fazer_deposito():
     global extrato
-    deposito = float(input("\nValor a ser depositado: "))
-    if deposito <= 0:
-        print("\nValor inválido, tente novamente!\n")
-        pass
+    global usuarios
+    nome = input("Nome da pessoa que receberá o depósito: ")
+    conta = input("Digite a conta corrente que receberá o valor: ")
+    if nome in usuarios:
+        if conta == usuarios[nome]['conta_corrente']:      
+            deposito = float(input("\nValor a ser depositado: "))
+            if deposito <= 0:
+                print("\nValor inválido, tente novamente!\n")
+                pass
+            else:
+                usuarios[nome]['valor_em_conta'] += deposito
+                print(f"\nQuantia de R$ {round(deposito, 2)} depositado em sua conta!\n")
+        else:
+            print("Conta corrente não encontrada!\n")
     else:
-        extrato += deposito
-        print(f"\nQuantia de R$ {round(deposito, 2)} depositado em sua conta!\n")
+        print("Usuário não encontrado!\n")
 
 def mostrar_extrato():
     global extrato
@@ -58,9 +68,13 @@ def cria_conta_corrente():
     nome = input("Usuário que deseja criar CC: ")
     for chave in usuarios.keys():
         if nome == chave:
-            print("\nChave encontrada, criando conta: \n")
+            print("\nChave encontrada, criando conta... \n")
             usuarios[nome]['conta_corrente'] = gerar_numero_conta()
             usuarios[nome]['agencia'] = gerar_numero_agencia()
+
+        print("Conta criada, segue os dados da conta abaixo:\n")
+        print("Conta corrente: ", usuarios[nome]['conta_corrente'], "\nAgência: ", usuarios[nome]["agencia"])
+
 
 def gerar_numero_agencia():
     numero_agencia = f"{random.randint(100, 999)}-{random.randint(0, 9)}"
@@ -68,7 +82,7 @@ def gerar_numero_agencia():
 
 def gerar_numero_conta():
     numero_conta = f"{random.randint(10000, 99999)}-{random.randint(0, 9)}"
-    return numero_conta
+    return str(numero_conta)
 
 def lista_usuarios():
     global usuarios
