@@ -1,79 +1,127 @@
+from os import system
 import random
 from data import *
+from time import sleep
 
 def menu():
-    print("==========================")
-    print("    Operações do banco    ")
-    print("        1 - Saque         ")
-    print("        2 - Depósito      ")
-    print("        3 - Extrato       ")
-    print("        4 - Cadastro      ")
-    print("        5 - Criar CC      ")
-    print("        6 - Listar        ")
-    print("==========================")
-    print("OBS: Se não existir o comando, a operação é cancelada\n")
+    print("==============================================")
+    print("             Operações - Agiobank             ")
+    print("                 1 - Saque                    ")
+    print("                 2 - Depósito                 ")
+    print("                 3 - Cadastro                 ")
+    print("                 4 - Criar CC                 ")
+    print("                 5 - Extrato                  ")
+    print("                 6 - Listar                   ")
+    print("==============================================")
+    print("               Escolha de 1 a 6:              ")
+    print("==============================================")
 
 def fazer_saque():
     global extrato
     global usuarios
-    global LIMITE_SAQUE
-    valor = float(input("\nValor a ser sacado: "))
-    if(LIMITE_SAQUE != 0):
-        if valor <= extrato and valor > 0 and valor <= 500:
-            extrato -= valor
-            print("Saque realizado com sucesso!")
-            LIMITE_SAQUE -= 1
+    print("==============================================")
+    print("          Área de realização de saque       \n")
+    nome = input("- Nome do Usuário: ")
+    if nome in usuarios:
+        conta = input("- Conta corrente do usuário: ")
+        if usuarios[nome]["Conta corrente"] != 0: 
+            if conta == usuarios[nome]["Conta corrente"]:
+                if(usuarios[nome]["Saques diarios"] != 3):
+                    valor = float(input("\n- Valor a ser sacado: "))
+                    if valor <= usuarios[nome]["Valor em conta"] and valor > 0 and valor <= 500:
+                        usuarios[nome]["Valor em conta"] -= valor
+                        print("- Saque realizado com sucesso! -")
+                        usuarios[nome]["Saques diarios"] += 1
+                    else:
+                        print("\n- Extrato inferior ao valor resquisitado para saque!")
+                        sleep(1)
+                        system('clear')
+                else:
+                    print("\n- Limite de saques diário atingido!")
+                    sleep(1)
+                    system('clear')
+            else:
+                print("- Conta corrente não encontrada, operação cancelada!")
+                sleep(1)
+                system('clear')
         else:
-            print("\nExtrato inferior ao valor resquisitado para saque!\n")
+            print("- Usuário não possui conta corrente, operação cancelada!")
+            sleep(1)
+            system('clear')
     else:
-        print("\nLimite de saques diário atingido!\n")
+        print("- Nome não encontrado, operação cancelada!")
+        sleep(1)
+        system('clear')
         
 def fazer_deposito():
     global extrato
     global usuarios
-    nome = input("Nome da pessoa que receberá o depósito: ")
-    conta = input("Digite a conta corrente que receberá o valor: ")
+    print("==============================================")
+    print("         Área de realização de depósito     \n")
+    nome = input("- Pessoa que receberá o depósito: ")
+    conta = input("- Conta corrente: ")
     if nome in usuarios:
-        if conta == usuarios[nome]['conta_corrente']:      
-            deposito = float(input("\nValor a ser depositado: "))
+        if conta == usuarios[nome]['Conta corrente']:      
+            deposito = float(input("- Valor a ser depositado: "))
             if deposito <= 0:
-                print("\nValor inválido, tente novamente!\n")
+                print("- Valor inválido, tente novamente!\n")
                 pass
             else:
-                usuarios[nome]['valor_em_conta'] += deposito
-                print(f"\nQuantia de R$ {round(deposito, 2)} depositado em sua conta!\n")
+                usuarios[nome]['Valor em conta'] += deposito
+                print("==============================================")
+                print("- Quantia de R$ ",round(deposito, 2),  " depositado na conta de ", usuarios[nome], "!\n")
         else:
-            print("Conta corrente não encontrada!\n")
+            print("- Conta corrente não encontrada!\n")
+            sleep(1)
+            system('clear')
     else:
-        print("Usuário não encontrado!\n")
+        print("- Usuário não encontrado!\n")
+        sleep(1)
+        system('clear')
 
-def mostrar_extrato():
-    global extrato
-    print(f"\nExtrato : R$ {round(extrato, 2)}\n")
+def mostrar_extrato_usuario():
+    global usuarios
+    print("==============================================")
+    print("            Verificação de extrato          \n")
+    nome = input("- Nome do usuário: ")
+    print("Extrato : R$  ", round(usuarios[nome]["Valor em conta"], 2),  "\n")
+    sair = input("- Aperte ENTER para sair")
+    system('clear')
 
 def cria_usuario():
     global usuarios
-    nome = input("Digite o nome do usuário: ")
+    print("==============================================")
+    print("           Área de Criação de usuário       \n")
+    nome = input("- Nome do usuário: ")
     if nome not in usuarios:
         usuarios[nome] = {
-            'valor_em_conta': 0.0,
-            'conta_corrente': 0,
-            'agencia': 0
+            'Nome': nome,
+            'Valor em conta': 0.0,
+            'Conta corrente': 0,
+            'Agencia': 0,
+            'Saques diarios': 0
         }
+        print(f"\n- Usuário {nome} criado com sucesso!\n")
     else:
-        print("Usuário já existe!!\n")
+        print("==============================================")
+        print("              Usuário já existe!              ")
 
 def cria_conta_corrente():
     global usuarios
-    nome = input("Usuário que deseja criar CC: ")
+    print("==============================================")
+    print("     Área de Criação de conta corrente (CC) \n")
+    nome = input("- Usuário que deseja criar CC: ")
     for chave in usuarios.keys():
         if nome == chave:
-            print("\nChave encontrada, criando conta... \n")
-            usuarios[nome]['conta_corrente'] = gerar_numero_conta()
-            usuarios[nome]['agencia'] = gerar_numero_agencia()
+            print("===========================================")
+            print("          Criando conta, aguarde!        \n")
+            sleep(1)
+            usuarios[nome]['Conta corrente'] = gerar_numero_conta()
+            usuarios[nome]['Agencia'] = gerar_numero_agencia()
 
-        print("Conta criada, segue os dados da conta abaixo:\n")
-        print("Conta corrente: ", usuarios[nome]['conta_corrente'], "\nAgência: ", usuarios[nome]["agencia"])
+        print("==============================================")
+        print("- Conta criada, segue os dados da conta abaixo: ")
+        print("- Conta corrente: ", usuarios[nome]['Conta corrente'], "\n- Agência: ", usuarios[nome]["Agencia"])
 
 
 def gerar_numero_agencia():
@@ -86,16 +134,21 @@ def gerar_numero_conta():
 
 def lista_usuarios():
     global usuarios
-    print("\nUsuários cadastrados:\n")
+    print("==============================================")
+    print("Lista de usuários cadastrados - Agiobank\n")
     for chave, valor in usuarios.items():
-        print(f"Nome: {chave}\nValor em conta: R$ {round(valor['valor_em_conta'], 2)}\nAgência: {valor['agencia']}\nConta Corrente: {valor['conta_corrente']}\n\n")
+        print(f"- Nome: {chave}\n- Valor em conta: R$ {round(valor['Valor em conta'], 2)}\n- Agência: {valor['Agencia']}\n- Conta Corrente: {valor['Conta corrente']}\n\n")
 
 def historico_do_usuario():
     pass
 
 while True:
     menu()    
-    op = int(input(("Escolha uma operação: ")))
+    op = int(input(("              - Escolha uma operação: ")))
+    print("Operação ", OPERACOES[op - 1], " selecionada, redirecionando...")
+    sleep(1)
+    system('clear')
+    print()
 
     match op:
 
@@ -104,13 +157,13 @@ while True:
         case 2:
             fazer_deposito()
         case 3:
-            mostrar_extrato()
-        case 4:
             cria_usuario()
-        case 5:
+        case 4:
             cria_conta_corrente()
+        case 5:
+            mostrar_extrato_usuario()
         case 6:
             lista_usuarios()
         case _:
-            print("\nEncerrando transação, comando não encontrado!")
+            print("- Encerrando transação, comando não encontrado!")
             exit(1)
