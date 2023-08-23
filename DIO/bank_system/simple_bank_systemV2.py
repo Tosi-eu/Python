@@ -33,7 +33,7 @@ def fazer_saque():
                     if valor <= usuarios[nome]["Valor em conta"] and valor > 0 and valor <= 500:
                         usuarios[nome]["Valor em conta"] -= valor
                         print("- Saque realizado com sucesso! -")
-                        usuarios[nome]["Historico"].append(OPERACOES[0])
+                        usuarios[nome]["Historico"].append(f"{date.today()}, {OPERACOES[0]}")
                         usuarios[nome]["Saques diarios"] += 1
                     else:
                         print("\n- Extrato inferior ao valor resquisitado para saque!")
@@ -62,8 +62,8 @@ def fazer_deposito():
     print("==============================================")
     print("         Área de realização de depósito     \n")
     nome = input("- Pessoa que receberá o depósito: ")
-    conta = input("- Conta corrente: ")
     if nome in usuarios:
+        conta = input("- Conta corrente: ")
         if conta == usuarios[nome]['Conta corrente']:      
             deposito = float(input("- Valor a ser depositado: "))
             if deposito <= 0:
@@ -73,7 +73,7 @@ def fazer_deposito():
                 usuarios[nome]['Valor em conta'] += deposito
                 print("==============================================")
                 print("- Quantia de R$ ",round(deposito, 2),  " depositado na conta de", usuarios[nome]["Nome"], "!\n")
-                usuarios[nome]["Historico"].append(OPERACOES[1])
+                usuarios[nome]["Historico"].append(f"{date.today()}, {OPERACOES[1]}")
         else:
             print("- Conta corrente não encontrada!\n")
             sleep(1)
@@ -88,8 +88,8 @@ def mostrar_extrato_usuario():
     print("==============================================")
     print("            Verificação de extrato          \n")
     nome = input("- Nome do usuário: ")
-    print("Extrato : R$  ", round(usuarios[nome]["Valor em conta"], 2),  "\n")
-    usuarios[nome]["Historico"].append(OPERACOES[4])
+    print("- Extrato : R$  ", round(usuarios[nome]["Valor em conta"], 2),  "\n")
+    usuarios[nome]["Historico"].append(f"{date.today()}, {OPERACOES[4]}")
     sair = input("- Aperte ENTER para sair")
     sleep(1)
     system('clear')
@@ -109,7 +109,7 @@ def cria_usuario():
             'Historico': []
         }
         print(f"\n- Usuário {nome} criado com sucesso!\n")
-        usuarios[nome]["Historico"].append(OPERACOES[2])
+        usuarios[nome]["Historico"].append(f"{date.today()}, {OPERACOES[2]}")
     else:
         print("==============================================")
         print("              Usuário já existe!              ")
@@ -130,7 +130,7 @@ def cria_conta_corrente():
         print("==============================================")
         print("- Conta criada, segue os dados da conta abaixo: ")
         print("- Conta corrente: ", usuarios[nome]['Conta corrente'], "\n- Agência: ", usuarios[nome]["Agencia"])
-        usuarios[nome]["Historico"].append(OPERACOES[3])
+        usuarios[nome]["Historico"].append(f"{date.today()}, {OPERACOES[3]}")
 
 
 def gerar_numero_agencia():
@@ -147,7 +147,7 @@ def lista_usuarios():
     print("Lista de usuários cadastrados - Agiobank\n")
     for chave, valor in usuarios.items():
         print(f"- Nome: {chave}\n- Valor em conta: R$ {round(valor['Valor em conta'], 2)}\n- Agência: {valor['Agencia']}\n- Conta Corrente: {valor['Conta corrente']}\n\n")
-        usuarios[chave]["Historico"].append(OPERACOES[5])
+        usuarios[chave]["Historico"].append(f"{date.today()}, {OPERACOES[5]}")
 
 def historico_do_usuario():
     print("==============================================")
@@ -157,7 +157,7 @@ def historico_do_usuario():
         conta = input("- Conta corrente: ")
         if usuarios[nome]["Conta corrente"] == conta:
             print(usuarios[nome]["Historico"], "\n")
-            usuarios[nome]["Historico"].append(OPERACOES[6])
+            usuarios[nome]["Historico"].append(f"{date.today()}, {OPERACOES[6]}")
         else:
             print("- Conta corrente não encontrada!")
     else:
