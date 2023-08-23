@@ -2,6 +2,7 @@ from os import system
 import random
 from data import *
 from time import sleep
+from datetime import date
 
 def menu():
     print("==============================================")
@@ -12,8 +13,9 @@ def menu():
     print("                 4 - Criar CC                 ")
     print("                 5 - Extrato                  ")
     print("                 6 - Listar                   ")
+    print("                 7 - Histórico                ")
     print("==============================================")
-    print("               Escolha de 1 a 6:              ")
+    print("               Escolha de 1 a 7:              ")
     print("==============================================")
 
 def fazer_saque():
@@ -31,6 +33,7 @@ def fazer_saque():
                     if valor <= usuarios[nome]["Valor em conta"] and valor > 0 and valor <= 500:
                         usuarios[nome]["Valor em conta"] -= valor
                         print("- Saque realizado com sucesso! -")
+                        usuarios[nome]["Historico"].append(OPERACOES[0])
                         usuarios[nome]["Saques diarios"] += 1
                     else:
                         print("\n- Extrato inferior ao valor resquisitado para saque!")
@@ -69,7 +72,8 @@ def fazer_deposito():
             else:
                 usuarios[nome]['Valor em conta'] += deposito
                 print("==============================================")
-                print("- Quantia de R$ ",round(deposito, 2),  " depositado na conta de ", usuarios[nome], "!\n")
+                print("- Quantia de R$ ",round(deposito, 2),  " depositado na conta de", usuarios[nome]["Nome"], "!\n")
+                usuarios[nome]["Historico"].append(OPERACOES[1])
         else:
             print("- Conta corrente não encontrada!\n")
             sleep(1)
@@ -85,7 +89,9 @@ def mostrar_extrato_usuario():
     print("            Verificação de extrato          \n")
     nome = input("- Nome do usuário: ")
     print("Extrato : R$  ", round(usuarios[nome]["Valor em conta"], 2),  "\n")
+    usuarios[nome]["Historico"].append(OPERACOES[4])
     sair = input("- Aperte ENTER para sair")
+    sleep(1)
     system('clear')
 
 def cria_usuario():
@@ -99,9 +105,11 @@ def cria_usuario():
             'Valor em conta': 0.0,
             'Conta corrente': 0,
             'Agencia': 0,
-            'Saques diarios': 0
+            'Saques diarios': 0,
+            'Historico': []
         }
         print(f"\n- Usuário {nome} criado com sucesso!\n")
+        usuarios[nome]["Historico"].append(OPERACOES[2])
     else:
         print("==============================================")
         print("              Usuário já existe!              ")
@@ -122,6 +130,7 @@ def cria_conta_corrente():
         print("==============================================")
         print("- Conta criada, segue os dados da conta abaixo: ")
         print("- Conta corrente: ", usuarios[nome]['Conta corrente'], "\n- Agência: ", usuarios[nome]["Agencia"])
+        usuarios[nome]["Historico"].append(OPERACOES[3])
 
 
 def gerar_numero_agencia():
@@ -138,9 +147,21 @@ def lista_usuarios():
     print("Lista de usuários cadastrados - Agiobank\n")
     for chave, valor in usuarios.items():
         print(f"- Nome: {chave}\n- Valor em conta: R$ {round(valor['Valor em conta'], 2)}\n- Agência: {valor['Agencia']}\n- Conta Corrente: {valor['Conta corrente']}\n\n")
+        usuarios[chave]["Historico"].append(OPERACOES[5])
 
 def historico_do_usuario():
-    pass
+    print("==============================================")
+    print("        Histórico de usário - Agiobank      \n")
+    nome = input("- Nome do usuário: ")
+    if nome in usuarios and usuarios[nome]["Conta corrente"] != 0:
+        conta = input("- Conta corrente: ")
+        if usuarios[nome]["Conta corrente"] == conta:
+            print(usuarios[nome]["Historico"], "\n")
+            usuarios[nome]["Historico"].append(OPERACOES[6])
+        else:
+            print("- Conta corrente não encontrada!")
+    else:
+        print("Usuário não encontrado!")
 
 while True:
     menu()    
@@ -164,6 +185,8 @@ while True:
             mostrar_extrato_usuario()
         case 6:
             lista_usuarios()
+        case 7:
+            historico_do_usuario()
         case _:
             print("- Encerrando transação, comando não encontrado!")
             exit(1)
