@@ -12,33 +12,32 @@ Email_from = "" #inseet the sender email (yours, probably :P)
 msg = MIMEMultipart() #allows us to send emails
 
 workbook = xlrd.open_workbook('C:/Users/Usuario/Desktop/Curso/WebScrapping/emails.xls') #this is my directory path, erase it and put yours 
-sheet = workbook.sheet_by_name('Plan1')
+sheet = workbook.sheet_by_name('') # function's name explains all
+
 rows = sheet.nrows
 columns = sheet.ncols
-
 msg['from'] = Email_from
 
 # logs
 Con = smtplib.SMTP('smtp.gmail.com', 587) #smtp is the server email, and 587 is the server gateaway
 Con.starttls()
 Con.login(Email_from, '')
-msg['subject'] = "Parabéns pelo seu código em C"
+msg['subject'] = "" #any subject different of physics
 
 
 #attach document
-file_name = "gg.PNG"
+file_name = "" #docx, pdf, png, jpeg, xlsx
 attached = open(file_name, "rb")
-base = MIMEBase('application', 'octet-stream') #it's the base, it's standard
-base.set_payload((attached).read()) #reading file and saving him on computer memory
-encoders.encode_base64(base) #codifying msg in base64
+base = MIMEBase('application', 'octet-stream') #it's standard, don't modify
+base.set_payload((attached).read()) #reading file sent in 'file_name'
+encoders.encode_base64(base)
 base.add_header('Content-Disposition', 'attachment; filename= %s'% (file_name)) #first and secod arguments are standard, file_name is variable
-msg.attach(base) #attaching doc
+msg.attach(base)
 
-for curr_row in range(0, rows):
-    Email_to =  sheet.cell_value(curr_row, 0) #reading each cell in row
-    msg['to'] = sheet.cell_value(curr_row, 0) #reading each cell in row
-
-
+for curr_row in range(0, rows): #basically, sheet will be read, and each email in sheet[row][column] eill be selected
+    Email_to =  sheet.cell_value(curr_row, 0) 
+    msg['to'] = sheet.cell_value(curr_row, 0) 
+    
 html = """
 <html>
       <body>
@@ -59,7 +58,7 @@ html = """
 """
 msg_fix = MIMEText(html, "html")
 msg.attach(msg_fix)
-text = msg.as_string() # for avoiding that msg dont cointains anytihng different of strings
+text = msg.as_string()
 Con.sendmail(Email_from, Email_to, text)
 
 Con.quit()
