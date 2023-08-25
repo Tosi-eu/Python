@@ -1,3 +1,4 @@
 # TODO
 
-- classe bd
+- classe bd (em progresso)
+- atualizar funções para fazer query
