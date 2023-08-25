@@ -11,7 +11,7 @@ Email_from = "" #email root (yours, probably :P)
 
 msg = MIMEMultipart() #allows us to send emails
 
-workbook = xlrd.open_workbook('C:/Users/Usuario/Desktop/Curso/WebScrapping/emails.xls') #this is my directory path, erase it and put yours 
+workbook = xlrd.open_workbook('') #put sheet's directory path
 sheet = workbook.sheet_by_name('') # function's name explains all
 
 rows = sheet.nrows
@@ -19,7 +19,7 @@ columns = sheet.ncols
 msg['from'] = Email_from
 
 # logs
-Con = smtplib.SMTP('smtp.gmail.com', 587) #smtp is the server email, and 587 is the server gateaway
+Con = smtplib.SMTP('smtp.gmail.com', 587) #smtp is the server email, and 587 is the gateaway
 Con.starttls()
 Con.login(Email_from, '')
 msg['subject'] = "" #any subject different of physics
