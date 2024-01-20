@@ -1,0 +1,11 @@
+{
+  "ip": "172.163.45.98",
+  "status": "down",
+  "protocols_available": [],
+  "open_ports": [
+    "hostnames",
+    "addresses",
+    "vendor",
+    "status"
+  ]
+}

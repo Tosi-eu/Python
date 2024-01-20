@@ -1,0 +1,56 @@
+[
+  {
+    "ip": "189.46.67.137",
+    "method": "SYN",
+    "scan_info": {
+      "tcp": {
+        "method": "syn",
+        "services": "1-10000"
+      }
+    },
+    "ip_status": "up",
+    "protocols": [
+      "tcp"
+    ],
+    "open_ports": [
+      22,
+      23,
+      80
+    ]
+  },
+  {
+    "ip": "8.8.8.8",
+    "method": "SYN",
+    "scan_info": {
+      "tcp": {
+        "method": "syn",
+        "services": "1-10000"
+      }
+    },
+    "ip_status": "up",
+    "protocols": [
+      "tcp"
+    ],
+    "open_ports": [
+      53,
+      443
+    ]
+  },
+  {
+    "ip": "8.8.8.8",
+    "method": "SYN",
+    "scan_info": {
+      "tcp": {
+        "method": "syn",
+        "services": "1000"
+      }
+    },
+    "ip_status": "up",
+    "protocols": [
+      "tcp"
+    ],
+    "open_ports": [
+      1000
+    ]
+  }
+]
