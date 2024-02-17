@@ -1,0 +1,48 @@
+{
+  "produtos": [
+    {
+      "productid": 38,
+      "productname": "Vaso 38",
+      "description": "Descri\u00e7\u00e3o para Vaso 38",
+      "price": 71.96,
+      "stockquantity": 95,
+      "initialstockquantity": 101,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 6
+    },
+    {
+      "productid": 8,
+      "productname": "Mouse 8",
+      "description": "Descri\u00e7\u00e3o para Mouse 8",
+      "price": 90.09,
+      "stockquantity": 84,
+      "initialstockquantity": 86,
+      "category": "Jardim",
+      "owneruserid": 1,
+      "sales": 2
+    },
+    {
+      "productid": 11,
+      "productname": "Cadeira 11",
+      "description": "Descri\u00e7\u00e3o para Cadeira 11",
+      "price": 19.15,
+      "stockquantity": 9,
+      "initialstockquantity": 11,
+      "category": "Jardim",
+      "owneruserid": 1,
+      "sales": 2
+    },
+    {
+      "productid": 17,
+      "productname": "L\u00e2mpada 17",
+      "description": "Descri\u00e7\u00e3o para L\u00e2mpada 17",
+      "price": 76.42,
+      "stockquantity": 24,
+      "initialstockquantity": 28,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 4
+    }
+  ]
+}
