@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./gingalabs/src/models"
+    ]
+}

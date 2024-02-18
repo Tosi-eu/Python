@@ -1,5 +1,7 @@
-openai==1.1.12
+openai
 asyncio
 httpx
 python-dotenv
 supabase
+requests
+flask
