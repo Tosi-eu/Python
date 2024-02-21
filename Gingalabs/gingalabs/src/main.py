@@ -1,5 +1,5 @@
-from sistema import Sistema
-     
+from vendedor import Vendedor
+
 def menu():
     print("\nSelecione uma opção:")
     print("1. Fazer login")
@@ -11,36 +11,32 @@ def menu():
     print("7. Sair")
 
 if __name__ == "__main__":
-    marketplace_system = Sistema()
+    vendedor = Vendedor()
 
     while True:
-
         menu()
         try:
             escolha = input("Opção: ")
             match escolha:
                 case "1":
-                    #fazer login
-                    marketplace_system.fazer_login()
+                    # Fazer login
+                    vendedor.fazer_login()
                 case "2":
                     # Consultar informações de produtos
-                    marketplace_system.consultar_informacoes()
+                    vendedor.consultar_informacoes()
                 case "3":
                     # Ver ranking de produtos mais vendidos
-                    ranking = marketplace_system.ranking_produtos_mais_vendidos()
-                    print("Ranking de produtos mais vendidos:")
-                    for produto in ranking:
-                        print(produto)
+                    vendedor.ranking_produtos_mais_vendidos()
                 case "4":
                     # Cadastrar novo produto
-                    novo_produto = marketplace_system.cadastrar_novo_produto()
+                    vendedor.cadastrar_novo_produto()
                 case "5":
                     # Obter sugestão de reposição de estoque
-                    sugestao_reposicao = marketplace_system.obter_sugestao_reposicao_estoque()
+                    sugestao_reposicao = vendedor.obter_sugestao_reposicao_estoque()
                     print(f"Sugestão de reposição de produtos: {sugestao_reposicao}")
                 case "6":
                     # Obter sugestão de novos produtos
-                    sugestao_novos_produtos = marketplace_system.obter_sugestao_novos_produtos()
+                    sugestao_novos_produtos = vendedor.obter_sugestao_novos_produtos()
                     print(f"Sugestão de novos produtos: {sugestao_novos_produtos}")
                 case "7":
                     # Sair do loop
@@ -50,6 +46,8 @@ if __name__ == "__main__":
                     print("Opção inválida. Tente novamente.")
                     
         except IOError as io:
-            print("Entrada inválida!\n")
+            print("Probelma com entrada ou saída: !", io)
+        except ValueError as ve:
+            print("Entrada inválida!")
         except Exception as e:
             print("Erro desconhecido: ", e)

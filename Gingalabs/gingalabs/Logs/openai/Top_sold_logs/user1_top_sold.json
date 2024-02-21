@@ -1,0 +1,101 @@
+{
+  "username": "user1",
+  "operation": "buy_suggestions",
+  "products": [
+    {
+      "product_name": "Vaso 45",
+      "message": "Based on your best sellers, here are some newer product recommendations that you may consider adding to your lineup:\n\n1. **Vaso 55** - A larger, more contemporary version of Vaso 45 with a unique design that can attract customers looking for a statement piece for their home.\n\n2. **Vaso 25** - A smaller, minimalist version of Vaso 35, perfect for customers who prefer a more understated look for their living space.\n\n3. **Cadeira 30** - A modern and ergonomic chair design that builds on the success of Cadeira 23, offering additional comfort features and a stylish aesthetic.\n\n4. **L\u00e2mpada 15** - An energy-efficient LED lamp with customizable brightness settings and a sleek, versatile design that can complement various interior styles.\n\n5. **Mouse 35** - An upgraded version of Mouse 29 with improved sensitivity, customizable buttons, and ergonomic design, catering to gamers and professionals alike.\n\nThese product recommendations leverage the success of your best sellers while offering customers new and improved options to choose from."
+    },
+    {
+      "product_name": "Vaso 35",
+      "message": "Based on your best sellers, here are some newer product recommendations that you may consider adding to your lineup:\n\n1. **Vaso 55** - A larger, more contemporary version of Vaso 45 with a unique design that can attract customers looking for a statement piece for their home.\n\n2. **Vaso 25** - A smaller, minimalist version of Vaso 35, perfect for customers who prefer a more understated look for their living space.\n\n3. **Cadeira 30** - A modern and ergonomic chair design that builds on the success of Cadeira 23, offering additional comfort features and a stylish aesthetic.\n\n4. **L\u00e2mpada 15** - An energy-efficient LED lamp with customizable brightness settings and a sleek, versatile design that can complement various interior styles.\n\n5. **Mouse 35** - An upgraded version of Mouse 29 with improved sensitivity, customizable buttons, and ergonomic design, catering to gamers and professionals alike.\n\nThese product recommendations leverage the success of your best sellers while offering customers new and improved options to choose from."
+    },
+    {
+      "product_name": "Cadeira 23",
+      "message": "Based on your best sellers, here are some newer product recommendations that you may consider adding to your lineup:\n\n1. **Vaso 55** - A larger, more contemporary version of Vaso 45 with a unique design that can attract customers looking for a statement piece for their home.\n\n2. **Vaso 25** - A smaller, minimalist version of Vaso 35, perfect for customers who prefer a more understated look for their living space.\n\n3. **Cadeira 30** - A modern and ergonomic chair design that builds on the success of Cadeira 23, offering additional comfort features and a stylish aesthetic.\n\n4. **L\u00e2mpada 15** - An energy-efficient LED lamp with customizable brightness settings and a sleek, versatile design that can complement various interior styles.\n\n5. **Mouse 35** - An upgraded version of Mouse 29 with improved sensitivity, customizable buttons, and ergonomic design, catering to gamers and professionals alike.\n\nThese product recommendations leverage the success of your best sellers while offering customers new and improved options to choose from."
+    },
+    {
+      "product_name": "L\u00e2mpada 10",
+      "message": "Based on your best sellers, here are some newer product recommendations that you may consider adding to your lineup:\n\n1. **Vaso 55** - A larger, more contemporary version of Vaso 45 with a unique design that can attract customers looking for a statement piece for their home.\n\n2. **Vaso 25** - A smaller, minimalist version of Vaso 35, perfect for customers who prefer a more understated look for their living space.\n\n3. **Cadeira 30** - A modern and ergonomic chair design that builds on the success of Cadeira 23, offering additional comfort features and a stylish aesthetic.\n\n4. **L\u00e2mpada 15** - An energy-efficient LED lamp with customizable brightness settings and a sleek, versatile design that can complement various interior styles.\n\n5. **Mouse 35** - An upgraded version of Mouse 29 with improved sensitivity, customizable buttons, and ergonomic design, catering to gamers and professionals alike.\n\nThese product recommendations leverage the success of your best sellers while offering customers new and improved options to choose from."
+    },
+    {
+      "product_name": "Mouse 29",
+      "message": "Based on your best sellers, here are some newer product recommendations that you may consider adding to your lineup:\n\n1. **Vaso 55** - A larger, more contemporary version of Vaso 45 with a unique design that can attract customers looking for a statement piece for their home.\n\n2. **Vaso 25** - A smaller, minimalist version of Vaso 35, perfect for customers who prefer a more understated look for their living space.\n\n3. **Cadeira 30** - A modern and ergonomic chair design that builds on the success of Cadeira 23, offering additional comfort features and a stylish aesthetic.\n\n4. **L\u00e2mpada 15** - An energy-efficient LED lamp with customizable brightness settings and a sleek, versatile design that can complement various interior styles.\n\n5. **Mouse 35** - An upgraded version of Mouse 29 with improved sensitivity, customizable buttons, and ergonomic design, catering to gamers and professionals alike.\n\nThese product recommendations leverage the success of your best sellers while offering customers new and improved options to choose from."
+    }
+  ]
+}{
+  "username": "user1",
+  "operation": "buy_suggestions",
+  "products": [
+    {
+      "product_name": "Vaso 45",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - A larger and more decorative vase to complement Vaso 45.\n2. Vaso 25 - A smaller, more compact vase to offer customers different size options.\n3. Cadeira 30 - A modern and ergonomic chair design to add to your seating collection.\n4. L\u00e2mpada 15 - A smart LED lamp with adjustable color temperature and brightness.\n5. Mouse 35 - A wireless ergonomic mouse with customizable buttons and enhanced precision.\n\nThese new product suggestions are based on the success of your current best sellers and aim to provide your customers with more variety and options in your product lineup."
+    },
+    {
+      "product_name": "Vaso 35",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - A larger and more decorative vase to complement Vaso 45.\n2. Vaso 25 - A smaller, more compact vase to offer customers different size options.\n3. Cadeira 30 - A modern and ergonomic chair design to add to your seating collection.\n4. L\u00e2mpada 15 - A smart LED lamp with adjustable color temperature and brightness.\n5. Mouse 35 - A wireless ergonomic mouse with customizable buttons and enhanced precision.\n\nThese new product suggestions are based on the success of your current best sellers and aim to provide your customers with more variety and options in your product lineup."
+    },
+    {
+      "product_name": "Cadeira 23",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - A larger and more decorative vase to complement Vaso 45.\n2. Vaso 25 - A smaller, more compact vase to offer customers different size options.\n3. Cadeira 30 - A modern and ergonomic chair design to add to your seating collection.\n4. L\u00e2mpada 15 - A smart LED lamp with adjustable color temperature and brightness.\n5. Mouse 35 - A wireless ergonomic mouse with customizable buttons and enhanced precision.\n\nThese new product suggestions are based on the success of your current best sellers and aim to provide your customers with more variety and options in your product lineup."
+    },
+    {
+      "product_name": "L\u00e2mpada 10",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - A larger and more decorative vase to complement Vaso 45.\n2. Vaso 25 - A smaller, more compact vase to offer customers different size options.\n3. Cadeira 30 - A modern and ergonomic chair design to add to your seating collection.\n4. L\u00e2mpada 15 - A smart LED lamp with adjustable color temperature and brightness.\n5. Mouse 35 - A wireless ergonomic mouse with customizable buttons and enhanced precision.\n\nThese new product suggestions are based on the success of your current best sellers and aim to provide your customers with more variety and options in your product lineup."
+    },
+    {
+      "product_name": "Mouse 29",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - A larger and more decorative vase to complement Vaso 45.\n2. Vaso 25 - A smaller, more compact vase to offer customers different size options.\n3. Cadeira 30 - A modern and ergonomic chair design to add to your seating collection.\n4. L\u00e2mpada 15 - A smart LED lamp with adjustable color temperature and brightness.\n5. Mouse 35 - A wireless ergonomic mouse with customizable buttons and enhanced precision.\n\nThese new product suggestions are based on the success of your current best sellers and aim to provide your customers with more variety and options in your product lineup."
+    }
+  ]
+}{
+  "username": "user1",
+  "operation": "buy_suggestions",
+  "products": [
+    {
+      "product_name": "Vaso 45",
+      "message": "Based on your best sellers, I recommend the following new products:\n\n1. Vaso 55 - A larger, more unique design compared to Vaso 45, offering customers a new option for decorating their spaces.\n2. Vaso 25 - A smaller, more compact version of Vaso 35, perfect for customers looking to add a touch of greenery in smaller spaces.\n3. Cadeira 30 - An updated version of Cadeira 23 with additional features such as adjustable height or built-in lumbar support for extra comfort.\n4. Smart L\u00e2mpada - L\u00e2mpada 10 with smart technology, allowing customers to control the lighting remotely via a smartphone app or voice command.\n5. Cadeira ergon\u00f4mica - A new ergonomic chair designed to provide better posture and support, addressing the common issue of Cadeira quebrada among your customers."
+    },
+    {
+      "product_name": "Vaso 35",
+      "message": "Based on your best sellers, I recommend the following new products:\n\n1. Vaso 55 - A larger, more unique design compared to Vaso 45, offering customers a new option for decorating their spaces.\n2. Vaso 25 - A smaller, more compact version of Vaso 35, perfect for customers looking to add a touch of greenery in smaller spaces.\n3. Cadeira 30 - An updated version of Cadeira 23 with additional features such as adjustable height or built-in lumbar support for extra comfort.\n4. Smart L\u00e2mpada - L\u00e2mpada 10 with smart technology, allowing customers to control the lighting remotely via a smartphone app or voice command.\n5. Cadeira ergon\u00f4mica - A new ergonomic chair designed to provide better posture and support, addressing the common issue of Cadeira quebrada among your customers."
+    },
+    {
+      "product_name": "Cadeira 23",
+      "message": "Based on your best sellers, I recommend the following new products:\n\n1. Vaso 55 - A larger, more unique design compared to Vaso 45, offering customers a new option for decorating their spaces.\n2. Vaso 25 - A smaller, more compact version of Vaso 35, perfect for customers looking to add a touch of greenery in smaller spaces.\n3. Cadeira 30 - An updated version of Cadeira 23 with additional features such as adjustable height or built-in lumbar support for extra comfort.\n4. Smart L\u00e2mpada - L\u00e2mpada 10 with smart technology, allowing customers to control the lighting remotely via a smartphone app or voice command.\n5. Cadeira ergon\u00f4mica - A new ergonomic chair designed to provide better posture and support, addressing the common issue of Cadeira quebrada among your customers."
+    },
+    {
+      "product_name": "L\u00e2mpada 10",
+      "message": "Based on your best sellers, I recommend the following new products:\n\n1. Vaso 55 - A larger, more unique design compared to Vaso 45, offering customers a new option for decorating their spaces.\n2. Vaso 25 - A smaller, more compact version of Vaso 35, perfect for customers looking to add a touch of greenery in smaller spaces.\n3. Cadeira 30 - An updated version of Cadeira 23 with additional features such as adjustable height or built-in lumbar support for extra comfort.\n4. Smart L\u00e2mpada - L\u00e2mpada 10 with smart technology, allowing customers to control the lighting remotely via a smartphone app or voice command.\n5. Cadeira ergon\u00f4mica - A new ergonomic chair designed to provide better posture and support, addressing the common issue of Cadeira quebrada among your customers."
+    },
+    {
+      "product_name": "Cadeira quebrada",
+      "message": "Based on your best sellers, I recommend the following new products:\n\n1. Vaso 55 - A larger, more unique design compared to Vaso 45, offering customers a new option for decorating their spaces.\n2. Vaso 25 - A smaller, more compact version of Vaso 35, perfect for customers looking to add a touch of greenery in smaller spaces.\n3. Cadeira 30 - An updated version of Cadeira 23 with additional features such as adjustable height or built-in lumbar support for extra comfort.\n4. Smart L\u00e2mpada - L\u00e2mpada 10 with smart technology, allowing customers to control the lighting remotely via a smartphone app or voice command.\n5. Cadeira ergon\u00f4mica - A new ergonomic chair designed to provide better posture and support, addressing the common issue of Cadeira quebrada among your customers."
+    }
+  ]
+}{
+  "username": "user1",
+  "operation": "buy_suggestions",
+  "products": [
+    {
+      "product_name": "Vaso 45",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - An upgraded version of Vaso 45 with a modern design and additional features.\n2. Vaso 25 - A smaller option compared to Vaso 35, perfect for customers looking for a more compact design.\n3. Cadeira 30 - A new model that builds upon the success of Cadeira 23, offering improved comfort and style.\n4. Lumin\u00e1ria 15 - A sleek and energy-efficient lamp design to complement L\u00e2mpada 10.\n5. Cadeira reparada - An innovative chair design that plays on the popularity of \"Cadeira quebrada\" by offering a unique, artistic twist on a broken chair concept.\n\nThese new products are based on your existing best sellers and aim to attract both existing customers looking for upgrades, as well as new customers interested in similar products."
+    },
+    {
+      "product_name": "Vaso 35",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - An upgraded version of Vaso 45 with a modern design and additional features.\n2. Vaso 25 - A smaller option compared to Vaso 35, perfect for customers looking for a more compact design.\n3. Cadeira 30 - A new model that builds upon the success of Cadeira 23, offering improved comfort and style.\n4. Lumin\u00e1ria 15 - A sleek and energy-efficient lamp design to complement L\u00e2mpada 10.\n5. Cadeira reparada - An innovative chair design that plays on the popularity of \"Cadeira quebrada\" by offering a unique, artistic twist on a broken chair concept.\n\nThese new products are based on your existing best sellers and aim to attract both existing customers looking for upgrades, as well as new customers interested in similar products."
+    },
+    {
+      "product_name": "Cadeira 23",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - An upgraded version of Vaso 45 with a modern design and additional features.\n2. Vaso 25 - A smaller option compared to Vaso 35, perfect for customers looking for a more compact design.\n3. Cadeira 30 - A new model that builds upon the success of Cadeira 23, offering improved comfort and style.\n4. Lumin\u00e1ria 15 - A sleek and energy-efficient lamp design to complement L\u00e2mpada 10.\n5. Cadeira reparada - An innovative chair design that plays on the popularity of \"Cadeira quebrada\" by offering a unique, artistic twist on a broken chair concept.\n\nThese new products are based on your existing best sellers and aim to attract both existing customers looking for upgrades, as well as new customers interested in similar products."
+    },
+    {
+      "product_name": "L\u00e2mpada 10",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - An upgraded version of Vaso 45 with a modern design and additional features.\n2. Vaso 25 - A smaller option compared to Vaso 35, perfect for customers looking for a more compact design.\n3. Cadeira 30 - A new model that builds upon the success of Cadeira 23, offering improved comfort and style.\n4. Lumin\u00e1ria 15 - A sleek and energy-efficient lamp design to complement L\u00e2mpada 10.\n5. Cadeira reparada - An innovative chair design that plays on the popularity of \"Cadeira quebrada\" by offering a unique, artistic twist on a broken chair concept.\n\nThese new products are based on your existing best sellers and aim to attract both existing customers looking for upgrades, as well as new customers interested in similar products."
+    },
+    {
+      "product_name": "Cadeira quebrada",
+      "message": "Based on your best sellers, here are some new product recommendations:\n\n1. Vaso 55 - An upgraded version of Vaso 45 with a modern design and additional features.\n2. Vaso 25 - A smaller option compared to Vaso 35, perfect for customers looking for a more compact design.\n3. Cadeira 30 - A new model that builds upon the success of Cadeira 23, offering improved comfort and style.\n4. Lumin\u00e1ria 15 - A sleek and energy-efficient lamp design to complement L\u00e2mpada 10.\n5. Cadeira reparada - An innovative chair design that plays on the popularity of \"Cadeira quebrada\" by offering a unique, artistic twist on a broken chair concept.\n\nThese new products are based on your existing best sellers and aim to attract both existing customers looking for upgrades, as well as new customers interested in similar products."
+    }
+  ]
+}

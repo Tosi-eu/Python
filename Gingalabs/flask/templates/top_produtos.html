@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Consulta de Produtos</title>
+</head>
+<body>
+    {% if produtos %}
+    <h1>Lista de produtos mais vendidos</h1>
+        <div class="product-list">
+            <ul>
+                {% for produto in produtos %}
+                    <li>Nome do produto: {{ produto['productname']}} || Vendas: {{produto['sales']}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>Nenhum produto encontrado para este vendedor.</p>
+    {% endif %}
+    <button id="return"><a id="return" href="/produto">Página inicial</a></button>
+</body>
+</html>

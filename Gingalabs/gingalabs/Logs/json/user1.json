@@ -1,5 +1,5 @@
 {
-  "produtos": [
+  "products": [
     {
       "productid": 58,
       "productname": "Mouse 8",
@@ -65,6 +65,28 @@
       "category": "Casa",
       "owneruserid": 1,
       "sales": 25
+    },
+    {
+      "productid": 104,
+      "productname": "Cadeira quebrada",
+      "description": "cadeira sem p\u00e9",
+      "price": 300.0,
+      "stockquantity": 5,
+      "initialstockquantity": 35,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 30
+    },
+    {
+      "productid": 105,
+      "productname": "Garrafa de gin",
+      "description": "vazia, pq bebi",
+      "price": 30.0,
+      "stockquantity": 49,
+      "initialstockquantity": 65,
+      "category": "Bebidas",
+      "owneruserid": 1,
+      "sales": 16
     }
   ]
 }

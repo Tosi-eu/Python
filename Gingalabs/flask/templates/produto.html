@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Produtos</title>
+</head>
+<body>
+    <h1>Página de Produtos</h1>
+    <form action="{{ url_for('consultar_produtos') }}" method="post">
+        <input type="hidden" name="action" value="consultar_produtos">
+        <button type="submit">Listar Todos Produtos</button>
+    </form>
+    <form action="{{ url_for('top_products_best_seller') }}" method="post">
+        <input type="hidden" name="action" value="top_products_best_seller">
+        <button type="submit">Produtos Mais Vendidos</button>
+    </form>
+    <form action="{{ url_for('inserir_produto') }}" method="post">
+        <input type="hidden" name="action" value="inserir_produto">
+        <button type="submit">Inserir Produto</button>
+    </form>
+    <form action="{{ url_for('sugerir_novo_produto') }}" method="get">
+        <input type="hidden" name="action" value="sugerir_novos_prod">
+        <button type="submit">Sugestão de Novos Produtos</button>
+    </form>
+    <form action="{{ url_for('reabastecer_produto') }}" method="get">
+        <input type="hidden" name="action" value="reabastecer_produto">
+        <button type="submit">Sugestão de Reestocagem</button>
+    </form>
+    <button id="return"><a id="return" href="/">Página inicial</a></button>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "username": "user1",
+  "operation": "reestock_suggestion",
+  "products": [
+    {
+      "product_name": "Cadeira 11",
+      "message": "Based on the report you provided, it looks like the product \"Cadeira 11\" is low in stock and needs to be replenished. I recommend placing an order to restock this product to ensure that it is available for customers."
+    }
+  ]
+}{
+  "username": "user1",
+  "operation": "reestock_suggestion",
+  "products": [
+    {
+      "product_name": "Cadeira 11",
+      "message": "Based on the report, it looks like the product \"Cadeira 11\" is low in stock and needs to be replenished. I recommend ordering additional quantities of \"Cadeira 11\" to ensure that it remains in stock and meets customer demand."
+    }
+  ]
+}{
+  "username": "user1",
+  "operation": "reestock_suggestion",
+  "products": [
+    {
+      "product_name": "Cadeira 11",
+      "message": "Based on the report provided, the following products are low in stock and need to be replenished: \n\n1. Cadeira 11\n2. Cadeira quebrada\n\nPlease make sure to order more of these items to maintain sufficient inventory levels."
+    },
+    {
+      "product_name": "Cadeira quebrada",
+      "message": "Based on the report provided, the following products are low in stock and need to be replenished: \n\n1. Cadeira 11\n2. Cadeira quebrada\n\nPlease make sure to order more of these items to maintain sufficient inventory levels."
+    }
+  ]
+}{
+  "username": "user1",
+  "operation": "reestock_suggestion",
+  "products": [
+    {
+      "product_name": "Cadeira 11",
+      "message": "Based on the report you provided, it looks like the following products are low in stock and need to be replenished:\n- Cadeira 11\n- Cadeira quebrada\n\nI would recommend restocking these items to ensure availability for customers."
+    },
+    {
+      "product_name": "Cadeira quebrada",
+      "message": "Based on the report you provided, it looks like the following products are low in stock and need to be replenished:\n- Cadeira 11\n- Cadeira quebrada\n\nI would recommend restocking these items to ensure availability for customers."
+    }
+  ]
+}

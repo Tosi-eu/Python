@@ -1,0 +1,18 @@
+{
+  "username": "user1",
+  "operation": "reestock_suggestion",
+  "products": [
+    {
+      "product_name": "Cadeira 11",
+      "message": "Recomendo que o vendedor solicite reestoque dos seguintes produtos que est\u00e3o com baixo estoque:\n- Cadeira\n- Copo de vidro"
+    },
+    {
+      "product_name": "Cadeira quebrada",
+      "message": "Recomendo que o vendedor solicite reestoque dos seguintes produtos que est\u00e3o com baixo estoque:\n- Cadeira\n- Copo de vidro"
+    },
+    {
+      "product_name": "Copo de vidro",
+      "message": "Recomendo que o vendedor solicite reestoque dos seguintes produtos que est\u00e3o com baixo estoque:\n- Cadeira\n- Copo de vidro"
+    }
+  ]
+}

@@ -17,14 +17,19 @@ class Sistema:
         self.supabase_url = os.environ["SUPABASE_PROJECT"]
         self.supabase_key = os.environ["SUPABASE_API_KEY"]
         self.supabase = create_client(self.supabase_url, self.supabase_key)
-        self.online= None
+        self.online = None
 
     #check
     def sign_in(self):
         # Fazer login
-        username = input("Digite seu username: ")
-        email = input("Digite seu email: ")
-        response = self.supabase.from_('users').select('*').eq('username', username).eq('email', email).execute()
+        try:
+            username = input("Digite seu username: ")
+            email = input("Digite seu email: ")
+            response = self.supabase.from_('users').select('*').eq('username', username).eq('email', email).execute()
+        except postgrest.exceptions.APIError as e:
+            print(f"Erro ao comunicar-se com o sistema (Supabase): {e}")
+        except Exception as e:
+            print(f"Erro desconhecido ao chamar a API do Supabase: {e}")
 
         try:
             if response:
@@ -57,8 +62,13 @@ class Sistema:
     #check
     def consult_informations(self):
         self._verify_login()
-        response = self.supabase.table('products').select('*').eq('owneruserid', self.online["UserID"]).execute()
-        
+        try:
+            response = self.supabase.table('products').select('*').eq('owneruserid', self.online["UserID"]).execute()
+        except postgrest.exceptions.APIError as e:
+            print(f"Erro ao comunicar-se com o sistema (Supabase): {e}")
+        except Exception as e:
+            print(f"Erro desconhecido ao chamar a API do Supabase: {e}")
+
         if response:
             print("Informações dos seus products:")
             response = dict(response)
@@ -80,9 +90,16 @@ class Sistema:
             print("Nenhum product encontrado para este vendedor.")
         
         return response 
+    
     #check
     def top_products_best_seller(self):
-        response = self.supabase.table('products').select('productname', 'sales').order('sales', desc=True).execute()
+        try:
+            response = self.supabase.table('products').select('productname', 'sales').order('sales', desc=True).execute()
+        except postgrest.exceptions.APIError as e:
+            print(f"Erro ao comunicar-se com o sistema (Supabase): {e}")
+        except Exception as e:
+            print(f"Erro desconhecido ao chamar a API do Supabase: {e}")
+
         response = dict(response)
         if response:
             print("Ranking de products mais vendidos:")
@@ -131,7 +148,12 @@ class Sistema:
         self._verify_login()
 
         # Consultar products com estoque baixo considerando <= 10
-        response = self.supabase.table('products').select('productname', 'sales').eq('owneruserid', self.online["UserID"]).lte('stockquantity', 10).execute()
+        try:
+            response = self.supabase.table('products').select('productname', 'sales').eq('owneruserid', self.online["UserID"]).lte('stockquantity', 10).execute()
+        except postgrest.exceptions.APIError as e:
+            print(f"Erro ao comunicar-se com o sistema (Supabase): {e}")
+        except Exception as e:
+            print(f"Erro desconhecido ao chamar a API do Supabase: {e}")
 
         products = dict(response)
         low_stock_products = [product['productname'] for product in products['data']]
@@ -147,7 +169,7 @@ class Sistema:
         )
 
         log_filename = f"{os.path.abspath(os.getcwd())}/Logs/openai/Reestock_logs/{self.online['Username']}_reestock_log.json"
-        with open(log_filename, 'w') as log_file:
+        with open(log_filename, 'a+') as log_file:
             log_data = {
                 "username": self.online['Username'],
                 "operation": "reestock_suggestion",
@@ -164,7 +186,13 @@ class Sistema:
         self._verify_login()
 
         # Consultar products top5 mais vendidos
-        response_ranking = self.supabase.table('products').select('productname', 'sales').order('sales', desc=True).limit(5).execute()
+        try:
+            response_ranking = self.supabase.table('products').select('productname', 'sales').order('sales', desc=True).limit(5).execute()
+        except postgrest.exceptions.APIError as e:
+            print(f"Erro ao comunicar-se com o sistema (Supabase): {e}")
+        except Exception as e:
+            print(f"Erro desconhecido ao chamar a API do Supabase: {e}")
+
         products_ranking = dict(response_ranking)
 
         if not products_ranking or not products_ranking['data']:
@@ -182,7 +210,7 @@ class Sistema:
         )
         
         log_filename = f"{os.path.abspath(os.getcwd())}/Logs/openai/Top_sold_logs/{self.online['Username']}_top_sold.json"
-        with open(log_filename, 'w') as log_file:
+        with open(log_filename, 'a+') as log_file:
             log_data = {
                 "username": self.online['Username'],
                 "operation": "buy_suggestions",

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Inserir Produto</title>
+</head>
+<body>
+    <h1>Inserir Produto</h1>
+
+    {% if success_message %}
+        <p style="color: green;" class="message {{ 'fade-out' }}">{{ success_message }}</p>
+    {% endif %}
+
+    {% if error_message %}
+        <p style="color: red;" class="message {{ 'fade-out' }}">{{ error_message }}</p>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('inserir_produto') }}">
+        <label for="productname">Nome do Produto:</label>
+        <input type="text" id="productname" name="productname" required><br>
+
+        <label for="description">Descrição:</label>
+        <input type="text" id="description" name="description" required><br>
+
+        <label for="price">Preço:</label>
+        <input type="number" id="price" name="price" value="10" required><br>
+
+        <label for="category">Categoria:</label>
+        <input type="text" id="category" name="category" required><br>
+
+        <input type="submit" value="Inserir Produto">
+    </form>
+
+    <button id="return"><a id="return" href="/">Página inicial</a></button>
+    <script>
+        // Função para esconder mensagens após um intervalo de tempo
+        function esconderMensagens() {
+            var mensagens = document.getElementsByClassName('message');
+            for (var i = 0; i < mensagens.length; i++) {
+                setTimeout(function (mensagem) {
+                    mensagem.style.display = 'none';
+                }, 3000, mensagens[i]);
+            }
+        }
+    
+        // Chame a função assim que a página for carregada
+        document.addEventListener('DOMContentLoaded', esconderMensagens);
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+{
+  "products": [
+    {
+      "productid": 58,
+      "productname": "Mouse 8",
+      "description": "Descri\u00e7\u00e3o para Mouse 8",
+      "price": 90.09,
+      "stockquantity": 84,
+      "initialstockquantity": 86,
+      "category": "Jardim",
+      "owneruserid": 1,
+      "sales": 2
+    },
+    {
+      "productid": 61,
+      "productname": "Cadeira 11",
+      "description": "Descri\u00e7\u00e3o para Cadeira 11",
+      "price": 19.15,
+      "stockquantity": 9,
+      "initialstockquantity": 11,
+      "category": "Jardim",
+      "owneruserid": 1,
+      "sales": 2
+    },
+    {
+      "productid": 67,
+      "productname": "L\u00e2mpada 17",
+      "description": "Descri\u00e7\u00e3o para L\u00e2mpada 17",
+      "price": 76.42,
+      "stockquantity": 24,
+      "initialstockquantity": 28,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 4
+    },
+    {
+      "productid": 88,
+      "productname": "Vaso 38",
+      "description": "Descri\u00e7\u00e3o para Vaso 38",
+      "price": 71.96,
+      "stockquantity": 95,
+      "initialstockquantity": 101,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 6
+    },
+    {
+      "productid": 101,
+      "productname": "Teclado Mec\u00e2nico 5",
+      "description": "Barulhin b\u00e3o",
+      "price": 230.0,
+      "stockquantity": 77,
+      "initialstockquantity": 85,
+      "category": "Inform\u00e1tica",
+      "owneruserid": 1,
+      "sales": 8
+    },
+    {
+      "productid": 103,
+      "productname": "Cadeira quebrada",
+      "description": "simmmmmmmmm",
+      "price": 10.0,
+      "stockquantity": 54,
+      "initialstockquantity": 79,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 25
+    },
+    {
+      "productid": 104,
+      "productname": "Cadeira quebrada",
+      "description": "cadeira sem p\u00e9",
+      "price": 300.0,
+      "stockquantity": 5,
+      "initialstockquantity": 35,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 30
+    },
+    {
+      "productid": 105,
+      "productname": "Garrafa de gin",
+      "description": "vazia, pq bebi",
+      "price": 30.0,
+      "stockquantity": 49,
+      "initialstockquantity": 65,
+      "category": "Bebidas",
+      "owneruserid": 1,
+      "sales": 16
+    },
+    {
+      "productid": 106,
+      "productname": "Cadeira sem assento",
+      "description": "confort\u00e1vel, se estivesse inteira",
+      "price": 10.0,
+      "stockquantity": 46,
+      "initialstockquantity": 62,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 16
+    },
+    {
+      "productid": 107,
+      "productname": "caraca 2",
+      "description": "p\u00e3ozin",
+      "price": 12.0,
+      "stockquantity": 34,
+      "initialstockquantity": 58,
+      "category": "casa",
+      "owneruserid": 1,
+      "sales": 24
+    },
+    {
+      "productid": 108,
+      "productname": "bengala met\u00e1lica",
+      "description": "pra carregar at\u00e9 os mais gordinhos",
+      "price": 35.0,
+      "stockquantity": 74,
+      "initialstockquantity": 79,
+      "category": "Medicina",
+      "owneruserid": 1,
+      "sales": 5
+    },
+    {
+      "productid": 109,
+      "productname": "Copo de vidro",
+      "description": "500ml",
+      "price": 5.0,
+      "stockquantity": 6,
+      "initialstockquantity": 31,
+      "category": "Cozinha",
+      "owneruserid": 1,
+      "sales": 25
+    },
+    {
+      "productid": 110,
+      "productname": "bengala met\u00e1lica",
+      "description": "essa t\u00e1 torta",
+      "price": 34.0,
+      "stockquantity": 36,
+      "initialstockquantity": 62,
+      "category": "Lixo",
+      "owneruserid": 1,
+      "sales": 26
+    },
+    {
+      "productid": 111,
+      "productname": "Cacetete de arroz",
+      "description": "teste",
+      "price": 1000.0,
+      "stockquantity": 84,
+      "initialstockquantity": 85,
+      "category": "Brinquedo",
+      "owneruserid": 1,
+      "sales": 1
+    },
+    {
+      "productid": 112,
+      "productname": "Cadeira sem encosto",
+      "description": "pra ficar corcunda",
+      "price": 130.0,
+      "stockquantity": 39,
+      "initialstockquantity": 49,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 10
+    },
+    {
+      "productid": 113,
+      "productname": "Sof\u00e1 sem estofado",
+      "description": "super confort\u00e1vel",
+      "price": 1000.0,
+      "stockquantity": 62,
+      "initialstockquantity": 85,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 23
+    },
+    {
+      "productid": 114,
+      "productname": "Tapete rasgado",
+      "description": "bom candidato pra pano de ch\u00e3o",
+      "price": 2.0,
+      "stockquantity": 58,
+      "initialstockquantity": 69,
+      "category": "Casa",
+      "owneruserid": 1,
+      "sales": 11
+    }
+  ]
+}

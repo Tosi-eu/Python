@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Sugestão de Novos Produtos</title>
+</head>
+<body>
+    <h1>Reabastecer Produto</h1>
+
+    <div id="mensagem">
+        {% for line in success_message %}
+            <pre>{{ line }}</pre>
+        {% endfor %}
+
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+    </div>
+
+    <button id="return"><a id="return" href="/">Página inicial</a></button>
+</body>
+</html>

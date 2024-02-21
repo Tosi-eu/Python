@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Página de Login</h1>
+    {% if error %}
+        <p style="color: red;" class="message {{ 'fade-out' }}">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="{{ url_for('login') }}">
+        <label for="username">User:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="email">Mail:</label>
+        <input type="email" id="email" name="email" required><br>
+        <input type="submit" value="Login">
+    </form>
+    <button id="return"><a id="return" href="/">Página inicial</a></button>
+    <script>
+        // Função para esconder mensagens após um intervalo de tempo
+        function esconderMensagens() {
+            var mensagens = document.getElementsByClassName('message');
+            for (var i = 0; i < mensagens.length; i++) {
+                setTimeout(function (mensagem) {
+                    mensagem.style.display = 'none';
+                }, 3000, mensagens[i]);
+            }
+        }
+    
+        // Chame a função assim que a página for carregada
+        document.addEventListener('DOMContentLoaded', esconderMensagens);
+    </script>
+</body>
+</html>

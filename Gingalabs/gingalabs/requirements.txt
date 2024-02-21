@@ -3,5 +3,8 @@ asyncio
 httpx
 python-dotenv
 supabase
-requests
-flask
+json
+random
+re
+os
+postgrest
