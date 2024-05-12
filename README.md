@@ -6,7 +6,7 @@ Este repositório contém uma variedade de projetos e ferramentas em Python para
     <img src="https://netfore.com/wp-content/uploads/2017/02/python-logo-master-v3-TM.png" width="700px" /><br>
 </div>
 
-Tópicos Abordados
+## Tópicos Abordados
 - IA (Inteligência Artificial): Implementações de algoritmos de aprendizado de máquina e deep learning.
 - Machine e Deep Learning: Projetos e tutoriais sobre redes neurais, aprendizado profundo e processamento de linguagem natural.
 - Web Scraping: Scripts e utilitários para extrair dados de websites.
