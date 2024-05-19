@@ -1,0 +1,49 @@
+/* Reseta as margens e o padding para eliminar inconsistências entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para o body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Estilos para o header */
+header {
+    background: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+/* Estilos para o carrossel */
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-inner .row {
+    margin: 0;
+}
+
+.carousel-inner .col-md-2 {
+    padding: 10px;
+}
+
+/* Estilos para o footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

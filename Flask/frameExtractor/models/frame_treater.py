@@ -6,7 +6,7 @@ import numpy as np
 import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-images_path = r'C:\\Users\\guilherme\\Desktop\\Python\\Automations\\FrameExtractor\\Frames_extracted_with_class\\'
+images_path = r'C:\\Users\\guilherme\\Desktop\\Python\\Flask\\frameExtractor\\frames\\'
 
 class FrameTreater:
     def __init__(self):
