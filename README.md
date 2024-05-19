@@ -17,7 +17,7 @@ Este repositório contém uma variedade de projetos e ferramentas em Python para
 
 - /IA: Contém implementações de algoritmos de IA, como algoritmos de deep leaning, machine learning e prolog
 - /Web_Scraping: Scripts e utilitários para web scraping ´pessoais e também visto em disciplina na USP.
-- /bots: Ferramentas para automação de tarefas(busca) e também um enviador de emails.
+- /Automations: Ferramentas para automação de tarefas(busca) e também um enviador de emails.
 - /Análise_de_Dados: Notebooks e scripts para análise exploratória de dados gerais(atualmente com mais projetos em mercado financeiro).
 - /Flask: projetos pequenos/pessoais com flassk, como forma de trabalhar fullstack.
 
