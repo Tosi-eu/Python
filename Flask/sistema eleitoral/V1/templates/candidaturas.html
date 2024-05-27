@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Candidaturas</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <h1>Candidaturas</h1>
+        <nav>
+            <ul>
+                <li><a href="/candidaturas/eleitos">Relatório de Candidatos Eleitos</a></li>
+                <li><a href="/candidatos/ficha-limpa">Listar Candidatos Ficha Limpa</a></li>
+                <li><a href="/delete">Remover Entidade</a></li>
+                <li><a href="/inserir">Inserir dados</a></li>
+                <li><a href="/doacoes">Registrar doação</a></li>
+                <li><a href="/">Página Principal</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form method="GET" action="/candidaturas">
+                <label for="ano">Ano:</label>
+                <input type="text" id="ano" name="ano">
+                <label for="nome_candidato">Nome do Candidato:</label>
+                <input type="text" id="nome_candidato" name="nome_candidato">
+                <label for="cargo">Cargo:</label>
+                <input type="text" id="cargo" name="cargo">
+                <label for="order_by">Ordenar por:</label>
+                <select id="order_by" name="order_by">
+                    <option value="Ano">Ano</option>
+                    <option value="Cod_Candidato">Candidato</option>
+                    <option value="Cod_Cargo">Cargo</option>
+                </select>
+                <select id="order_dir" name="order_dir">
+                    <option value="ASC">Crescente</option>
+                    <option value="DESC">Decrescente</option>
+                </select>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <ul id="candidates">
+            {% for candidatura in candidaturas %}
+            <li>{{ candidatura }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sistema Eleitoral. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

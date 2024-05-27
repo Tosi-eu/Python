@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remover Entidade</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <h1>Remover Entidade</h1>
+        <nav>
+            <ul>
+                <li><a href="/candidaturas">Listar Candidaturas</a></li>
+                <li><a href="/candidaturas/eleitos">Relatório de Candidatos Eleitos</a></li>
+                <li><a href="/candidatos/ficha-limpa">Listar Candidatos Ficha Limpa</a></li>
+                <li><a href="/inserir">Inserir dados</a></li>
+                <li><a href="/doacoes">Registrar doação</a></li>
+                <li><a href="/">Página Principal</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container delete-form">
+        <form method="POST" action="/delete">
+            <label for="entity">Entidade:</label>
+            <select id="entity" name="entity">
+                <option value="pleito">Pleito</option>
+                <option value="candidatura">Candidatura</option>
+                <option value="candidato">Candidato</option>
+                <option value="cargo">Cargo</option>
+                <option value="equipeapoio">Equipe de Apoio</option>
+                <option value="participanteequipeapoio">Participante da Equipe de Apoio</option>
+                <option value="doadorescampanha">Doador de Campanha</option>
+                <option value="processojudicial">Processo Judicial</option>
+            </select>
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id">
+            <button type="submit">Remover</button>
+        </form>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+        <a href="/">Voltar</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sistema Eleitoral. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

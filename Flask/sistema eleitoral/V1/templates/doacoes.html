@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doações</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Registrar Doação</h1>
+        <nav>
+            <ul>
+                <li><a href="/candidaturas">Listar Candidaturas</a></li>
+                <li><a href="/candidaturas/eleitos">Relatório de Candidatos Eleitos</a></li>
+                <li><a href="/candidatos/ficha-limpa">Listar Candidatos Ficha Limpa</a></li>
+                <li><a href="/delete">Remover Entidade</a></li>
+                <li><a href="/inserir">Inserir dados</a></li>
+            </ul>
+        </nav>
+    </header>
+            <form class="form-container "action="/doacoes" method="POST">
+                <label for="cod_doador">Código do Doador:</label>
+                <input type="number" id="cod_doador" name="cod_doador" required>
+
+                <label for="cod_candidatura">Código da candidatura:</label>
+                <input type="number" id="cod_candidatura" name="cod_candidatura" required>
+
+                <label for="valor">Valor da Doação:</label>
+                <input type="number" id="valor" name="valor" step="10" required>
+
+                <label for="quantDoacoes">Quantidade de Doações:</label>
+                <input type="number" id="quantDoacoes" name="quantDoacoes" step="1" required>
+
+                <button type="submit">Registrar Doação</button>
+            </form>
+    <footer>
+        <p>&copy; 2024 Sistema de Gerenciamento de Campanhas</p>
+    </footer>
+</body>
+</html>
