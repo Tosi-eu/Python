@@ -59,7 +59,7 @@ INSERT INTO Partido (Cod_Partido, Nome, Cod_Programa) VALUES
 
 -- Inserções na tabela Candidatura
 INSERT INTO Candidatura (Cod_Candidatura, Cod_Candidato, Cod_Cargo, Cod_Partido, Ano, Cod_Pleito, Cod_Candidatura_Vice, Eleito, Total_Doacoes) VALUES
-(1, '111.111.111-11', 1, 1, 2024, 1, NULL, FALSE, 0),
+(1, '111.111.111-11', 1, 1, 2024, 1, NULL,  TRUE, 0),
 (2, '222.222.222-22', 2, 2, 2024, 2, NULL, FALSE, 0),
 (3, '333.333.333-33', 3, 3, 2024, 3, NULL, FALSE, 0),
 (4, '444.444.444-44', 4, 4, 2024, 4, NULL, FALSE, 0),

@@ -50,20 +50,20 @@ def get_eleitos():
     for candidatura in candidaturas:
         print(candidatura)
         result.append({
-            'Cod_Candidatura': candidatura[0],
-            'Nome': candidatura[9],
-            'Cod_Candidato': candidatura[1],
-            'Cod_Cargo': candidatura[2],
-            'Ano': candidatura[4],
-            'Cod_Pleito': candidatura[5],
-            'Cod_Candidatura_Vice': candidatura[6],
-            'Eleito': candidatura[6],
-            'Partido': candidatura[10],
-            'Localidade': candidatura[11],
-            'Vice_Candidato': candidatura[12],
-            'Eleito': candidatura[7],
-            'Doações': candidatura[8]
-        })
+                    'Cod_Candidatura': candidatura[0],
+                    'Nome': candidatura[9],
+                    'Cod_Candidato': candidatura[1],
+                    'Cod_Cargo': candidatura[2],
+                    'Ano': candidatura[4],
+                    'Cod_Pleito': candidatura[5],
+                    'Cod_Candidatura_Vice': candidatura[6],
+                    'Eleito': candidatura[6],
+                    'Partido': candidatura[10],
+                    'Localidade': candidatura[11],
+                    'Vice_Candidato': candidatura[12],
+                    'Eleito': candidatura[7],
+                    'Doações': candidatura[8]
+                })
     return render_template('eleitos.html', candidaturas=result)
 
 @app.route('/candidaturas', methods=['GET'])
@@ -310,6 +310,10 @@ def inserir():
                 nome = request.form['nome_ind']
                 ficha_limpa = request.form.get('ficha_limpa', 'TRUE')
                 cod_equipe = request.form['partido']
+
+                if not cod_equipe:
+                    cod_equipe = None
+                    
                 query = "INSERT INTO Individuo (CPF, Nome, Ficha_Limpa, Cod_Equipe) VALUES (%s, %s, %s, %s)"
                 cursor.execute(query, (cpf, nome, ficha_limpa, cod_equipe))
             
