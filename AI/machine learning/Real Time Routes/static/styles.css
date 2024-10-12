@@ -1,0 +1,198 @@
+/* Importação do Bootstrap */
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset básico */
+body, h1, h2, p, form, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte e Layout Geral */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding-top: 80px; /* Espaço para o header fixo */
+    padding-bottom: 60px; /* Espaço para o footer fixo */
+}
+
+/* Header */
+header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 1rem 2rem;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Garante que o header fique acima do conteúdo */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Main Layout */
+main {
+    padding: 2rem;
+    max-width: 2500px; /* Aumenta a largura máxima do main */
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Garante que as seções ocupem toda a largura disponível */
+}
+
+/* Títulos */
+h2 {
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+/* Gráficos */
+#chart-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+#map, #route-graph {
+    flex: 1;
+    height: 600px; /* Aumenta a altura dos gráficos */
+    background: #e0e0e0;
+    border-radius: 8px;
+    position: relative;
+}
+
+#map::before, #route-graph::before {
+    content: "Área para gráficos";
+    color: #aaa;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+}
+
+/* Formulário de Rota */
+#route-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#route-form input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+#route-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#route-form button {
+    padding: 0.75rem;
+    font-size: 1rem;
+    color: #fff;
+    background: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#route-form button:hover {
+    background: #0056b3;
+}
+
+/* Mapas da Rota */
+#route-maps {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+#route-map {
+    height: 600px; /* Aumenta a altura do mapa da rota */
+    background: #e0e0e0;
+    border-radius: 8px;
+    position: relative;
+}
+
+#route-map::before {
+    content: "Visualize o mapa da rota aqui";
+    color: #aaa;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+}
+
+/* Cálculos e Insights */
+#calculations-info, #insights {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+#calculations-info::before, #insights::before {
+    content: "Nenhum dado disponível";
+    color: #aaa;
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: #fff;
+    padding: 1rem 2rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Garante que o footer fique acima do conteúdo */
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #chart-container {
+        flex-direction: column;
+    }
+    
+    #map, #route-graph, #route-map {
+        height: 250px;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+}

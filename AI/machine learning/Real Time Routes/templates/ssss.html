@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Otimização de Rotas</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Importar Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Dashboard de Otimização de Rotas</h1>
+    </header>
+    <main>
+        <section id="overview">
+            <h2>Visão Geral do Projeto</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-card">
+                        <h3>Resumo de Status</h3>
+                        <p>Total de Rotas: <span id="total-routes">0</span></p>
+                        <p>Tempo Médio de Cálculo: <span id="avg-calculation-time">0s</span></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-card">
+                        <h3>Filtros</h3>
+                        <form id="filter-form">
+                            <div class="form-group">
+                                <label for="date-range">Intervalo de Data</label>
+                                <input type="text" id="date-range" class="form-control" placeholder="Selecione o intervalo de datas">
+                            </div>
+                            <div class="form-group">
+                                <label for="geo-filter">Filtro Geográfico</label>
+                                <input type="text" id="geo-filter" class="form-control" placeholder="Digite a região ou área">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="charts">
+            <h2>Gráficos</h2>
+            <div id="chart-container" class="row">
+                <div id="map" class="col-md-6"></div>
+                <div id="route-graph" class="col-md-6"></div>
+            </div>
+        </section>
+
+        <section id="route-form">
+            <h2>Formulário de Rota</h2>
+            <form>
+                <div class="form-group">
+                    <label for="start-location">Localização Inicial</label>
+                    <input type="text" id="start-location" class="form-control" placeholder="Digite o ponto de partida">
+                </div>
+                <div class="form-group">
+                    <label for="end-location">Localização Final</label>
+                    <input type="text" id="end-location" class="form-control" placeholder="Digite o ponto de chegada">
+                </div>
+                <button type="submit" class="btn btn-primary">Calcular Rota</button>
+            </form>
+        </section>
+
+        <section id="route-maps">
+            <h2>Mapas da Rota</h2>
+            <div id="route-map">
+                <p>Visualize o mapa da rota aqui</p>
+            </div>
+        </section>
+
+        <section id="calculations-info">
+            <h2>Cálculos</h2>
+            <div id="calculations-details">
+                <p>Nenhum dado disponível</p>
+            </div>
+        </section>
+
+        <section id="insights">
+            <h2>Insights</h2>
+            <div id="insights-details">
+                <p>Nenhum dado disponível</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Dashboard de Otimização de Rotas. Todos os direitos reservados.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
