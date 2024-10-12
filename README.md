@@ -20,6 +20,7 @@ Este repositório contém uma variedade de projetos e ferramentas em Python para
 - /Automations: Ferramentas para automação de tarefas(busca) e também um enviador de emails.
 - /Análise_de_Dados: Notebooks e scripts para análise exploratória de dados gerais(atualmente com mais projetos em mercado financeiro).
 - /Flask: projetos pequenos/pessoais com flassk, como forma de trabalhar fullstack.
+- /Operation_Research: alguns problemas conhecidos em pesquisa operacional, dividos pelos tópicos de orimização
 
 ## Como Contribuir
 
