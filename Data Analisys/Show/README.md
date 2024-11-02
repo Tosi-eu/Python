@@ -1,5 +1,3 @@
-# Raccoon-PS
-
 Olá,
 
 Aqui estarão explicadas cada pergunta e como pensei em realizar cada questão, logo:
