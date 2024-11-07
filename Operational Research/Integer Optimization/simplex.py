@@ -32,15 +32,15 @@ def read_problem_file(file_path):
     return c, A, b
 
 """
- Esta implementação utiliza as seguintes regras para otimizar o processo de seleção de pivôs e lidar com a degenerescência:
 
- - Regra de Bland: Esta regra ajuda a evitar ciclos de soluções degeneradas. Ela define que, entre múltiplas variáveis que podem entrar na base, devemos escolher a variável com o índice mais baixo. Esta regra não é explicitamente implementada neste código, mas seria recomendada em casos de degenerescência frequente.
+ Esta implementação utiliza as seguintes regras para otimizar o processo de seleção de pivôs e lidar com a degenerescência:
 
  Regra de Dantzig: Utilizada para escolher a variável de entrada na base. A variável com o coeficiente mais negativo na linha da função objetivo é selecionada, maximizando a taxa de melhora por passo (no caso de maximização). Esta é a regra principal para decidir qual coluna entrará na base.
 
  Perturbação: Introduz um pequeno valor, EPSILON (definido como 1e-8), nas restrições e na função objetivo para ajudar a lidar com problemas de degenerescência, tornando os valores ligeiramente diferentes. Essa perturbação evita que múltiplas variáveis sejam candidatas exatas, reduzindo a chance de ciclos e melhorando a estabilidade numérica.
 
- Além disso, a implementação inclui uma Fase 1 para lidar com problemas infeasíveis, onde uma solução básica inicial é construída antes de entrar na fase principal do método simplex.
+ Além disso, a implementação inclui uma Fase 1 para lidar com problemas infactíveis, onde uma solução básica inicial é construída antes de entrar na fase principal do método simplex.
+
 """
 
 class SimplexMethod:
@@ -182,7 +182,7 @@ class SimplexMethod:
             self.print_task()
             self.print_table() 
 
-            # Dantzig's Rule: Choose the column with the largest (absolute) negative value in self.f
+            #regra de dantzig
             candidate_columns = [i for i in range(len(self.f) - 1) if (self.f[i] < 0 if self.mode == MAX_MODE else self.f[i] > 0)]
             if not candidate_columns:
                 self.status = 'ÓTIMO'
@@ -247,9 +247,9 @@ if __name__ == "__main__":
         simplex = SimplexMethod()
         result = simplex.simplex(c, A, b)
 
-        import scipy.optimize as opt
-        result = opt.linprog(-c, A, b)
-        print(result)
+        #import scipy.optimize as opt
+        #result = opt.linprog(-c, A, b)
+        #print(result)
 
         print(f"\nProblema {idx+1}\n")
         print(f"Status: {simplex.status}")
