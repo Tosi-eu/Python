@@ -3,7 +3,7 @@ import numpy as np
 
 MAX_MODE = 'MAX'
 MIN_MODE = 'MIN'
-EPSILON = 1e-8  
+EPSILON = 1e-8  #perturbação
 
 def read_problem_file(file_path):
     with open(file_path, 'r') as file:
@@ -30,6 +30,18 @@ def read_problem_file(file_path):
     b = np.array(b)
     
     return c, A, b
+
+"""
+ Esta implementação utiliza as seguintes regras para otimizar o processo de seleção de pivôs e lidar com a degenerescência:
+
+ - Regra de Bland: Esta regra ajuda a evitar ciclos de soluções degeneradas. Ela define que, entre múltiplas variáveis que podem entrar na base, devemos escolher a variável com o índice mais baixo. Esta regra não é explicitamente implementada neste código, mas seria recomendada em casos de degenerescência frequente.
+
+ Regra de Dantzig: Utilizada para escolher a variável de entrada na base. A variável com o coeficiente mais negativo na linha da função objetivo é selecionada, maximizando a taxa de melhora por passo (no caso de maximização). Esta é a regra principal para decidir qual coluna entrará na base.
+
+ Perturbação: Introduz um pequeno valor, EPSILON (definido como 1e-8), nas restrições e na função objetivo para ajudar a lidar com problemas de degenerescência, tornando os valores ligeiramente diferentes. Essa perturbação evita que múltiplas variáveis sejam candidatas exatas, reduzindo a chance de ciclos e melhorando a estabilidade numérica.
+
+ Além disso, a implementação inclui uma Fase 1 para lidar com problemas infeasíveis, onde uma solução básica inicial é construída antes de entrar na fase principal do método simplex.
+"""
 
 class SimplexMethod:
     def __init__(self, mode=MIN_MODE):
@@ -86,7 +98,6 @@ class SimplexMethod:
             self.f += self.c[basis_var] * self.table[j]
         
         self.objective_value = self.f[-1]
-
 
     def get_negative_b_column(self, row):
         column = -1
@@ -171,19 +182,19 @@ class SimplexMethod:
             self.print_task()
             self.print_table() 
 
-            if all(fi >= 0 if self.mode == MAX_MODE else fi <= 0 for fi in self.f[:-1]):
-                self.status = 'ÓTIMO'
-                return 'ÓTIMO'
-
+            # Dantzig's Rule: Choose the column with the largest (absolute) negative value in self.f
             candidate_columns = [i for i in range(len(self.f) - 1) if (self.f[i] < 0 if self.mode == MAX_MODE else self.f[i] > 0)]
             if not candidate_columns:
                 self.status = 'ÓTIMO'
                 return 'ÓTIMO'
-            column = min(candidate_columns)
+            
+            column = max(candidate_columns, key=lambda i: abs(self.f[i]))
 
             q = self.get_relations(column)
             if all(qi == np.inf for qi in q):
                 self.status = 'INFINITO'
+                self.objective_value = 0
+                self.iter = 0
                 return 'INFINITO'
 
             row = np.argmin(q)
@@ -199,7 +210,6 @@ class SimplexMethod:
                 factor = row[pivot_col]
                 table[i] = [current - factor * new_value for current, new_value in zip(row, table[pivot_row])]
         return table
-
 
     def print_table(self):
         with open(os.path.join('artifacts/output/', 'table.txt'), 'a') as f:
@@ -218,12 +228,9 @@ class SimplexMethod:
 
     def print_task(self, full=True):
         with open(os.path.join('artifacts/output/', 'task.txt'), 'a') as f:
-            f.write(' + '.join(['%.2fy%d' % (ci, i + 1) for i, ci in enumerate(self.c[:self.main_variables_count]) if ci != 0]) + ' => ' + self.mode + '\n')
-            for row in self.table:
-                if full:
-                    f.write(' + '.join([self.print_coef(ai, i) for i, ai in enumerate(row[:self.variables_count]) if ai != 0]) + ' = ' + str(row[-1]) + '\n')
-                else:
-                    f.write(' + '.join([self.print_coef(ai, i) for i, ai in enumerate(row[:self.main_variables_count]) if ai != 0]) + ' <= ' + str(row[-1]) + '\n')
+            f.write(' + '.join(['%.2fy%d' % (ci, i + 1) for i, ci in enumerate(self.c[:self.main_variables_count]) if ci != 0]) + ' -> min\n')
+            for i, a_row in enumerate(self.table):
+                f.write(' + '.join([self.print_coef(ai, j) for j, ai in enumerate(a_row[:self.main_variables_count]) if ai != 0]) + ' = %.2f\n' % a_row[-1])
 
 if __name__ == "__main__":
 
@@ -240,9 +247,9 @@ if __name__ == "__main__":
         simplex = SimplexMethod()
         result = simplex.simplex(c, A, b)
 
-        # import scipy.optimize as opt
-        # result = opt.linprog(-c, A, b)
-        # print(result)
+        import scipy.optimize as opt
+        result = opt.linprog(-c, A, b)
+        print(result)
 
         print(f"\nProblema {idx+1}\n")
         print(f"Status: {simplex.status}")
