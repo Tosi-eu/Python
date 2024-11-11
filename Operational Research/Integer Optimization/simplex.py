@@ -3,7 +3,7 @@ import numpy as np
 
 MAX_MODE = 'MAX'
 MIN_MODE = 'MIN'
-EPSILON = 1e-8  #perturbação
+EPSILON = 1e-12  #perturbação
 
 def read_problem_file(file_path):
     with open(file_path, 'r') as file:
@@ -43,7 +43,7 @@ def read_problem_file(file_path):
 
 """
 
-class SimplexMethod:
+class Simplex:
     def __init__(self, mode=MIN_MODE):
         self.main_variables_count = None
         self.restrictions_count = None
@@ -171,7 +171,7 @@ class SimplexMethod:
 
         if not self.remove_negative_b():
             self.status = 'INFACTÍVEL'
-            return 'INFACTÍVEL'
+            return
         
         self.table = self.phase_1_simplex()
 
@@ -186,16 +186,14 @@ class SimplexMethod:
             candidate_columns = [i for i in range(len(self.f) - 1) if (self.f[i] < 0 if self.mode == MAX_MODE else self.f[i] > 0)]
             if not candidate_columns:
                 self.status = 'ÓTIMO'
-                return 'ÓTIMO'
+                break
             
             column = max(candidate_columns, key=lambda i: abs(self.f[i]))
 
             q = self.get_relations(column)
             if all(qi == np.inf for qi in q):
                 self.status = 'INFINITO'
-                self.objective_value = 0
-                self.iter = 0
-                return 'INFINITO'
+                break
 
             row = np.argmin(q)
             self.gauss(row, column)
@@ -226,7 +224,7 @@ class SimplexMethod:
             return '-y%d' % (i + 1)
         return '%.2fy%d' % (ai, i + 1)
 
-    def print_task(self, full=True):
+    def print_task(self):
         with open(os.path.join('artifacts/output/', 'task.txt'), 'a') as f:
             f.write(' + '.join(['%.2fy%d' % (ci, i + 1) for i, ci in enumerate(self.c[:self.main_variables_count]) if ci != 0]) + ' -> min\n')
             for i, a_row in enumerate(self.table):
@@ -234,9 +232,7 @@ class SimplexMethod:
 
 if __name__ == "__main__":
 
-    # necessário que a pasta artifacts pré exista
     base_output_dir = os.path.join("artifacts", "output")
-
     os.makedirs(base_output_dir, exist_ok=True)
     folder_path = "problems"
    
@@ -244,7 +240,7 @@ if __name__ == "__main__":
         file_path = os.path.join(folder_path, filename)
         c, A, b = read_problem_file(file_path)
 
-        simplex = SimplexMethod()
+        simplex = Simplex()
         result = simplex.simplex(c, A, b)
 
         #import scipy.optimize as opt
