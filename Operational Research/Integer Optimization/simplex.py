@@ -47,10 +47,10 @@ class Simplex:
     def __init__(self, mode=MIN_MODE):
         self.main_variables_count = None
         self.restrictions_count = None
+        self.objective_value = None
         self.basis = None
         self.mode = mode
         self.variables_count = 0
-        self.objective_value = 0
         self.iter = 0
         self.status = ""
 
