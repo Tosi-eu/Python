@@ -3,7 +3,7 @@ import numpy as np
 
 MAX_MODE = 'MAX'
 MIN_MODE = 'MIN'
-EPSILON = 1e-12  #perturbação
+EPSILON = 1e-18 #perturbação
 
 def read_problem_file(file_path):
     with open(file_path, 'r') as file:
@@ -37,9 +37,9 @@ def read_problem_file(file_path):
 
  Regra de Dantzig: Utilizada para escolher a variável de entrada na base. A variável com o coeficiente mais negativo na linha da função objetivo é selecionada, maximizando a taxa de melhora por passo (no caso de maximização). Esta é a regra principal para decidir qual coluna entrará na base.
 
- Perturbação: Introduz um pequeno valor, EPSILON (definido como 1e-8), nas restrições e na função objetivo para ajudar a lidar com problemas de degenerescência, tornando os valores ligeiramente diferentes. Essa perturbação evita que múltiplas variáveis sejam candidatas exatas, reduzindo a chance de ciclos e melhorando a estabilidade numérica.
+ Perturbação: Introduz um pequeno valor, EPSILON (definido como 1e-18), nas restrições e na função objetivo para ajudar a lidar com problemas de degenerescência, tornando os valores ligeiramente diferentes. Essa perturbação evita que múltiplas variáveis sejam candidatas exatas, reduzindo a chance de ciclos e melhorando a estabilidade numérica.
 
- Além disso, a implementação inclui uma Fase 1 para lidar com problemas infactíveis, onde uma solução básica inicial é construída antes de entrar na fase principal do método simplex.
+ Além disso, a implementação inclui uma Fase 1 para lidar com problemas infinitos, onde uma solução básica inicial é construída antes de entrar na fase principal do método simplex.
 
 """
 
@@ -48,6 +48,7 @@ class Simplex:
         self.main_variables_count = None
         self.restrictions_count = None
         self.objective_value = None
+        self.solution = None
         self.basis = None
         self.mode = mode
         self.variables_count = 0
@@ -120,7 +121,8 @@ class Simplex:
         y = np.zeros((self.variables_count))
         for i in range(self.restrictions_count):
             y[self.basis[i]] = self.table[i][-1]
-        return y
+        self.solution = y
+        return self.solution
     
     def phase_1_simplex(self):
         THETA_INFINITE = -1
@@ -151,15 +153,18 @@ class Simplex:
                         pivot_row = i
 
             if min_theta == THETA_INFINITE:
-                self.status = "INFINITO"
-                break
+                self.status = "INFACTÍVEL"
+                self.objective_value = None
+                self.solution = None
+                return 0
 
             self.table = self.pivot_on(self.table, pivot_row, pivot_col)
         return self.table
 
     def simplex(self, c: np.array, A: np.array, b: np.array):
-        if self.mode == MIN_MODE:
-            c = -c
+        # com os novos casos de teste não é mais necessário, monitor mudou o vetor c para -c
+        # if self.mode == MIN_MODE:
+        #     c = -c
 
         self.main_variables_count = A.shape[1]
         self.restrictions_count = A.shape[0]
@@ -174,13 +179,16 @@ class Simplex:
             return
         
         self.table = self.phase_1_simplex()
-
-        self.iter += 1
+        if self.table.size == 0:
+            self.objective_value = None
+            return 
 
         while True:
+            
             self.calculate_f()
             self.print_task()
             self.print_table() 
+            self.get_solve()
 
             #regra de dantzig
             candidate_columns = [i for i in range(len(self.f) - 1) if (self.f[i] < 0 if self.mode == MAX_MODE else self.f[i] > 0)]
@@ -193,6 +201,8 @@ class Simplex:
             q = self.get_relations(column)
             if all(qi == np.inf for qi in q):
                 self.status = 'INFINITO'
+                self.objective_value = None
+                self.solution = None
                 break
 
             row = np.argmin(q)
@@ -214,8 +224,9 @@ class Simplex:
             f.write('     |' + ''.join(['   y%-3d |' % (i + 1) for i in range(self.variables_count)]) + '    b   |\n')
             for i in range(self.restrictions_count):
                 f.write('%4s |' % ('y' + str(self.basis[i] + 1)) + ''.join([' %6.2f |' % aij for j, aij in enumerate(self.table[i])]) + '\n')
-            f.write('   F |' + ''.join([' %6.2f |' % aij for aij in self.f]) + '\n')
-            f.write('   y |' + ''.join([' %6.2f |' % xi for xi in self.get_solve()]) + '\n\n')
+            if self.status == "ÓTIMO":
+                f.write('   F |' + ''.join([' %6.2f |' % aij for aij in self.f]) + '\n')
+                f.write('   y |' + ''.join([' %6.2f |' % xi for xi in self.get_solve()]) + '\n\n')
 
     def print_coef(self, ai, i):
         if ai == 1:
@@ -235,20 +246,18 @@ if __name__ == "__main__":
     base_output_dir = os.path.join("artifacts", "output")
     os.makedirs(base_output_dir, exist_ok=True)
     folder_path = "problems"
-   
+
     for idx, filename in enumerate(os.listdir(folder_path)):
         file_path = os.path.join(folder_path, filename)
         c, A, b = read_problem_file(file_path)
 
-        simplex = Simplex()
-        result = simplex.simplex(c, A, b)
-
-        #import scipy.optimize as opt
-        #result = opt.linprog(-c, A, b)
-        #print(result)
+        model = Simplex()
+        
+        model.simplex(c, A, b)
 
         print(f"\nProblema {idx+1}\n")
-        print(f"Status: {simplex.status}")
-        print("Valor Objetivo:", simplex.objective_value)
-        print("Iterações:", simplex.iter)
-        print("Solução:", simplex.get_solve())
+        print(f"Status: {model.status}")
+        print("Iterações:", model.iter)
+        print("Valor Ótimo:", model.objective_value)
+        print("Solução:", model.solution)
+        
