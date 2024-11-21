@@ -1,30 +1,46 @@
+# Grupo:
+# Guilherme Henrique Galdini Tosi - N° USP 11781587
+# Amália Vitória de Melo - N° USP 13692417
+
 import os
 import numpy as np
 
-MAX_MODE = 'MAX'
-MIN_MODE = 'MIN'
-EPSILON = 1e-18 #perturbação
+# Definição de constantes usadas no algoritmo
+MAX_MODE = 'MAX' # Modo de maximização
+MIN_MODE = 'MIN' # Modo de minimização
+EPSILON = 1e-18 # Perturbação para evitar degeneração e problemas numéricos
 
+# Função para ler arquivos de problemas de programação linear
 def read_problem_file(file_path):
+    # Lê os dados de um arquivo com formato específico contendo:
+    # - c: vetor de custos da função objetivo
+    # - A: matriz de coeficientes das restrições
+    # - b: vetor de recursos (valores do lado direito das restrições)
+    
+    
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
-    c = []
-    A = []
-    b = []
+    c = [] # Coeficientes da função objetivo
+    A = [] # Matriz de coeficientes das restrições
+    b = [] # Recursos (vetor b)
 
     for line in lines:
         stripped_line = line.strip()
         if stripped_line.startswith("c ="):
+            # Lê o vetor de custos c
             c = list(map(float, stripped_line[4:].strip().strip('[]').split(',')))
         elif stripped_line.startswith("A ="):
+            # Lê a matriz A, formatada como listas de listas
             matrix_data = stripped_line[4:].strip()
             rows = matrix_data.strip().strip('[]').split('], [')
             for row in rows:
                 A.append(list(map(float, row.strip().strip('[]').split(','))))
         elif stripped_line.startswith("b ="):
+            # Lê o vetor b
             b = list(map(float, stripped_line[4:].strip().strip('[]').split(', ')))
 
+    # Converte c, A e b para arrays do numpy
     c = np.array(c)
     A = np.array(A)
     b = np.array(b)
@@ -42,29 +58,43 @@ def read_problem_file(file_path):
  Além disso, a implementação inclui uma Fase 1 para lidar com problemas infinitos, onde uma solução básica inicial é construída antes de entrar na fase principal do método simplex.
 
 """
-
+# Classe principal que implementa o Método Simplex.
 class Simplex:
     def __init__(self, mode=MIN_MODE):
-        self.main_variables_count = None
-        self.restrictions_count = None
-        self.objective_value = None
-        self.solution = None
-        self.basis = None
-        self.mode = mode
-        self.variables_count = 0
-        self.iter = 0
-        self.status = ""
+        """
+        Inicializa a classe Simplex.
+        mode: Define o modo do problema (minimização ou maximização).
+        """
+        self.main_variables_count = None   # Número de variáveis de decisão
+        self.restrictions_count = None     # Número de restrições    
+        self.objective_value = None        # Valor da função objetivo
+        self.solution = None               # Solução ótima (se existir)
+        self.basis = None                  # Variáveis na base inicial
+        self.mode = mode                   # Modo do problema
+        self.variables_count = 0           # Número total de variáveis no problema expandido
+        self.iter = 0                      # Contador de iterações    
+        self.status = ""                   # Status da solução (ÓTIMO, INFACTÍVEL, ILIMITADO)
 
     def init_table(self, a, b):
+        """
+        Inicializa a tabela simplex (forma tabular).
+        Adiciona variáveis de folga e configura os valores iniciais.
+        """
         self.table = np.zeros((self.restrictions_count, self.variables_count + 1))
         for i in range(self.restrictions_count):
+            # Adiciona coeficientes das variáveis de decisão
             for j in range(self.main_variables_count):
                 self.table[i][j] = a[i][j]
+            # Adiciona as variáveis de folga
             for j in range(self.restrictions_count):
                 self.table[i][j + self.main_variables_count] = int(i == j)
+            # Adiciona o vetor b (coluna dos recursos)
             self.table[i][-1] = b[i]
 
     def get_negative_b_row(self):
+        """
+        Identifica a linha com b negativo, necessário para resolver problemas iniciais.
+        """
         row = -1
         for i, a_row in enumerate(self.table):
             if a_row[-1] < 0 and (row == -1 or abs(a_row[-1]) > abs(self.table[row][-1])):
@@ -72,20 +102,30 @@ class Simplex:
         return row
 
     def remove_negative_b(self):
+        """
+        Resolve inconsistências com b negativo usando o método dual simplex.
+        """
         while True:
             row = self.get_negative_b_row()
             if row == -1:
+                # Não há mais b negativos, solução factível encontrada
                 return True
 
+            # Seleciona a coluna para realizar o pivoteamento
             column = self.get_negative_b_column(row)
             if column == -1:
+                # Problema é infactível
                 return False
             
+            # Realiza o pivoteamento
             self.gauss(row, column)
             self.calculate_f()
             self.print_table()
 
     def gauss(self, row, column):
+        """
+        Realiza a operação de pivoteamento na tabela simplex.
+        """
         self.table[row] /= self.table[row][column]
         for i in range(self.restrictions_count):
             if i != row:
@@ -93,6 +133,9 @@ class Simplex:
         self.basis[row] = column
 
     def calculate_f(self):
+        """
+        Recalcula a linha da função objetivo na tabela.
+        """
         self.f = -self.c.copy()
         
         for j, basis_var in enumerate(self.basis):
@@ -108,6 +151,9 @@ class Simplex:
         return column
 
     def get_relations(self, column):
+        """
+        Calcula as razões (relação b/a) para escolher a variável que sai da base.
+        """
         q = []
         for i in range(self.restrictions_count):
             if self.table[i][column] == 0:
@@ -118,6 +164,9 @@ class Simplex:
         return q
 
     def get_solve(self):
+        """
+        Retorna a solução atual do problema com base na tabela simplex.
+        """
         y = np.zeros((self.variables_count))
         for i in range(self.restrictions_count):
             y[self.basis[i]] = self.table[i][-1]
@@ -162,6 +211,9 @@ class Simplex:
         return self.table
 
     def simplex(self, c: np.array, A: np.array, b: np.array):
+        """
+        Implementa o algoritmo Simplex, incluindo fase 1 e resolução principal.
+        """
         # com os novos casos de teste não é mais necessário, monitor mudou o vetor c para -c
         # if self.mode == MIN_MODE:
         #     c = -c
@@ -174,6 +226,7 @@ class Simplex:
         self.f = np.zeros((self.variables_count + 1))
         self.init_table(A + EPSILON, b + EPSILON)
 
+        # Fase 1: Resolução inicial para garantir factibilidade
         if not self.remove_negative_b():
             self.status = 'INFACTÍVEL'
             return
@@ -190,7 +243,7 @@ class Simplex:
             self.print_table() 
             self.get_solve()
 
-            #regra de dantzig
+            # Regra de Dantzig para escolher a coluna pivô
             candidate_columns = [i for i in range(len(self.f) - 1) if (self.f[i] < 0 if self.mode == MAX_MODE else self.f[i] > 0)]
             if not candidate_columns:
                 self.status = 'ÓTIMO'
@@ -242,7 +295,8 @@ class Simplex:
                 f.write(' + '.join([self.print_coef(ai, j) for j, ai in enumerate(a_row[:self.main_variables_count]) if ai != 0]) + ' = %.2f\n' % a_row[-1])
 
 if __name__ == "__main__":
-
+    # Executa o método simplex para cada problema na pasta "problems"
+    
     base_output_dir = os.path.join("artifacts", "output")
     os.makedirs(base_output_dir, exist_ok=True)
     folder_path = "problems"
