@@ -1,6 +1,10 @@
 # Grupo:
+
 # Guilherme Henrique Galdini Tosi - N° USP 11781587
 # Amália Vitória de Melo - N° USP 13692417
+# Rafael de Almeida - N° USP 11872028
+# Matheus Araujo Moreira - N° USP 10871936
+# Vinicius Santos Monteiro - N° USP 11932463
 
 import os
 import numpy as np
