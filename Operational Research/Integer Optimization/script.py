@@ -90,16 +90,12 @@ N = len(A)  # Número de vértices no grafo
 model = LpProblem("Plano Diretor da Cidade", LpMaximize)
 
 # Variáveis
-for i in range(N):
-    x_C = [LpVariable(f"x_C_{i}", cat="Binary")]
-    x_P = [LpVariable(f"x_P_{i}", cat="Binary")]
-    x_F = [LpVariable(f"x_F_{i}", cat="Binary")]
-
-for i in range(N):
-    for j in range(N):
-        z_CP = [[LpVariable(f"z_CP_{i}_{j}", cat="Binary")]]
-        z_CF = [[LpVariable(f"z_CF_{i}_{j}", cat="Binary")]]
-        z_PF = [[LpVariable(f"z_PF_{i}_{j}", cat="Binary")]]
+x_C = [LpVariable(f"x_C_{i}", cat="Binary") for i in range(N)]
+x_P = [LpVariable(f"x_P_{i}", cat="Binary") for i in range(N)]
+x_F = [LpVariable(f"x_F_{i}", cat="Binary") for i in range(N)]
+z_CP = [[LpVariable(f"z_CP_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)]
+z_CF = [[LpVariable(f"z_CF_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)]
+z_PF = [[LpVariable(f"z_PF_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)]
 
 # Função objetivo
 L = lpSum(z_CF[i][j] * A[i][j] for i in range(N) for j in range(N))
@@ -149,23 +145,24 @@ for i in range(N):  # Índice vai de 0 a N-1
 # Felicidade deve ser não negativa
 model += F >= 0
 
+model.solve()
+
 # Obter as soluções
 solution = []
 for i in range(N):
-    if x_C[i].varValue == 1:
+    if x_C[i].varValue == 1.0:
         solution.append("Casa")
         custo += custos_vertices["Casa"]
         habitantes += 1
-    elif x_P[i].varValue == 1:
+    elif x_P[i].varValue == 1.0:
         solution.append("Parque")
         custo += custos_vertices["Parque"]
         felicidade += 1
-    elif x_F[i].varValue == 1:
+    elif x_F[i].varValue == 1.0:
         solution.append("Fábrica")
         custo += custos_vertices["Fábrica"]
         felicidade += -1
 
-model.solve()
 # Plotar o grafo com as cores
 plotar_grafo(A, positions, solution)
-# print(custo, felicidade, habitantes)
+print(solution)
