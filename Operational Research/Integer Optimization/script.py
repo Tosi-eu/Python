@@ -1,12 +1,13 @@
-import numpy as np
+from numpy import array, flatten
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
 import networkx as nx
 import matplotlib.pyplot as plt
 
-MATRIX_FILENAME = 'problem.txt'
-POSITIONS_FILENAME = 'positions.txt'
+NOME_ARQUIVO_MATRIZ = 'problem.txt'
 
-VERTEX_COSTS = {
+NOME_ARQUIVO_POSICOES = 'positions.txt'
+
+CUSTOS_VERTICES = {
     "Casa": 25600,
     "Parque": 12800,
     "Fábrica": 19200
@@ -14,23 +15,23 @@ VERTEX_COSTS = {
 
 def createVars(N: int):
     try:
-        x_C = np.array([LpVariable(f"x_C_{i}", cat="Binary") for i in range(N)])
-        x_P = np.array([LpVariable(f"x_P_{i}", cat="Binary") for i in range(N)])
-        x_F = np.array([LpVariable(f"x_F_{i}", cat="Binary") for i in range(N)])
-        z_CP = np.array([[LpVariable(f"z_CP_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)])
-        z_CF = np.array([[LpVariable(f"z_CF_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)])
-        z_PF = np.array([[LpVariable(f"z_PF_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)])
+        x_C = array([LpVariable(f"x_C_{i}", cat="Binary") for i in range(N)])
+        x_P = array([LpVariable(f"x_P_{i}", cat="Binary") for i in range(N)])
+        x_F = array([LpVariable(f"x_F_{i}", cat="Binary") for i in range(N)])
+        z_CP = array([[LpVariable(f"z_CP_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)])
+        z_CF = array([[LpVariable(f"z_CF_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)])
+        z_PF = array([[LpVariable(f"z_PF_{i}_{j}", cat="Binary") for j in range(N)] for i in range(N)])
     except Exception as e:
         print(f"Erro ao definir variáveis: {e}")
 
     return  x_C, x_P, x_F, z_CP, z_CF, z_PF
 
-def read_matrix_from_file(nome_arquivo):
+def ler_matriz_de_arquivo(nome_arquivo):
     matriz = []
     try:
         with open(nome_arquivo, 'r') as file:
-                return np.array([list(map(float, linha.split())) for linha in file])
-    except ValueError as e:
+                return [list(map(float, linha.split())) for linha in file]
+    except Exception as e:
         print(f"Erro ler arquivo: {e}")
 
     return matriz
@@ -54,7 +55,7 @@ def create_graph(A, positions, solution, happiness):
     node_colors = get_node_colors(solution)
 
     for i in range(len(A)):
-        G.add_node(i, positions=positions[i])
+        G.add_node(i, pos=positions[i])
 
     for i in range(len(A)):
         for j in range(len(A)):
@@ -73,10 +74,10 @@ def create_graph(A, positions, solution, happiness):
                 
                 G.add_edge(i, j, color=edge_color)
 
-    positions = nx.get_node_attributes(G, 'positions')
+    pos = nx.get_node_attributes(G, 'pos')
     edge_colors = [G[u][v]['color'] for u, v in G.edges()]
 
-    return profit, happiness, G, positions, node_colors, edge_colors
+    return profit, happiness, G, pos, node_colors, edge_colors
 
 def plot_graph(graph, positions, node_colors, edge_colors):
     plt.figure(figsize=(10, 10))
@@ -93,22 +94,22 @@ def get_solutions(N, x_C, x_P, x_F):
     for i in range(N):
         if x_C[i].varValue == 1.0:
             solution.append("Casa")
-            total_cost += VERTEX_COSTS["Casa"]
+            total_cost += CUSTOS_VERTICES["Casa"]
             inhabitants += 1
         elif x_P[i].varValue == 1.0:
             solution.append("Parque")
-            total_cost += VERTEX_COSTS["Parque"]
+            total_cost += CUSTOS_VERTICES["Parque"]
             happiness += 1
         elif x_F[i].varValue == 1.0:
             solution.append("Fábrica")
-            total_cost += VERTEX_COSTS["Fábrica"]
+            total_cost += CUSTOS_VERTICES["Fábrica"]
             happiness += -1
 
     return solution, total_cost, inhabitants, happiness
 
 if __name__ == "__main__":
-    A = np.array(read_matrix_from_file(MATRIX_FILENAME))
-    positions = np.array(read_matrix_from_file(POSITIONS_FILENAME))
+    A = array(ler_matriz_de_arquivo(NOME_ARQUIVO_MATRIZ))
+    positions = array(ler_matriz_de_arquivo(NOME_ARQUIVO_POSICOES))
     N = len(A)
     happiness =0
 
@@ -119,7 +120,7 @@ if __name__ == "__main__":
     x_C, x_P, x_F, z_CP, z_CF, z_PF = createVars(N)
 
     # Função objetivo
-    L = lpSum((z_CF * A).flatten())
+    L = lpSum(z_CF[i][j] * A[i][j] for i in range(N) for j in range(N))
     F = lpSum(
         x_P[i] - x_F[i] + lpSum(z_CP[i][j] - z_PF[i][j] for j in range(N) if A[i][j])
         for i in range(N)
@@ -149,14 +150,15 @@ if __name__ == "__main__":
                 model += z_PF[i][j] >= x_P[i] + x_F[j] - 1, f"z_PF_cond3_{i}_{j}"
 
     # Restrições de poda: verificações adicionais
-    indices = np.argwhere(A == 1)
-    for i, j in indices:
-            model += z_CF[i][j] <= x_C[i]
-            model += z_CF[i][j] <= x_F[j]
-            model += z_CP[i][j] <= x_C[i]
-            model += z_CP[i][j] <= x_P[j]
-            model += z_PF[i][j] <= x_P[i]
-            model += z_PF[i][j] <= x_F[j]
+    for i in range(N):
+        for j in range(N):
+            if A[i][j] == 1.0: 
+                model += z_CF[i][j] <= x_C[i]
+                model += z_CF[i][j] <= x_F[j]
+                model += z_CP[i][j] <= x_C[i]
+                model += z_CP[i][j] <= x_P[j]
+                model += z_PF[i][j] <= x_P[i]
+                model += z_PF[i][j] <= x_F[j]
     
     # Poda de happineess e profit (não precisa ser negativa)
     model += F >= 0
@@ -168,9 +170,9 @@ if __name__ == "__main__":
     solution, total_cost, inhabitants, happiness = get_solutions(N, x_C, x_P, x_F)
 
     # Plotar o grafo com as cores
-    profit, happiness, G, positions, node_colors, edge_colors = create_graph(A, positions, solution, happiness)
+    profit, happiness, G, pos, node_colors, edge_colors = create_graph(A, positions, solution, happiness)
 
-    plot_graph(G, positions, node_colors, edge_colors)
+    plot_graph(G, pos, node_colors, edge_colors)
   
     print(f"Lucro: {profit}")
     print(f"Felicidade: {happiness}")
