@@ -1,0 +1,138 @@
+import pygame
+import sys
+from pygame.locals import QUIT, KEYDOWN, K_RETURN, K_BACKSPACE
+from gtts import gTTS
+from deep_translator import GoogleTranslator
+import os
+from langchain_huggingface import HuggingFacePipeline
+from transformers import pipeline
+
+# Inicializa o Pygame
+pygame.init()
+pygame.font.init()
+
+SCREEN_WIDTH, SCREEN_HEIGHT = 800, 550
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Text to Speech with Translation and Insight Generation")
+
+# Cores
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+BLUE = (0, 102, 204)
+GRAY = (200, 200, 200)
+RED = (255, 0, 0)
+
+font = pygame.font.Font(None, 30)
+
+text_input = ""
+language_input = "pt"
+message = ""
+audio_path = "output.mp3"
+translator = GoogleTranslator()
+
+# Configura o modelo Flan-T5 para gerar insights
+pipe = pipeline("text2text-generation", model="google/flan-t5-large")
+llm = HuggingFacePipeline(pipeline=pipe)
+llm_chain = llm | pipe
+
+def draw_face():
+    # Cabeça
+    pygame.draw.circle(screen, BLACK, (SCREEN_WIDTH // 2, 100), 60, 2)
+    pygame.draw.circle(screen, BLACK, (SCREEN_WIDTH // 2 - 20, 80), 10, 2)
+    pygame.draw.circle(screen, BLACK, (SCREEN_WIDTH // 2 + 20, 80), 10, 2)
+    pygame.draw.line(screen, BLACK, (SCREEN_WIDTH // 2 - 20, 120), (SCREEN_WIDTH // 2 + 20, 120), 2)
+
+def delete_audio_file():
+    try:
+        if os.path.exists(audio_path):
+            os.remove(audio_path)
+    except Exception as e:
+        print(f"Erro ao deletar o arquivo: {e}")
+
+def stop_audio():
+    try:
+        if pygame.mixer.get_init():
+            pygame.mixer.music.stop()
+            pygame.mixer.quit()
+    except Exception as e:
+        print(f"Erro ao parar o áudio: {e}")
+
+def translate_text(text, target_lang):
+    try:
+        translator.target = target_lang
+        translated = translator.translate(text)
+        return translated
+    except Exception as e:
+        print(f"Erro ao traduzir o texto: {e}")
+        return text
+
+def generate_and_play_audio(text, lang):
+    global message
+    try:
+        stop_audio()
+        delete_audio_file()
+
+        translated_text = translate_text(text, lang)
+        tts = gTTS(text=translated_text, lang=lang)
+        tts.save(audio_path)
+
+        pygame.mixer.init()
+        pygame.mixer.music.load(audio_path)
+        pygame.mixer.music.play()
+
+        message = f"Texto traduzido: {translated_text}"
+    except Exception as e:
+        message = f"Erro: {e}"
+
+def generate_insight(text):
+    try:
+        insight = llm_chain.run(text)
+        return insight
+    except Exception as e:
+        print(f"Erro ao gerar insight: {e}")
+        return "Erro ao gerar insight."
+
+def draw_centered_rect(color, width, height, y_position):
+    x_pos = (SCREEN_WIDTH - width) // 2
+    pygame.draw.rect(screen, color, (x_pos, y_position, width, height))
+
+running = True
+while running:
+    screen.fill(WHITE)
+
+    # Eventos do Pygame
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            running = False
+        elif event.type == KEYDOWN:
+            if event.key == K_RETURN:
+                if text_input.strip():
+                    # Gere o insight com LangChain
+                    insight = generate_insight(text_input)
+                    generate_and_play_audio(insight, language_input)
+                else:
+                    message = "Por favor, insira um texto!"
+            elif event.key == K_BACKSPACE:
+                text_input = text_input[:-1]
+            else:
+                text_input += event.unicode
+
+    # Desenho da interface
+    draw_face()
+    draw_centered_rect(GRAY, 460, 40, 200)
+    draw_centered_rect(BLUE, 460, 40, 250)
+
+    # Renderização de textos
+    text_surface = font.render(text_input, True, BLACK)
+    message_surface = font.render(message, True, BLACK)
+
+    # Adiciona os textos à tela
+    screen.blit(text_surface, (25, 250))
+    screen.blit(message_surface, (SCREEN_WIDTH // 2 - message_surface.get_width() // 2, 300))
+
+    pygame.display.flip()
+
+stop_audio()
+delete_audio_file()
+pygame.quit()
+sys.exit()
