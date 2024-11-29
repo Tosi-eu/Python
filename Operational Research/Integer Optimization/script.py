@@ -47,17 +47,9 @@ def get_node_colors(solution):
 
     return node_colors
 
-def create_graph(A, positions, solution, happiness):
-    G = nx.Graph()
-    profit = 0
-
-    node_colors = get_node_colors(solution)
-
-    for i in range(len(A)):
-        G.add_node(i, positions=positions[i])
-
-    for i in range(len(A)):
-        for j in range(len(A)):
+def set_edge_colors(matrix, graph, solution, happiness, profit):
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
             if A[i][j] == 1:
                 if (solution[i] == "Casa" and solution[j] == "Parque") or (solution[i] == "Parque" and solution[j] == "Casa"):
                     edge_color = 'green'  # Casa - Parque: verde
@@ -71,17 +63,45 @@ def create_graph(A, positions, solution, happiness):
                 else:
                     edge_color = "gray"
                 
-                G.add_edge(i, j, color=edge_color)
+                graph.add_edge(i, j, color=edge_color)
+
+    return graph, happiness, profit
+
+def create_graph(A, positions, solution, happiness):
+    G = nx.Graph()
+    profit = 0
+
+    node_colors = get_node_colors(solution)
+
+    for i in range(len(A)):
+        G.add_node(i, positions=positions[i])
+
+    G, happiness, profit = set_edge_colors(A, G, solution, happiness, profit)
 
     positions = nx.get_node_attributes(G, 'positions')
     edge_colors = [G[u][v]['color'] for u, v in G.edges()]
 
     return profit, happiness, G, positions, node_colors, edge_colors
 
-def plot_graph(graph, positions, node_colors, edge_colors):
+def plot_graph(graph, positions, node_colors, edge_colors, total_cost, happiness, profit, inhabitants):
     plt.figure(figsize=(10, 10))
     nx.draw(graph, positions, with_labels=True, node_size=250, node_color=node_colors, font_size=8, font_weight='bold', edge_color=edge_colors)
     plt.title("Grafo do Problema de Otimização")
+
+    legend_text = (f"Custo Total: {total_cost}\n"
+                   f"Habitantes: {inhabitants}\n"
+                   f"Felicidade: {happiness}\n"
+                   f"Lucro: {profit}"
+                   )
+    
+    plt.gca().legend(
+        [legend_text],
+        loc="upper right",
+        handlelength=0, 
+        handletextpad=0, 
+        fontsize=10,
+        frameon=True,  
+    )
     plt.show()
 
 def get_solutions(N, x_C, x_P, x_F):
@@ -110,9 +130,8 @@ if __name__ == "__main__":
     A = np.array(read_matrix_from_file(MATRIX_FILENAME))
     positions = np.array(read_matrix_from_file(POSITIONS_FILENAME))
     N = len(A)
-    happiness =0
+    happiness = 0
 
-    # Problema
     model = LpProblem("Plano Diretor da Cidade", LpMaximize)
 
     # Variáveis
@@ -170,9 +189,5 @@ if __name__ == "__main__":
     # Plotar o grafo com as cores
     profit, happiness, G, positions, node_colors, edge_colors = create_graph(A, positions, solution, happiness)
 
-    plot_graph(G, positions, node_colors, edge_colors)
-  
-    print(f"Lucro: {profit}")
-    print(f"Felicidade: {happiness}")
-    print(f"Custo Total: {total_cost}")
-    print(f"Habitantes: {inhabitants}")
+    # grafo e métricas 
+    plot_graph(G, positions, node_colors, edge_colors, total_cost, happiness, profit, inhabitants)
