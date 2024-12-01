@@ -1,7 +1,8 @@
-from numpy import array, argwhere
+from networkx import Graph, draw, get_node_attributes
+from numpy import array, argwhere, random
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
-import networkx as nx
 import matplotlib.pyplot as plt
+from os import makedirs
 
 VERTEX_COSTS = {
     "Casa": 25600,
@@ -23,17 +24,15 @@ def create_binary_vars(N: int):
     return  x_C, x_P, x_F, z_CP, z_CF, z_PF
 
 def read_matrix_from_file(filename: str):
-    matrix = []
     try:
         with open(filename, 'r') as file:
             return array([list(map(float, linha.split())) for linha in file])
     except Exception as e:
-        print(f"Erro ler arquivo: {e}")
+        print(f"Erro ao ler arquivo: {e}")
+        return []
 
-    return matrix
-
-def create_graph(A, positions, solution, happiness):
-    graph = nx.Graph()
+def create_graph(A: array, positions: array, solution: list, happiness: int):
+    graph = Graph()
     profit = 0
 
     node_colors = []
@@ -63,22 +62,26 @@ def create_graph(A, positions, solution, happiness):
             edge_color = 'gray'
         graph.add_edge(i, j, color=edge_color)
 
-    pos = nx.get_node_attributes(graph, 'pos')
+    pos = get_node_attributes(graph, 'pos')
     edge_colors = [graph[u][v]['color'] for u, v in graph.edges()]
 
     return graph, profit, happiness, pos, edge_colors, node_colors
 
-def plot_graph(graph, position, node_colors, edge_colors, output_filename="graph.png"):
-    plt.figure(figsize=(10, 10))
-    nx.draw(graph, position, with_labels=True, node_size=175, node_color=node_colors, font_size=8, font_weight='bold', edge_color=edge_colors)
+def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_filename="results/graph.png"):
+    plt.figure(figsize=(8, 8))
+    draw(graph, position, with_labels=True, node_size=105, node_color=node_colors, font_size=6, font_weight='bold', edge_color=edge_colors)
     plt.title("Grafo do Problema de Otimização")
+    
+    legend_text = f"Custo Total: {total_cost}\nHabitantes: {inhabitants}\nFelicidade: {happiness}\nLucro: {profit}"
+    plt.text(0.95, 0.05, legend_text, horizontalalignment='right', transform=plt.gca().transAxes, fontsize=10, bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
+
     plt.savefig(output_filename)
     plt.show()
 
 if __name__ == "__main__":
     MATRIX_FILENAME = 'problem.txt'
     POSITIONS_FILENAME = 'positions.txt'
-    OUTPUT_FILENAME = 'solution.txt' 
+    OUTPUT_FILENAME = 'results/solution.txt' 
     
     A = array(read_matrix_from_file(MATRIX_FILENAME))
     positions = array(read_matrix_from_file(POSITIONS_FILENAME))
@@ -92,21 +95,20 @@ if __name__ == "__main__":
 
     x_C, x_P, x_F, z_CP, z_CF, z_PF = create_binary_vars(N)
 
-    # Função objetivo
-    L = lpSum(z_CF[i][j] * A[i][j] for i in range(N) for j in range(N))
-    F = lpSum(
-        x_P[i] - x_F[i] + lpSum(z_CP[i][j] - z_PF[i][j] for j in range(N) if A[i][j])
-        for i in range(N)
-    )
+    # Adicionando perturbação aleatória
+    random_perturbation = random.uniform(-0.1, 0.1, size=N)
 
-    model += (2 * N ** 2 + 1) * L + F
+    # Função objetivo
+    L = lpSum((z_CF * A).flatten())
+    inner_sum = [ [z_CP[i][j] - z_PF[i][j] for j in range(N) if A[i][j]] for i in range(N)]
+    F = lpSum(x_P[i] - x_F[i] + lpSum(inner_sum[i]) for i in range(N))
+    model += (2 * N ** 2 + 1) * L + F + lpSum(random_perturbation)
 
     # Restrições
     for i in range(N):
-        model += x_C[i] + x_P[i] + x_F[i] == 1
+        model += x_C[i] + x_P[i] + x_F[i] == 1.0
         if i == 0:
-            model += x_C[i] == 1  # Vértice 1 deve ser uma Casa
-
+            model += x_C[i] == 1.0  # Vértice 1 deve ser uma Casa
         for j in range(N):
             if A[i][j]:
                 model += x_C[i] + x_F[j] - 1 <= z_CF[i][j]
@@ -121,16 +123,6 @@ if __name__ == "__main__":
                 model += x_P[i] >= z_PF[i][j]
                 model += x_F[j] >= z_PF[i][j]
 
-    for i in range(N): 
-        for j in range(N): 
-            if A[i][j] == 1.0: 
-                model += z_CF[i][j] <= x_C[i]
-                model += z_CF[i][j] <= x_F[j]
-                model += z_CP[i][j] <= x_C[i]
-                model += z_CP[i][j] <= x_P[j]
-                model += z_PF[i][j] <= x_P[i]
-                model += z_PF[i][j] <= x_F[j]
-   
     model += F >= 0
     model += happiness >= 0
 
@@ -153,7 +145,8 @@ if __name__ == "__main__":
 
     graph, profit, happiness, pos, edge_colors, node_colors = create_graph(A, positions, solution, happiness)
 
-    plot_graph(graph, pos, node_colors, edge_colors)
+    makedirs('results', exist_ok=True)
+    plot_graph(graph, pos, node_colors, edge_colors, total_cost, inhabitants, happiness, profit)
 
     try:
         with open(OUTPUT_FILENAME, 'w') as file:
