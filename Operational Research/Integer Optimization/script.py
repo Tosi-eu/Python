@@ -1,7 +1,8 @@
 from networkx import Graph, draw, get_node_attributes
 from numpy import array, argwhere, random
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
-import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure, text, savefig, show, title, gca
+
 from os import makedirs
 
 VERTEX_COSTS = {
@@ -47,7 +48,7 @@ def create_graph(A: array, positions: array, solution: list, happiness: int):
     for i in range(len(A)):
         graph.add_node(i, pos=positions[i])
 
-    idx = argwhere(A == 1)
+    idx = argwhere(A == 1.0)
     for i, j in idx:
         if (solution[i] == "Casa" and solution[j] == "Parque") or (solution[i] == "Parque" and solution[j] == "Casa"):
             edge_color = 'green'  # Casa - Parque: verde
@@ -68,15 +69,15 @@ def create_graph(A: array, positions: array, solution: list, happiness: int):
     return graph, profit, happiness, pos, edge_colors, node_colors
 
 def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_filename="results/graph.png"):
-    plt.figure(figsize=(8, 8))
+    figure(figsize=(8, 8))
     draw(graph, position, with_labels=True, node_size=105, node_color=node_colors, font_size=6, font_weight='bold', edge_color=edge_colors)
-    plt.title("Grafo do Problema de Otimização")
+    title("Grafo do Problema de Otimização")
     
     legend_text = f"Custo Total: {total_cost}\nHabitantes: {inhabitants}\nFelicidade: {happiness}\nLucro: {profit}"
-    plt.text(0.95, 0.05, legend_text, horizontalalignment='right', transform=plt.gca().transAxes, fontsize=10, bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
+    text(0.95, 0.05, legend_text, horizontalalignment='right', transform=gca().transAxes, fontsize=10, bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
 
-    plt.savefig(output_filename)
-    plt.show()
+    savefig(output_filename)
+    show()
 
 if __name__ == "__main__":
     MATRIX_FILENAME = 'problem.txt'
@@ -96,7 +97,7 @@ if __name__ == "__main__":
     x_C, x_P, x_F, z_CP, z_CF, z_PF = create_binary_vars(N)
 
     # Adicionando perturbação aleatória
-    random_perturbation = random.uniform(-0.1, 0.1, size=N)
+    random_perturbation = random.uniform(-0.2, 0.2, size=N)
 
     # Função objetivo
     L = lpSum((z_CF * A).flatten())
