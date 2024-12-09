@@ -95,8 +95,8 @@ if __name__ == "__main__":
 
     x_C, x_P, x_F, z_CP, z_CF, z_PF = create_binary_vars(N)
 
-    # Adicionando perturbação aleatória
-    random_perturbation = random.uniform(-0.1, 0.1, size=N)
+    # perturbação aleatória
+    random_perturbation = random.uniform(-0.2, 0.2, size=N)
 
     # Função objetivo
     L = lpSum((z_CF * A).flatten())
@@ -110,7 +110,7 @@ if __name__ == "__main__":
         if i == 0:
             model += x_C[i] == 1.0  # Vértice 1 deve ser uma Casa
         for j in range(N):
-            if A[i][j]:
+            if A[i][j] == 1.0:
                 model += x_C[i] + x_F[j] - 1 <= z_CF[i][j]
                 model += x_C[i] >= z_CF[i][j]
                 model += x_F[j] >= z_CF[i][j]
