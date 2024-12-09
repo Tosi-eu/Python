@@ -2,7 +2,6 @@ from networkx import Graph, draw, get_node_attributes
 from numpy import array, argwhere, random
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
 from matplotlib.pyplot import figure, text, savefig, show, title, gca
-
 from os import makedirs
 
 VERTEX_COSTS = {
@@ -103,7 +102,7 @@ if __name__ == "__main__":
     L = lpSum((z_CF * A).flatten())
     inner_sum = [ [z_CP[i][j] - z_PF[i][j] for j in range(N) if A[i][j]] for i in range(N)]
     F = lpSum(x_P[i] - x_F[i] + lpSum(inner_sum[i]) for i in range(N))
-    model += (2 * N ** 2 + 1) * L + F + lpSum(random_perturbation)
+    model += (2 * N ** 2 + 1) * L + F * 2 + lpSum(random_perturbation)
 
     # Restrições
     for i in range(N):
@@ -129,35 +128,37 @@ if __name__ == "__main__":
 
     model.solve()
 
-    solution = []
-    for i in range(N):
-        if x_C[i].varValue == 1.0:
-            solution.append("Casa")
-            total_cost += VERTEX_COSTS["Casa"]
-            inhabitants += 1
-        elif x_P[i].varValue == 1.0:
-            solution.append("Parque")
-            total_cost += VERTEX_COSTS["Parque"]
-            happiness += 1
-        elif x_F[i].varValue == 1.0:
-            solution.append("Fábrica")
-            total_cost += VERTEX_COSTS["Fábrica"]
-            happiness += -1
+solution = {}
+for i in range(N):
+    if x_C[i].varValue == 1.0:
+        solution[i] = "Casa"
+        total_cost += VERTEX_COSTS["Casa"]
+        inhabitants += 1
+    elif x_P[i].varValue == 1.0:
+        solution[i] = "Parque"
+        total_cost += VERTEX_COSTS["Parque"]
+        happiness += 1
+    elif x_F[i].varValue == 1.0:
+        solution[i] = "Fábrica"
+        total_cost += VERTEX_COSTS["Fábrica"]
+        happiness += -1
 
-    graph, profit, happiness, pos, edge_colors, node_colors = create_graph(A, positions, solution, happiness)
+graph, profit, happiness, pos, edge_colors, node_colors = create_graph(
+    A, positions, [solution[i] for i in range(N)], happiness
+)
 
-    makedirs('results', exist_ok=True)
-    plot_graph(graph, pos, node_colors, edge_colors, total_cost, inhabitants, happiness, profit)
+makedirs('results', exist_ok=True)
+plot_graph(graph, pos, node_colors, edge_colors, total_cost, inhabitants, happiness, profit)
 
-    try:
-        with open(OUTPUT_FILENAME, 'w') as file:
-            file.write("Solucao Otima:\n")
-            for i, s in enumerate(solution):
-                file.write(f"Vertice {i + 1}: {s}\n")
-            file.write(f"\nCusto Total: {total_cost}\n")
-            file.write(f"Numero de Habitantes: {inhabitants}\n")
-            file.write(f"Nivel de Felicidade: {happiness}\n")
-            file.write(f"Lucro Total: {profit}\n")
-        print(f"Solução salva em '{OUTPUT_FILENAME}'.")
-    except Exception as e:
-        print(f"Erro ao salvar a solução: {e}")
+try:
+    with open(OUTPUT_FILENAME, 'w') as file:
+        file.write("Solucao Otima:\n")
+        for node, structure in solution.items():
+            file.write(f"Vertice {node + 1}: {structure}\n")
+        file.write(f"\nCusto Total: {total_cost}\n")
+        file.write(f"Numero de Habitantes: {inhabitants}\n")
+        file.write(f"Nivel de Felicidade: {happiness}\n")
+        file.write(f"Lucro Total: {profit}\n")
+    print(f"Solução salva em '{OUTPUT_FILENAME}'.")
+except Exception as e:
+    print(f"Erro ao salvar a solução: {e}")
