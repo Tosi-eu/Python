@@ -1,0 +1,353 @@
+[
+    {
+        "sms": "Double Mins & Double Txt & 1/2 price Linerental on Latest Orange Bluetooth mobiles. Call MobileUpd8 for the very latest offers. 08000839402 or call2optout/LF56\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "Double Mins",
+            "Double Txt",
+            "1/2 price",
+            "Latest Orange Bluetooth mobiles",
+            "Call MobileUpd8",
+            "offers",
+            "call2optout"
+        ]
+    },
+    {
+        "sms": "This msg is for your mobile content order It has been resent as previous attempt failed due to network error Queries to customersqueries@netvision.uk.com\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "mobile content order",
+            "resent",
+            "previous attempt failed",
+            "network error",
+            "customersqueries@netvision.uk.com"
+        ]
+    },
+    {
+        "sms": "As a valued customer, I am pleased to advise you that following recent review of your Mob No. you are awarded with a £1500 Bonus Prize, call 09066364589\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "valued customer",
+            "awarded",
+            "£1500 Bonus Prize",
+            "call",
+            "09066364589"
+        ]
+    },
+    {
+        "sms": "Do you want a New Nokia 3510i Colour Phone Delivered Tomorrow? With 200 FREE minutes to any mobile + 100 FREE text + FREE camcorder Reply or Call 8000930705\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "New Nokia 3510i",
+            "Delivered Tomorrow",
+            "200 FREE minutes",
+            "100 FREE text",
+            "FREE camcorder",
+            "Reply or Call"
+        ]
+    },
+    {
+        "sms": "Urgent Urgent! We have 800 FREE flights to Europe to give away, call B4 10th Sept & take a friend 4 FREE. Call now to claim on 09050000555. BA128NNFWFLY150ppm\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "Urgent",
+            "FREE flights",
+            "call now",
+            "claim",
+            "09050000555",
+            "ppm"
+        ]
+    },
+    {
+        "sms": "Total video converter free download type this in google search:)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "total video converter",
+            "free download",
+            "google search"
+        ]
+    },
+    {
+        "sms": "<Forwarded from 21870000>Hi - this is your Mailbox Messaging SMS alert. You have 40 matches. Please call back on 09056242159 to retrieve your messages and matches cc100p/min\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "Mailbox Messaging",
+            "SMS alert",
+            "call back",
+            "09056242159",
+            "retrieve your messages",
+            "cc100p/min"
+        ]
+    },
+    {
+        "sms": "Today my system sh get ready.all is well and i am also in the deep well\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "system",
+            "sh get ready",
+            "deep well"
+        ]
+    },
+    {
+        "sms": "1st wk FREE! Gr8 tones str8 2 u each wk. Txt NOKIA ON to 8007 for Classic Nokia tones or HIT ON to 8007 for Polys. Nokia/150p Poly/200p 16+\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "1st wk FREE",
+            "Gr8 tones",
+            "Txt",
+            "Nokia",
+            "8007",
+            "Poly",
+            "16+"
+        ]
+    },
+    {
+        "sms": "FreeMsg Why haven't you replied to my text? I'm Randy, sexy, female and live local. Luv to hear from u. Netcollex Ltd 08700621170150p per msg reply Stop to end\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "FreeMsg",
+            "sexy",
+            "female",
+            "local",
+            "Luv",
+            "Netcollex Ltd",
+            "reply",
+            "Stop to end"
+        ]
+    },
+    {
+        "sms": "Hey , is * rite u put »10 evey mnth is that all?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "rite",
+            "put",
+            "evey",
+            "mnth",
+            "all"
+        ]
+    },
+    {
+        "sms": "Hottest pics straight to your phone!! See me getting Wet and Wanting, just for you xx Text PICS to 89555 now! txt costs 150p textoperator g696ga 18 XxX\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "hottest pics",
+            "getting wet",
+            "text PICS",
+            "txt costs",
+            "18 XxX"
+        ]
+    },
+    {
+        "sms": "PRIVATE! Your 2003 Account Statement for 07808247860 shows 800 un-redeemed S. I. M. points. Call 08719899229 Identifier Code: 40411 Expires 06/11/04\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "PRIVATE",
+            "Account Statement",
+            "un-redeemed",
+            "Call",
+            "Identifier Code",
+            "Expires"
+        ]
+    },
+    {
+        "sms": "Think ur smart ? Win £200 this week in our weekly quiz, text PLAY to 85222 now!T&Cs WinnersClub PO BOX 84, M26 3UZ. 16+. GBP1.50/week\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "win £200",
+            "weekly quiz",
+            "text PLAY",
+            "T&Cs",
+            "PO BOX",
+            "16+",
+            "GBP1.50/week"
+        ]
+    },
+    {
+        "sms": "UR awarded a City Break and could WIN a £200 Summer Shopping spree every WK. Txt STORE to 88039.SkilGme.TsCs087147403231Winawk!Age16+£1.50perWKsub\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "awarded",
+            "WIN",
+            "£200",
+            "Txt",
+            "£1.50perWKsub"
+        ]
+    },
+    {
+        "sms": "FreeMsg Hey there darling it's been 3 week's now and no word back! I'd like some fun you up for it still? Tb ok! XxX std chgs to send, £1.50 to rcv\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "FreeMsg",
+            "no word back",
+            "fun",
+            "std chgs",
+            "£1.50 to rcv"
+        ]
+    },
+    {
+        "sms": "\"CHEERS U TEX MECAUSE U WEREBORED! YEAH OKDEN HUNNY R UIN WK SAT?SOUNDS LIKEYOUR HAVIN GR8FUN J! KEEP UPDAT COUNTINLOTS OF LOVEME XXXXX.\"\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "CHEERS",
+            "TEX",
+            "BORE",
+            "GR8FUN",
+            "LOVEME",
+            "lots of",
+            "XXXXX"
+        ]
+    },
+    {
+        "sms": "Get 3 Lions England tone, reply lionm 4 mono or lionp 4 poly. 4 more go 2 www.ringtones.co.uk, the original n best. Tones 3GBP network operator rates apply\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "ringtones",
+            "reply",
+            "network operator rates apply",
+            "3GBP"
+        ]
+    },
+    {
+        "sms": "You unbelievable faglord\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "unbelievable",
+            "faglord"
+        ]
+    },
+    {
+        "sms": "Panasonic & BluetoothHdset FREE. Nokia FREE. Motorola FREE & DoubleMins & DoubleTxt on Orange contract. Call MobileUpd8 on 08000839402 or call 2optout\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "FREE",
+            "DoubleMins",
+            "DoubleTxt",
+            "call to opt out"
+        ]
+    },
+    {
+        "sms": "Hi, the SEXYCHAT girls are waiting for you to text them. Text now for a great night chatting. send STOP to stop this service\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "SEXYCHAT",
+            "text now",
+            "great night chatting",
+            "send STOP to stop"
+        ]
+    },
+    {
+        "sms": "\"CHEERS FOR CALLIN BABE.SOZI CULDNT TALKBUT I WANNATELL U DETAILS LATER WENWECAN CHAT PROPERLY X\"\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "CHEERS",
+            "CALLIN",
+            "BABE",
+            "CULDNT TALKBUT",
+            "WANNATELL",
+            "CHAT PROPERLY",
+            "X"
+        ]
+    },
+    {
+        "sms": "Hi this is Amy, we will be sending you a free phone number in a couple of days, which will give you an access to all the adult parties...\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "free phone number",
+            "access to all the adult parties"
+        ]
+    },
+    {
+        "sms": "Urgent! Please call 09061743811 from landline. Your ABTA complimentary 4* Tenerife Holiday or £5000 cash await collection SAE T&Cs Box 326 CW25WX 150ppm\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "Urgent",
+            "call",
+            "complimentary",
+            "holiday",
+            "cash",
+            "await collection",
+            "T&Cs",
+            "150ppm"
+        ]
+    },
+    {
+        "sms": "Ringtone Club: Gr8 new polys direct to your mobile every week !\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "Ringtone Club",
+            "Gr8 new polys",
+            "direct to your mobile",
+            "every week"
+        ]
+    },
+    {
+        "sms": "Urgent! Please call 0906346330. Your ABTA complimentary 4* Spanish Holiday or £10,000 cash await collection SAE T&Cs BOX 47 PO19 2EZ 150ppm 18+\n",
+        "true_label": "Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "Urgent",
+            "call",
+            "complimentary",
+            "cash",
+            "await collection",
+            "T&Cs",
+            "150ppm",
+            "18+"
+        ]
+    },
+    {
+        "sms": "ITS A LAPTOP TAKE IT WITH YOU.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "LAPTOP",
+            "TAKE IT WITH YOU"
+        ]
+    },
+    {
+        "sms": "And very importantly, all we discuss is between u and i only.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "discuss",
+            "between u and i only"
+        ]
+    },
+    {
+        "sms": "Ujhhhhhhh computer shipped out with address to sandiago and parantella lane. Wtf. Poop.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Spam",
+        "keywords": [
+            "computer",
+            "shipped",
+            "address",
+            "Wtf",
+            "Poop"
+        ]
+    }
+]

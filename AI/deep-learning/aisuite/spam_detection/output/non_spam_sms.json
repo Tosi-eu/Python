@@ -1,0 +1,1239 @@
+[
+    {
+        "sms": "IM FINE BABES AINT BEEN UP 2 MUCH THO! SAW SCARY MOVIE YEST ITS QUITE FUNNY! WANT 2MRW AFTERNOON? AT TOWN OR MALL OR SUMTHIN?xx\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "IM FINE",
+            "AINT BEEN UP 2 MUCH",
+            "SAW SCARY MOVIE",
+            "WANT 2MRW",
+            "TOWN OR MALL"
+        ]
+    },
+    {
+        "sms": "Have a nice day my dear.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Have a nice day",
+            "my dear"
+        ]
+    },
+    {
+        "sms": "Beautiful Truth against Gravity.. Read carefully: \"Our heart feels light when someone is in it.. But it feels very heavy when someone leaves it..\" GOOD NIGHT\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Beautiful Truth",
+            "heart feels light",
+            "GOOD NIGHT"
+        ]
+    },
+    {
+        "sms": "Forgot to tell ü smth.. Can ü like number the sections so that it's clearer..\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "forgot",
+            "tell",
+            "clearer"
+        ]
+    },
+    {
+        "sms": "Dunno he jus say go lido. Same time 930.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Dunno",
+            "jus",
+            "say",
+            "go",
+            "lido",
+            "Same time",
+            "930"
+        ]
+    },
+    {
+        "sms": "Dude. What's up. How Teresa. Hope you have been okay. When i didnt hear from these people, i called them and they had received the package since dec  &lt;#&gt; . Just thot you'ld like to know. Do have a fantastic year and all the best with your reading. Plus if you can really really Bam first aid for Usmle, then your work is done.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Dude",
+            "What's up",
+            "Hope you have been okay",
+            "received the package",
+            "fantastic year",
+            "Bam first aid for Usmle"
+        ]
+    },
+    {
+        "sms": "Ok. So april. Cant wait\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Ok",
+            "april",
+            "Cant wait"
+        ]
+    },
+    {
+        "sms": "Yesterday its with me only . Now am going home.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "yesterday",
+            "home"
+        ]
+    },
+    {
+        "sms": "Then its most likely called Mittelschmertz. Google it. If you dont have paracetamol dont worry it will go.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Mittelschmertz",
+            "Google it",
+            "paracetamol"
+        ]
+    },
+    {
+        "sms": "Then ü come n pick me at 530 ar?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "come",
+            "pick me",
+            "530"
+        ]
+    },
+    {
+        "sms": "Misplaced your number and was sending texts to your old number. Wondering why i've not heard from you this year. All the best in your mcat. Got this number from my atlanta friends\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "misplaced your number",
+            "sending texts",
+            "wondering why",
+            "all the best in your mcat",
+            "got this number from my atlanta friends"
+        ]
+    },
+    {
+        "sms": "cThen i thk shd b enuff.. Still got conclusion n contents pg n references.. I'll b doing da contents pg n cover pg..\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "conclusion",
+            "contents",
+            "references",
+            "cover pg"
+        ]
+    },
+    {
+        "sms": "I'm glad. You are following your dreams.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "glad",
+            "following your dreams"
+        ]
+    },
+    {
+        "sms": "i can call in  &lt;#&gt;  min if thats ok\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "call",
+            "min",
+            "ok"
+        ]
+    },
+    {
+        "sms": "And stop being an old man. You get to build snowman snow angels and snowball fights.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "build",
+            "snowman",
+            "snow angels",
+            "snowball fights"
+        ]
+    },
+    {
+        "sms": "I'm in chennai velachery:)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "I'm in",
+            "chennai",
+            "velachery"
+        ]
+    },
+    {
+        "sms": "Ok give me 5 minutes I think I see her. BTW you're my alibi. You were cutting my hair the whole time.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "give me 5 minutes",
+            "you’re my alibi",
+            "cutting my hair"
+        ]
+    },
+    {
+        "sms": "Hi darlin im on helens fone im gonna b up the princes 2 nite please come up tb love Kate\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "hi",
+            "darlin",
+            "love",
+            "please come up"
+        ]
+    },
+    {
+        "sms": "Yay can't wait to party together!\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Yay",
+            "party together"
+        ]
+    },
+    {
+        "sms": "Yes..but they said its IT.,\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Yes",
+            "but",
+            "they said",
+            "its IT"
+        ]
+    },
+    {
+        "sms": "How much you got for cleaning\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "cleaning"
+        ]
+    },
+    {
+        "sms": "Okie\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Okie"
+        ]
+    },
+    {
+        "sms": "You have to pls make a note of all she.s exposed to. Also find out from her school if anyone else was vomiting. Is there a dog or cat in the house? Let me know later.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "make a note",
+            "exposed",
+            "vomiting",
+            "school",
+            "dog or cat"
+        ]
+    },
+    {
+        "sms": "I tot u outside cos darren say u come shopping. Of course we nice wat. We jus went sim lim look at mp3 player.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "outside",
+            "shopping",
+            "nice",
+            "sim lim",
+            "mp3 player"
+        ]
+    },
+    {
+        "sms": "Oh shut it. Omg yesterday I had a dream that I had 2 kids both boys. I was so pissed. Not only about the kids but them being boys. I even told mark in my dream that he was changing diapers cause I'm not getting owed in the face.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "dream",
+            "kids",
+            "boys",
+            "pissed",
+            "changing diapers"
+        ]
+    },
+    {
+        "sms": "Sitting in mu waiting for everyone to get out of my suite so I can take a shower\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "sitting",
+            "waiting",
+            "shower",
+            "suite"
+        ]
+    },
+    {
+        "sms": "None of that's happening til you get here though\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "none",
+            "happening",
+            "get here"
+        ]
+    },
+    {
+        "sms": "Hmmm.still we dont have opener?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "still",
+            "dont",
+            "have opener"
+        ]
+    },
+    {
+        "sms": "And now electricity just went out fml.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "electricity",
+            "out",
+            "fml"
+        ]
+    },
+    {
+        "sms": "You in your room? I need a few\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "you in your room",
+            "need a few"
+        ]
+    },
+    {
+        "sms": "Congrats. That's great. I wanted to tell you not to tell me your score cos it might make me relax. But its motivating me so thanks for sharing\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Congrats",
+            "great",
+            "motivating",
+            "thanks for sharing"
+        ]
+    },
+    {
+        "sms": "Hey happy birthday...\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Hey",
+            "happy birthday"
+        ]
+    },
+    {
+        "sms": "I thk ü gotta go home by urself. Cos i'll b going out shopping 4 my frens present. \n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "gotta go home",
+            "shopping",
+            "going out",
+            "friends present"
+        ]
+    },
+    {
+        "sms": "Okay but i thought you were the expert\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "okay",
+            "thought",
+            "expert"
+        ]
+    },
+    {
+        "sms": "Thursday night? Yeah, sure thing, we'll work it out then\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Thursday night",
+            "work it out"
+        ]
+    },
+    {
+        "sms": "How? Izzit still raining?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "How?",
+            "Izzit",
+            "still",
+            "raining?"
+        ]
+    },
+    {
+        "sms": "I dont know why she.s not getting your messages\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "I dont know",
+            "not getting your messages"
+        ]
+    },
+    {
+        "sms": "Eat jap done oso aft ur lect wat... Ü got lect at 12 rite... \n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "eat",
+            "lecture",
+            "got",
+            "done"
+        ]
+    },
+    {
+        "sms": "Buzz! Hey, my Love ! I think of you and hope your day goes well. Did you sleep in ? I miss you babe. I long for the moment we are together again*loving smile*\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "love",
+            "miss you",
+            "together",
+            "babe"
+        ]
+    },
+    {
+        "sms": "If you r @ home then come down within 5 min\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "if you",
+            "home",
+            "come down",
+            "within 5 min"
+        ]
+    },
+    {
+        "sms": "Yup it's at paragon... I havent decided whether 2 cut yet... Hee...\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "at paragon",
+            "I havent decided",
+            "Hee"
+        ]
+    },
+    {
+        "sms": "Slaaaaave ! Where are you ? Must I summon you to me all the time now ? Don't you wish to come to me on your own anymore?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Slaaaaave",
+            "summon",
+            "come to me"
+        ]
+    },
+    {
+        "sms": "Maybe westshore or hyde park village, the place near my house?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Maybe",
+            "near my house"
+        ]
+    },
+    {
+        "sms": "Welp apparently he retired\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "apparently",
+            "retired"
+        ]
+    },
+    {
+        "sms": "Hello. Sort of out in town already. That . So dont rush home, I am eating nachos. Will let you know eta.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "hello",
+            "out in town",
+            "eating nachos",
+            "eta"
+        ]
+    },
+    {
+        "sms": "How are you doing? Hope you've settled in for the new school year. Just wishin you a gr8 day\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "How are you doing",
+            "wishin you a gr8 day",
+            "new school year"
+        ]
+    },
+    {
+        "sms": "Set a place for me in your heart and not in your mind, as the mind easily forgets but the heart will always remember. Wish you Happy Valentines Day!\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Happy Valentines Day",
+            "emotional message",
+            "personal sentiment"
+        ]
+    },
+    {
+        "sms": "Sorry, I'll call later  &lt;#&gt; mins\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Sorry",
+            "call later",
+            "mins"
+        ]
+    },
+    {
+        "sms": "I'm going out to buy mum's present ar.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "mum's present",
+            "going out",
+            "buy"
+        ]
+    },
+    {
+        "sms": "o turns out i had stereo love on mi phone under the unknown album.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "stereo love",
+            "unknown album"
+        ]
+    },
+    {
+        "sms": "So no messages. Had food?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "So",
+            "no messages",
+            "Had food"
+        ]
+    },
+    {
+        "sms": "Beautiful truth : Expression of the face could Be seen by everyone... But the depression of heart Could be understood only By the Loved ones.. Gud Ni8;-)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Beautiful truth",
+            "expression of the face",
+            "depression of heart",
+            "understood only by the loved ones",
+            "Gud Ni8"
+        ]
+    },
+    {
+        "sms": "Ok pa. Nothing problem:-)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Ok",
+            "Nothing problem"
+        ]
+    },
+    {
+        "sms": "No calls..messages..missed calls\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "No calls",
+            "messages",
+            "missed calls"
+        ]
+    },
+    {
+        "sms": "Babe! I fucking love you too !! You know? Fuck it was so good to hear your voice. I so need that. I crave it. I can't get enough. I adore you, Ahmad *kisses*\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Babe",
+            "love",
+            "good to hear your voice",
+            "crave",
+            "adore",
+            "kisses"
+        ]
+    },
+    {
+        "sms": "Hello.How u doing?What u been up 2?When will u b moving out of the flat, cos I will need to arrange to pick up the lamp, etc. Take care. Hello caroline!\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Hello",
+            "how u doing",
+            "moving out",
+            "pick up lamp",
+            "take care"
+        ]
+    },
+    {
+        "sms": "Oh baby of the house. How come you dont have any new pictures on facebook\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "baby",
+            "house",
+            "pictures",
+            "facebook"
+        ]
+    },
+    {
+        "sms": "Customer place i will call you.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Customer",
+            "call you"
+        ]
+    },
+    {
+        "sms": "What is the plural of the noun research?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "plural",
+            "noun",
+            "research"
+        ]
+    },
+    {
+        "sms": "A bit of Ur smile is my hppnss, a drop of Ur tear is my sorrow, a part of Ur heart is my life, a heart like mine wil care for U, forevr as my GOODFRIEND\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Ur smile",
+            "hppnss",
+            "Ur tear",
+            "sorrow",
+            "Ur heart",
+            "life",
+            "GOODFRIEND"
+        ]
+    },
+    {
+        "sms": "He is impossible to argue with and he always treats me like his sub, like he never released me ... Which he did and I will remind him of that if necessary\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "impossible",
+            "argue",
+            "treats me",
+            "never released me",
+            "remind him"
+        ]
+    },
+    {
+        "sms": "O we cant see if we can join denis and mina? Or does denis want alone time\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "we",
+            "join",
+            "want",
+            "alone time"
+        ]
+    },
+    {
+        "sms": "Anything lar...\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Anything",
+            "lar"
+        ]
+    },
+    {
+        "sms": "And you! Will expect you whenever you text! Hope all goes well tomo \n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "expect you",
+            "Hope all goes well",
+            "whenever you text"
+        ]
+    },
+    {
+        "sms": "Cool, I'll text you in a few\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Cool",
+            "I'll text you",
+            "a few"
+        ]
+    },
+    {
+        "sms": "K.k:)advance happy pongal.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "advance happy pongal"
+        ]
+    },
+    {
+        "sms": "Princess, is your kitty shaved or natural?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "kitty",
+            "shaved",
+            "natural"
+        ]
+    },
+    {
+        "sms": "Beautiful tomorrow never comes.. When it comes, it's already TODAY.. In the hunt of beautiful tomorrow don't waste your wonderful TODAY.. GOODMORNING:)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "beautiful tomorrow",
+            "waste your wonderful TODAY",
+            "GOODMORNING"
+        ]
+    },
+    {
+        "sms": "LMAO where's your fish memory when I need it?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "LMAO",
+            "where's your fish memory"
+        ]
+    },
+    {
+        "sms": "Also remember the beads don't come off. Ever.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "beads",
+            "don't come off",
+            "ever"
+        ]
+    },
+    {
+        "sms": "You busy or can I come by at some point and figure out what we're doing tomorrow\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "busy",
+            "come by",
+            "figure out",
+            "what we're doing tomorrow"
+        ]
+    },
+    {
+        "sms": "Hey. You got any mail?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Hey",
+            "mail"
+        ]
+    },
+    {
+        "sms": "I know she called me\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "I know",
+            "she called me"
+        ]
+    },
+    {
+        "sms": "ALRITE\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "ALRITE"
+        ]
+    },
+    {
+        "sms": "A little. Meds say take once every 8 hours. It's only been 5 but pain is back. So I took another. Hope I don't die\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "meds",
+            "pain",
+            "die"
+        ]
+    },
+    {
+        "sms": "Do ü noe if ben is going?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Do",
+            "ü",
+            "noe",
+            "if",
+            "ben",
+            "is",
+            "going"
+        ]
+    },
+    {
+        "sms": "How. Its a little difficult but its a simple way to enter this place\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "a little difficult",
+            "simple way",
+            "enter this place"
+        ]
+    },
+    {
+        "sms": "K... Must book a not huh? so going for yoga basic on sunday?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "yoga",
+            "going",
+            "basic",
+            "sunday"
+        ]
+    },
+    {
+        "sms": "What Today-sunday..sunday is holiday..so no work..\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "today",
+            "sunday",
+            "holiday",
+            "no work"
+        ]
+    },
+    {
+        "sms": "I liked your new house\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "liked",
+            "new house"
+        ]
+    },
+    {
+        "sms": "Ok... Let u noe when i leave my house.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Ok",
+            "let u noe",
+            "leave my house"
+        ]
+    },
+    {
+        "sms": "Huh i cant thk of more oredi how many pages do we have?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Huh",
+            "cant",
+            "thk",
+            "more",
+            "how many",
+            "pages"
+        ]
+    },
+    {
+        "sms": "I will reach ur home in  &lt;#&gt;  minutes\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "will reach",
+            "home",
+            "minutes"
+        ]
+    },
+    {
+        "sms": "Are you this much buzy\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "buzy"
+        ]
+    },
+    {
+        "sms": "Ummmmmaah Many many happy returns of d day my dear sweet heart.. HAPPY BIRTHDAY dear\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "happy returns",
+            "HAPPY BIRTHDAY",
+            "dear",
+            "sweet heart"
+        ]
+    },
+    {
+        "sms": "Hey i'm bored... So i'm thinking of u... So wat r u doing?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Hey",
+            "bored",
+            "thinking of u",
+            "wat r u doing"
+        ]
+    },
+    {
+        "sms": "How do you guys go to see movies on your side.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "how do you guys",
+            "go to see movies"
+        ]
+    },
+    {
+        "sms": "idc get over here, you are not weaseling your way out of this shit twice in a row\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "get over here",
+            "not weaseling",
+            "twice in a row"
+        ]
+    },
+    {
+        "sms": "Just arrived, see you in a couple days &lt;3\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "just arrived",
+            "see you",
+            "couple days"
+        ]
+    },
+    {
+        "sms": "No need lar. Jus testing e phone card. Dunno network not gd i thk. Me waiting 4 my sis 2 finish bathing so i can bathe. Dun disturb u liao u cleaning ur room.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "no need",
+            "testing",
+            "waiting",
+            "finishing bathing",
+            "cleaning room"
+        ]
+    },
+    {
+        "sms": "We not watching movie already. Xy wants 2 shop so i'm shopping w her now.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "watching",
+            "movie",
+            "shopping"
+        ]
+    },
+    {
+        "sms": "If I get there before you after your ten billion calls and texts so help me god\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "get there",
+            "ten billion calls and texts",
+            "so help me god"
+        ]
+    },
+    {
+        "sms": "Fair enough, anything going on?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "anything going on"
+        ]
+    },
+    {
+        "sms": "Yup i'm free...\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "i'm free"
+        ]
+    },
+    {
+        "sms": "\"Petey boy whereare you me and all your friendsare in theKingshead come down if you canlove Nic\"\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Petey boy",
+            "friends",
+            "Kingshead",
+            "come down",
+            "love Nic"
+        ]
+    },
+    {
+        "sms": "I think steyn surely get one wicket:)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "think",
+            "steyn",
+            "surely",
+            "get one wicket"
+        ]
+    },
+    {
+        "sms": "Hi. I'm sorry i missed your call. Can you pls call back.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "missed call",
+            "call back"
+        ]
+    },
+    {
+        "sms": "Well. Balls. Time to make calls\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Well",
+            "Balls",
+            "Time to make calls"
+        ]
+    },
+    {
+        "sms": "I love working from home :)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "love",
+            "working from home"
+        ]
+    },
+    {
+        "sms": "NOT MUCH NO FIGHTS. IT WAS A GOOD NITE!!\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "NOT MUCH",
+            "NO FIGHTS",
+            "GOOD NITE"
+        ]
+    },
+    {
+        "sms": "Yeah that's the impression I got\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Yeah",
+            "impression",
+            "got"
+        ]
+    },
+    {
+        "sms": "Thanx 4 2day! U r a goodmate I THINK UR RITE SARY! ASUSUAL!1 U CHEERED ME UP! LOVE U FRANYxxxxx\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Thanx",
+            "goodmate",
+            "CHEERED ME UP",
+            "LOVE U"
+        ]
+    },
+    {
+        "sms": "2 and half years i missed your friendship:-)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "missed your friendship"
+        ]
+    },
+    {
+        "sms": "Okay lor... Will they still let us go a not ah? Coz they will not know until later. We drop our cards into the box right?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Okay lor",
+            "Will they still let us go",
+            "drop our cards into the box"
+        ]
+    },
+    {
+        "sms": "Hey... Thk we juz go accordin to wat we discussed yest lor, except no kb on sun... Cos there's nt much lesson to go if we attend kb on sat...\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "hey",
+            "discussed",
+            "lesson",
+            "attend"
+        ]
+    },
+    {
+        "sms": "Dear umma she called me now :-)\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "dear",
+            "called",
+            "me",
+            "now"
+        ]
+    },
+    {
+        "sms": "I might come to kerala for 2 days.so you can be prepared to take a leave once i finalise .dont plan any travel during my visit.need to finish urgent works.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "might come",
+            "prepared to take a leave",
+            "urgent works"
+        ]
+    },
+    {
+        "sms": "Not yet chikku..wat abt u?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Not yet",
+            "wat abt u"
+        ]
+    },
+    {
+        "sms": "Wat time ü wan today?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Wat",
+            "time",
+            "ü",
+            "wan",
+            "today"
+        ]
+    },
+    {
+        "sms": "How stupid to say that i challenge god.You dont think at all on what i write instead you respond immed.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "challenge god",
+            "stupid",
+            "respond immed"
+        ]
+    },
+    {
+        "sms": "Oh yeah I forgot. U can only take 2 out shopping at once.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "forgot",
+            "shopping",
+            "take 2 out"
+        ]
+    },
+    {
+        "sms": "I jus hope its true that  missin me cos i'm really missin him! You haven't done anything to feel guilty about, yet.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "missin me",
+            "missin him",
+            "feel guilty"
+        ]
+    },
+    {
+        "sms": "Headin towards busetop\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Headin",
+            "busetop"
+        ]
+    },
+    {
+        "sms": "Thats cool! I am a gentleman and will treat you with dignity and respect.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "gentleman",
+            "treat you with dignity and respect"
+        ]
+    },
+    {
+        "sms": "I love ya too but try and budget your money better babe. Gary would freak on me if he knew\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "love",
+            "budget",
+            "money",
+            "babe",
+            "freak",
+            "knew"
+        ]
+    },
+    {
+        "sms": "Ok. No wahala. Just remember that a friend in need ...\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Ok",
+            "no wahala",
+            "friend in need"
+        ]
+    },
+    {
+        "sms": "Will be office around 4 pm. Now i am going hospital.\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "office",
+            "hospital"
+        ]
+    },
+    {
+        "sms": "Nope but i'm going home now then go pump petrol lor... Like going 2 rain soon...\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "nope",
+            "going home",
+            "pump petrol",
+            "rain soon"
+        ]
+    },
+    {
+        "sms": "I will reach office around  &lt;DECIMAL&gt; . &amp; my mobile have problem. You cann't get my voice. So call you asa i'll free\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "office",
+            "mobile",
+            "call",
+            "free"
+        ]
+    },
+    {
+        "sms": "Kent vale lor... Ü wait 4 me there ar?\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Kent vale",
+            "wait for me"
+        ]
+    },
+    {
+        "sms": "Ok...\n",
+        "true_label": "Not Spam",
+        "predicted_label": "Not Spam",
+        "keywords": [
+            "Ok"
+        ]
+    }
+]
