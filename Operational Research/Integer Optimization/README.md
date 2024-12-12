@@ -8,7 +8,7 @@
 
 O código desenvolvido é uma solução para um problema de otimização de um plano diretor de cidade, onde o objetivo é alocar recursos (casas, parques e fábricas) de maneira a maximizar um valor objetivo, levando em conta restrições de conectividade e custos. O problema é modelado utilizando a programação linear inteira e resolvido com a biblioteca `pulp`.
 
-O problema escolhido para teste foi o problem_8.txt, disponilizado no arquivo problems.zip, presente no e-Disciplinas.
+O problema escolhido para teste foi o problem_100.txt, disponilizado no arquivo problems.zip, presente no e-Disciplinas.
 
 ### Funções do Código
 

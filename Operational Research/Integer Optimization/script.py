@@ -1,5 +1,5 @@
 from networkx import Graph, draw, get_node_attributes
-from numpy import array, argwhere, random
+from numpy import array, argwhere
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
 from matplotlib.pyplot import figure, text, savefig, show, title, gca
 from os import makedirs
@@ -90,21 +90,15 @@ if __name__ == "__main__":
     inhabitants = 0
     total_cost = 0
 
-    # Problema
     model = LpProblem("Plano Diretor da Cidade", LpMaximize)
 
     x_C, x_P, x_F, z_CP, z_CF, z_PF = create_binary_vars(N)
 
-    # perturbação aleatória
-    random_perturbation = random.uniform(-0.2, 0.2, size=N)
-
-    # Função objetivo
     L = lpSum((z_CF * A).flatten())
     inner_sum = [ [z_CP[i][j] - z_PF[i][j] for j in range(N) if A[i][j]] for i in range(N)]
     F = lpSum(x_P[i] - x_F[i] + lpSum(inner_sum[i]) for i in range(N))
-    model += (2 * N ** 2 + 1) * L + F * 2 + lpSum(random_perturbation)
+    model += (2 * N ** 2 + 1) * L + F
 
-    # Restrições
     for i in range(N):
         model += x_C[i] + x_P[i] + x_F[i] == 1.0
         if i == 0:
@@ -124,7 +118,7 @@ if __name__ == "__main__":
                 model += x_F[j] >= z_PF[i][j]
 
     model += F >= 0
-    model += happiness >= 0
+    model += L >= 0
 
     model.solve()
 
@@ -158,7 +152,9 @@ try:
         file.write(f"\nCusto Total: {total_cost}\n")
         file.write(f"Numero de Habitantes: {inhabitants}\n")
         file.write(f"Nivel de Felicidade: {happiness}\n")
-        file.write(f"Lucro Total: {profit}\n")
+        file.write(f"Lucro Total: {profit}\n")    
+        file.write(f"Valor de L: {L.value()}\n")
+        file.write(f"Valor de F: {F.value()}\n")
     print(f"Solução salva em '{OUTPUT_FILENAME}'.")
 except Exception as e:
     print(f"Erro ao salvar a solução: {e}")
