@@ -78,6 +78,91 @@ def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: li
     savefig(output_filename)
     show()
 
+def calculate_diversity(solution, tabu_list):
+    diversity_penalty = 0
+    for tabu_solution in tabu_list:
+        difference_count = sum(1 for i in range(len(solution)) if solution[i] != tabu_solution[i])
+        diversity_penalty += difference_count * 10
+    return diversity_penalty
+
+def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_factor=3):
+    best_solution = initial_solution
+    best_cost, _, _ = calculate_cost(A, best_solution)
+    tabu_list = [best_solution]  
+    current_solution = best_solution
+    prev_best_cost = best_cost  
+
+    for _ in range(iterations):
+        neighbors = get_neighbors(current_solution, N)
+        best_neighbor = None
+        best_neighbor_cost = float('inf')
+
+        for neighbor in neighbors:
+            if neighbor not in tabu_list:
+                neighbor_cost, _, _ = calculate_cost(A, neighbor) 
+                
+                diversity_penalty = calculate_diversity(neighbor, tabu_list) * diversity_factor
+                neighbor_cost += diversity_penalty 
+
+                if neighbor_cost < best_neighbor_cost:
+                    best_neighbor_cost = neighbor_cost
+                    best_neighbor = neighbor
+        
+        if best_neighbor:
+            current_solution = best_neighbor
+            tabu_list.append(current_solution)
+            if len(tabu_list) > tenure:
+                tabu_list.pop(0)
+
+        if best_neighbor_cost < prev_best_cost:
+            break  
+
+        if best_neighbor_cost < best_cost:
+            best_cost = best_neighbor_cost
+            best_solution = current_solution
+            prev_best_cost = best_cost  
+
+    return best_solution, best_cost
+
+def calculate_cost(A, solution):
+    total_cost = 0
+    happiness = 0
+    inhabitants = 0
+    park_factory_connections = 0
+
+    for i in range(len(solution)):
+        if solution[i] == "Casa":
+            total_cost += VERTEX_COSTS["Casa"]
+            inhabitants += 1
+        elif solution[i] == "Parque":
+            total_cost += VERTEX_COSTS["Parque"]
+            happiness += 1
+        elif solution[i] == "Fábrica":
+            total_cost += VERTEX_COSTS["Fábrica"]
+            happiness -= 1
+
+    for i in range(len(A)):
+        for j in range(len(A)):
+            if A[i][j] == 1.0 and solution[i] == "Parque" and solution[j] == "Fábrica":
+                park_factory_connections += 1
+
+    happiness -= park_factory_connections * 2  
+
+    return total_cost, happiness, inhabitants
+
+def get_neighbors(solution, N):
+    neighbors = []
+    for i in range(N):
+        new_solution = solution[:]
+        if solution[i] == "Casa":
+            new_solution[i] = "Parque"
+        elif solution[i] == "Parque":
+            new_solution[i] = "Fábrica"
+        else:
+            new_solution[i] = "Casa"
+        neighbors.append(new_solution)
+    return neighbors
+
 if __name__ == "__main__":
     MATRIX_FILENAME = 'problem.txt'
     POSITIONS_FILENAME = 'positions.txt'
@@ -89,6 +174,7 @@ if __name__ == "__main__":
     happiness = 0
     inhabitants = 0
     total_cost = 0
+    profit = 0
 
     model = LpProblem("Plano Diretor da Cidade", LpMaximize)
 
@@ -119,42 +205,44 @@ if __name__ == "__main__":
 
     model += F >= 0
     model += L >= 0
+    model += happiness >= 0
+    model += profit >= 0
 
     model.solve()
 
-solution = {}
-for i in range(N):
-    if x_C[i].varValue == 1.0:
-        solution[i] = "Casa"
-        total_cost += VERTEX_COSTS["Casa"]
-        inhabitants += 1
-    elif x_P[i].varValue == 1.0:
-        solution[i] = "Parque"
-        total_cost += VERTEX_COSTS["Parque"]
-        happiness += 1
-    elif x_F[i].varValue == 1.0:
-        solution[i] = "Fábrica"
-        total_cost += VERTEX_COSTS["Fábrica"]
-        happiness += -1
+    solution = {}
+    for i in range(N):
+        if x_C[i].varValue == 1.0:
+            solution[i] = "Casa"
+            total_cost += VERTEX_COSTS["Casa"]
+            inhabitants += 1
+        elif x_P[i].varValue == 1.0:
+            solution[i] = "Parque"
+            total_cost += VERTEX_COSTS["Parque"]
+            happiness += 1
+        elif x_F[i].varValue == 1.0:
+            solution[i] = "Fábrica"
+            total_cost += VERTEX_COSTS["Fábrica"]
+            happiness -= 1
 
-graph, profit, happiness, pos, edge_colors, node_colors = create_graph(
-    A, positions, [solution[i] for i in range(N)], happiness
-)
+    initial_solution = [solution[i] for i in range(N)]
+    best_solution, best_cost = tabu_search(A, N, initial_solution)
 
-makedirs('results', exist_ok=True)
-plot_graph(graph, pos, node_colors, edge_colors, total_cost, inhabitants, happiness, profit)
+    graph, profit, happiness, pos, edge_colors, node_colors = create_graph(
+        A, positions, best_solution, happiness
+    )
 
-try:
-    with open(OUTPUT_FILENAME, 'w') as file:
-        file.write("Solucao Otima:\n")
-        for node, structure in solution.items():
-            file.write(f"Vertice {node + 1}: {structure}\n")
-        file.write(f"\nCusto Total: {total_cost}\n")
-        file.write(f"Numero de Habitantes: {inhabitants}\n")
-        file.write(f"Nivel de Felicidade: {happiness}\n")
-        file.write(f"Lucro Total: {profit}\n")    
-        file.write(f"Valor de L: {L.value()}\n")
-        file.write(f"Valor de F: {F.value()}\n")
-    print(f"Solução salva em '{OUTPUT_FILENAME}'.")
-except Exception as e:
-    print(f"Erro ao salvar a solução: {e}")
+    makedirs('results', exist_ok=True)
+    plot_graph(graph, pos, node_colors, edge_colors, best_cost, inhabitants, happiness, profit)
+
+    try:
+        with open(OUTPUT_FILENAME, 'w') as file:
+            file.write("Solução Ótima:\n")
+            for node, structure in enumerate(best_solution):
+                file.write(f"Vértice {node + 1}: {structure}\n")
+            file.write(f"\nCusto Total: {best_cost}\n")
+            file.write(f"Numero de Habitantes: {inhabitants}\n")
+            file.write(f"Felicidade: {happiness}\n")
+            file.write(f"Lucro: {profit}\n")
+    except Exception as e:
+        print(f"Erro ao salvar a solução: {e}")
