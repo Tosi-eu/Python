@@ -62,16 +62,6 @@ Plota o grafo usando `matplotlib` e salva a figura gerada. As informações de c
 **Retorno:**
 - Salva a figura gerada no arquivo especificado.
 
-#### `calculate_diversity(solution, tabu_list)`
-Calcula a penalidade de diversidade com base nas diferenças entre a solução atual e as soluções presentes na lista tabu.
-
-**Parâmetros:**
-- `solution`: Solução atual.
-- `tabu_list`: Lista tabu de soluções anteriores.
-
-**Retorno:**
-- Valor da penalidade de diversidade.
-
 #### `tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_factor=3, max_no_improve=100)`
 Executa a busca tabu para encontrar a solução otimizada, levando em conta a penalidade de diversidade.
 

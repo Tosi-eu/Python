@@ -78,25 +78,17 @@ def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: li
     savefig(output_filename)
     show()
 
-def calculate_diversity(solution, tabu_list):
-    diversity_penalty = 0
-    for tabu_solution in tabu_list:
-        difference_count = sum(1 for i in range(len(solution)) if solution[i] != tabu_solution[i])
-        diversity_penalty += difference_count * 10
-    return diversity_penalty
-
-def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_factor=3, max_no_improve=100):
+def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_improve=10):
     best_solution = initial_solution
     best_cost, _, _ = calculate_cost(A, best_solution)
-    tabu_list = [best_solution]  
+    tabu_list = [best_solution]
     current_solution = best_solution
     global_best_value = best_cost  
     no_improve_count = 0
 
     for _ in range(iterations):
         if no_improve_count == max_no_improve:
-            #print("No improvements had been found")
-            break 
+            break  
 
         neighbors = get_neighbors(current_solution, N)
         best_neighbor = None
@@ -105,9 +97,6 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_
         for neighbor in neighbors:
             if neighbor not in tabu_list:
                 neighbor_cost, _, _ = calculate_cost(A, neighbor) 
-                
-                diversity_penalty = calculate_diversity(neighbor, tabu_list) * diversity_factor
-                neighbor_cost += diversity_penalty 
 
                 if neighbor_cost < best_neighbor_cost:
                     best_neighbor_cost = neighbor_cost
@@ -130,7 +119,7 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_
         if best_neighbor_cost < best_cost and best_cost < global_best_value:
             best_cost = best_neighbor_cost
             best_solution = current_solution
-            no_improve_count = 0  
+            no_improve_count = 0  # Reset no improvement count
         else:
             no_improve_count += 1
 
@@ -200,7 +189,7 @@ if __name__ == "__main__":
     for i in range(N):
         model += x_C[i] + x_P[i] + x_F[i] == 1.0
         if i == 0:
-            model += x_C[i] == 1.0
+            model += x_C[i] == 1.0  # Vértice 1 deve ser uma Casa
         for j in range(N):
             if A[i][j] == 1.0:
                 model += x_C[i] + x_F[j] - 1 <= z_CF[i][j]
