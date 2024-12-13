@@ -51,13 +51,10 @@ def create_graph(A: array, positions: array, solution: list, happiness: int):
     for i, j in idx:
         if (solution[i] == "Casa" and solution[j] == "Parque") or (solution[i] == "Parque" and solution[j] == "Casa"):
             edge_color = 'green'  # Casa - Parque: verde
-            happiness += 1
         elif (solution[i] == "Casa" and solution[j] == "Fábrica") or (solution[i] == "Fábrica" and solution[j] == "Casa"):
             edge_color = 'blue'  # Casa - Fábrica: azul
-            profit += 1
         elif (solution[i] == "Parque" and solution[j] == "Fábrica") or (solution[i] == "Fábrica" and solution[j] == "Parque"):
             edge_color = 'red'  # Parque - Fábrica: vermelha
-            happiness += -1
         else:
             edge_color = 'gray'
         graph.add_edge(i, j, color=edge_color)
@@ -80,7 +77,7 @@ def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: li
 
 def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_improve=10):
     best_solution = initial_solution
-    best_cost, _, _ = calculate_cost(A, best_solution)
+    best_cost = calculate_cost(A, best_solution)
     tabu_list = [best_solution]
     current_solution = best_solution
     global_best_value = best_cost  
@@ -96,7 +93,7 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_imp
 
         for neighbor in neighbors:
             if neighbor not in tabu_list:
-                neighbor_cost, _, _ = calculate_cost(A, neighbor) 
+                neighbor_cost = calculate_cost(A, neighbor) 
 
                 if neighbor_cost < best_neighbor_cost:
                     best_neighbor_cost = neighbor_cost
@@ -106,7 +103,7 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_imp
         if best_neighbor:
             local_neighbors = get_neighbors(best_neighbor, N)
             for local_neighbor in local_neighbors:
-                local_cost, _, _ = calculate_cost(A, local_neighbor)
+                local_cost = calculate_cost(A, local_neighbor)
                 if local_cost < best_neighbor_cost:
                     best_neighbor = local_neighbor
                     best_neighbor_cost = local_cost
@@ -119,37 +116,30 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_imp
         if best_neighbor_cost < best_cost and best_cost < global_best_value:
             best_cost = best_neighbor_cost
             best_solution = current_solution
-            no_improve_count = 0  # Reset no improvement count
+            no_improve_count = 0 
         else:
             no_improve_count += 1
 
     return best_solution, best_cost
 
 def calculate_cost(A, solution):
-    total_cost = 0
-    happiness = 0
-    inhabitants = 0
     park_factory_connections = 0
+    total_cost = 0
 
     for i in range(len(solution)):
         if solution[i] == "Casa":
             total_cost += VERTEX_COSTS["Casa"]
-            inhabitants += 1
         elif solution[i] == "Parque":
             total_cost += VERTEX_COSTS["Parque"]
-            happiness += 1
         elif solution[i] == "Fábrica":
             total_cost += VERTEX_COSTS["Fábrica"]
-            happiness -= 1
 
     for i in range(len(A)):
         for j in range(len(A)):
             if A[i][j] == 1.0 and solution[i] == "Parque" and solution[j] == "Fábrica":
                 park_factory_connections += 1
 
-    happiness -= park_factory_connections * 2  
-
-    return total_cost, happiness, inhabitants
+    return total_cost
 
 def get_neighbors(solution, N):
     neighbors = []
@@ -172,10 +162,8 @@ if __name__ == "__main__":
     A = array(read_matrix_from_file(MATRIX_FILENAME))
     positions = array(read_matrix_from_file(POSITIONS_FILENAME))
     N = len(A) 
-    happiness = 0
     inhabitants = 0
     total_cost = 0
-    profit = 0
 
     model = LpProblem("Plano Diretor da Cidade", LpMaximize)
 
@@ -183,15 +171,15 @@ if __name__ == "__main__":
 
     L = lpSum((z_CF * A).flatten())
     inner_sum = [ [z_CP[i][j] - z_PF[i][j] for j in range(N) if A[i][j]] for i in range(N)]
-    F = lpSum(x_P[i] - x_F[i] + lpSum(inner_sum[i]) for i in range(N))
+    F = lpSum(x_P[i] - x_F[i] + lpSum(inner_sum[i]) for i in range(N)) + 1
     model += (2 * N ** 2 + 1) * L + F
 
     for i in range(N):
         model += x_C[i] + x_P[i] + x_F[i] == 1.0
-        if i == 0:
+        if i == 1:
             model += x_C[i] == 1.0  # Vértice 1 deve ser uma Casa
         for j in range(N):
-            if A[i][j] == 1.0:
+            if A[i][j]:
                 model += x_C[i] + x_F[j] - 1 <= z_CF[i][j]
                 model += x_C[i] >= z_CF[i][j]
                 model += x_F[j] >= z_CF[i][j]
@@ -206,9 +194,6 @@ if __name__ == "__main__":
 
     model += F >= 0
     model += L >= 0
-    model += happiness >= 0
-    model += profit >= 0
-
     model.solve()
 
     solution = {}
@@ -220,21 +205,19 @@ if __name__ == "__main__":
         elif x_P[i].varValue == 1.0:
             solution[i] = "Parque"
             total_cost += VERTEX_COSTS["Parque"]
-            happiness += 1
         elif x_F[i].varValue == 1.0:
             solution[i] = "Fábrica"
             total_cost += VERTEX_COSTS["Fábrica"]
-            happiness -= 1
 
     initial_solution = [solution[i] for i in range(N)]
     best_solution, best_cost = tabu_search(A, N, initial_solution)
 
     graph, profit, happiness, pos, edge_colors, node_colors = create_graph(
-        A, positions, best_solution, happiness
+        A, positions, best_solution, F.value()
     )
 
     makedirs('results', exist_ok=True)
-    plot_graph(graph, pos, node_colors, edge_colors, best_cost, inhabitants, happiness, profit)
+    plot_graph(graph, pos, node_colors, edge_colors, best_cost, inhabitants, int(F.value()), int(L.value()))
 
     try:
         with open(OUTPUT_FILENAME, 'w') as file:
@@ -243,7 +226,7 @@ if __name__ == "__main__":
                 file.write(f"Vértice {node + 1}: {structure}\n")
             file.write(f"\nCusto Total: {best_cost}\n")
             file.write(f"Numero de Habitantes: {inhabitants}\n")
-            file.write(f"Felicidade: {happiness}\n")
-            file.write(f"Lucro: {profit}\n")
+            file.write(f"Felicidade: {F.value()}\n")
+            file.write(f"Lucro: {L.value()}\n")
     except Exception as e:
         print(f"Erro ao salvar a solução: {e}")
