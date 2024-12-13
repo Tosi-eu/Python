@@ -29,9 +29,9 @@ def read_matrix_from_file(filename: str):
             return array([list(map(float, linha.split())) for linha in file])
     except Exception as e:
         print(f"Erro ao ler arquivo: {e}")
-        return []
+        exit(1)
 
-def create_graph(A: array, positions: array, solution: list, happiness: int):
+def create_graph(A: array, positions: array, solution: list):
     graph = Graph()
     profit = 0
 
@@ -47,7 +47,7 @@ def create_graph(A: array, positions: array, solution: list, happiness: int):
     for i in range(len(A)):
         graph.add_node(i, pos=positions[i])
 
-    idx = argwhere(A == 1.0)
+    idx = argwhere(A == 1)
     for i, j in idx:
         if (solution[i] == "Casa" and solution[j] == "Parque") or (solution[i] == "Parque" and solution[j] == "Casa"):
             edge_color = 'green'  # Casa - Parque: verde
@@ -62,11 +62,11 @@ def create_graph(A: array, positions: array, solution: list, happiness: int):
     pos = get_node_attributes(graph, 'pos')
     edge_colors = [graph[u][v]['color'] for u, v in graph.edges()]
 
-    return graph, profit, happiness, pos, edge_colors, node_colors
+    return graph, profit, pos, edge_colors, node_colors
 
 def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_filename="results/graph.png"):
     figure(figsize=(8, 8))
-    draw(graph, position, with_labels=True, node_size=105, node_color=node_colors, font_size=6, font_weight='bold', edge_color=edge_colors)
+    draw(graph, position, with_labels=True, labels={i: (i+1) for i in range(len(A))}, node_size=105, node_color=node_colors, font_size=6, font_weight='bold', edge_color=edge_colors)
     title("Grafo do Problema de Otimização")
     
     legend_text = f"Custo Total: {total_cost}\nHabitantes: {inhabitants}\nFelicidade: {happiness}\nLucro: {profit}"
@@ -77,7 +77,7 @@ def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: li
 
 def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_improve=10):
     best_solution = initial_solution
-    best_cost = calculate_cost(A, best_solution)
+    best_cost = calculate_cost(best_solution)
     tabu_list = [best_solution]
     current_solution = best_solution
     global_best_value = best_cost  
@@ -93,7 +93,7 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_imp
 
         for neighbor in neighbors:
             if neighbor not in tabu_list:
-                neighbor_cost = calculate_cost(A, neighbor) 
+                neighbor_cost = calculate_cost(neighbor) 
 
                 if neighbor_cost < best_neighbor_cost:
                     best_neighbor_cost = neighbor_cost
@@ -103,7 +103,7 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_imp
         if best_neighbor:
             local_neighbors = get_neighbors(best_neighbor, N)
             for local_neighbor in local_neighbors:
-                local_cost = calculate_cost(A, local_neighbor)
+                local_cost = calculate_cost(local_neighbor)
                 if local_cost < best_neighbor_cost:
                     best_neighbor = local_neighbor
                     best_neighbor_cost = local_cost
@@ -122,8 +122,7 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_imp
 
     return best_solution, best_cost
 
-def calculate_cost(A, solution):
-    park_factory_connections = 0
+def calculate_cost(solution):
     total_cost = 0
 
     for i in range(len(solution)):
@@ -133,11 +132,6 @@ def calculate_cost(A, solution):
             total_cost += VERTEX_COSTS["Parque"]
         elif solution[i] == "Fábrica":
             total_cost += VERTEX_COSTS["Fábrica"]
-
-    for i in range(len(A)):
-        for j in range(len(A)):
-            if A[i][j] == 1.0 and solution[i] == "Parque" and solution[j] == "Fábrica":
-                park_factory_connections += 1
 
     return total_cost
 
@@ -169,17 +163,15 @@ if __name__ == "__main__":
 
     x_C, x_P, x_F, z_CP, z_CF, z_PF = create_binary_vars(N)
 
-    L = lpSum((z_CF * A).flatten())
-    inner_sum = [ [z_CP[i][j] - z_PF[i][j] for j in range(N) if A[i][j]] for i in range(N)]
-    F = lpSum(x_P[i] - x_F[i] + lpSum(inner_sum[i]) for i in range(N)) + 1
+    L = lpSum((z_CF[i][j] * A[i][j]) for j in range(N) for i in range(N))
+    inner_sum = [[(z_CP[i][j] - z_PF[i][j]) * A[i][j] for j in range(N)] for i in range(N)]
+    F = lpSum(x_P[i] - x_F[i] + lpSum(inner_sum[i]) for i in range(N)) 
     model += (2 * N ** 2 + 1) * L + F
 
     for i in range(N):
-        model += x_C[i] + x_P[i] + x_F[i] == 1.0
-        if i == 1:
-            model += x_C[i] == 1.0  # Vértice 1 deve ser uma Casa
+        model += x_C[i] + x_P[i] + x_F[i] == 1
         for j in range(N):
-            if A[i][j]:
+            if A[i][j] == 1:
                 model += x_C[i] + x_F[j] - 1 <= z_CF[i][j]
                 model += x_C[i] >= z_CF[i][j]
                 model += x_F[j] >= z_CF[i][j]
@@ -192,29 +184,27 @@ if __name__ == "__main__":
                 model += x_P[i] >= z_PF[i][j]
                 model += x_F[j] >= z_PF[i][j]
 
-    model += F >= 0
-    model += L >= 0
+    model += F >= 1
+    model += x_C[0] == 1
     model.solve()
 
     solution = {}
     for i in range(N):
-        if x_C[i].varValue == 1.0:
+        if x_C[i].varValue == 1:
             solution[i] = "Casa"
             total_cost += VERTEX_COSTS["Casa"]
             inhabitants += 1
-        elif x_P[i].varValue == 1.0:
-            solution[i] = "Parque"
-            total_cost += VERTEX_COSTS["Parque"]
-        elif x_F[i].varValue == 1.0:
+        elif x_F[i].varValue == 1:
             solution[i] = "Fábrica"
             total_cost += VERTEX_COSTS["Fábrica"]
+        elif x_P[i].varValue == 1:
+            solution[i] = "Parque"
+            total_cost += VERTEX_COSTS["Parque"]
 
     initial_solution = [solution[i] for i in range(N)]
     best_solution, best_cost = tabu_search(A, N, initial_solution)
 
-    graph, profit, happiness, pos, edge_colors, node_colors = create_graph(
-        A, positions, best_solution, F.value()
-    )
+    graph, profit, pos, edge_colors, node_colors = create_graph(A, positions, solution)
 
     makedirs('results', exist_ok=True)
     plot_graph(graph, pos, node_colors, edge_colors, best_cost, inhabitants, int(F.value()), int(L.value()))
@@ -222,11 +212,11 @@ if __name__ == "__main__":
     try:
         with open(OUTPUT_FILENAME, 'w') as file:
             file.write("Solução Ótima:\n")
-            for node, structure in enumerate(best_solution):
-                file.write(f"Vértice {node + 1}: {structure}\n")
+            for i in range(N):
+                file.write(f"Vértice {i+1}: {best_solution[i]}\n")
             file.write(f"\nCusto Total: {best_cost}\n")
-            file.write(f"Numero de Habitantes: {inhabitants}\n")
+            file.write(f"Habitantes: {inhabitants}\n")
             file.write(f"Felicidade: {F.value()}\n")
             file.write(f"Lucro: {L.value()}\n")
     except Exception as e:
-        print(f"Erro ao salvar a solução: {e}")
+        print(f"Erro ao salvar resultado: {e}")
