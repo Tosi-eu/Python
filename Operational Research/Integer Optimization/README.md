@@ -1,4 +1,4 @@
-# Projeto de Otimização - SME0510 - Introdução à Pesquisa Operacional
+# SME0510 - Introdução à Pesquisa Operacional
 
 ## Integrantes:
 - **Guilherme Henrique Galdini Tosi** - N° USP 11781587
@@ -8,12 +8,11 @@
 
 O código desenvolvido é uma solução para um problema de otimização de um plano diretor de cidade, onde o objetivo é alocar recursos (casas, parques e fábricas) de maneira a maximizar um valor objetivo, levando em conta restrições de conectividade e custos. O problema é modelado utilizando a programação linear inteira e resolvido com a biblioteca `pulp`.
 
-O problema escolhido para teste foi o problem_100.txt, disponilizado no arquivo problems.zip, presente no e-Disciplinas.
+O problema escolhido para teste foi o `problem_100.txt`, disponibilizado no arquivo `problems.zip`, presente no e-Disciplinas.
 
 ### Funções do Código
 
 #### `create_binary_vars(N: int)`
-
 Essa função cria variáveis binárias para representar a alocação dos três tipos de recursos (Casa, Parque, Fábrica) em cada vértice, além de variáveis auxiliares de conectividade entre os vértices.
 
 **Parâmetros:**
@@ -24,7 +23,6 @@ Essa função cria variáveis binárias para representar a alocação dos três 
 - Variáveis de conectividade entre os tipos de recursos (`z_CP`, `z_CF`, `z_PF`).
 
 #### `read_matrix_from_file(filename: str)`
-
 Essa função lê uma matriz de um arquivo de texto. Cada linha é interpretada como um vetor de números flutuantes.
 
 **Parâmetros:**
@@ -34,7 +32,6 @@ Essa função lê uma matriz de um arquivo de texto. Cada linha é interpretada 
 - Uma matriz `array` contendo os dados lidos.
 
 #### `create_graph(A: array, positions: array, solution: list, happiness: int)`
-
 Cria um grafo a partir das matrizes de conectividade e das posições dos vértices, e atribui cores aos nós e arestas de acordo com a solução do problema.
 
 **Parâmetros:**
@@ -49,7 +46,6 @@ Cria um grafo a partir das matrizes de conectividade e das posições dos vérti
 - As cores dos nós e arestas.
 
 #### `plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_filename="results/graph.png")`
-
 Plota o grafo usando `matplotlib` e salva a figura gerada. As informações de custo total, felicidade e lucro são adicionadas ao gráfico como legenda.
 
 **Parâmetros:**
@@ -65,6 +61,42 @@ Plota o grafo usando `matplotlib` e salva a figura gerada. As informações de c
 
 **Retorno:**
 - Salva a figura gerada no arquivo especificado.
+
+#### `calculate_diversity(solution, tabu_list)`
+Calcula a penalidade de diversidade com base nas diferenças entre a solução atual e as soluções presentes na lista tabu.
+
+**Parâmetros:**
+- `solution`: Solução atual.
+- `tabu_list`: Lista tabu de soluções anteriores.
+
+**Retorno:**
+- Valor da penalidade de diversidade.
+
+#### `tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_factor=3, max_no_improve=100)`
+Executa a busca tabu para encontrar a solução otimizada, levando em conta a penalidade de diversidade.
+
+**Parâmetros:**
+- `A`: Matriz de conectividade.
+- `N`: Número de vértices.
+- `initial_solution`: Solução inicial.
+- `iterations`: Número de iterações da busca.
+- `tenure`: Tempo de permanência de uma solução na lista tabu.
+- `diversity_factor`: Fator de penalização da diversidade.
+- `max_no_improve`: Número máximo de iterações sem melhoria.
+
+**Retorno:**
+- Melhor solução encontrada.
+- Custo da melhor solução.
+
+#### `calculate_cost(A, solution)`
+Calcula o custo total da solução, incluindo felicidade e lucro, com base na alocação de recursos.
+
+**Parâmetros:**
+- `A`: Matriz de conectividade.
+- `solution`: Solução de alocação de recursos.
+
+**Retorno:**
+- Custo total da solução, felicidade, número de habitantes e conexões entre parque e fábrica.
 
 ## Estrutura do Código
 
@@ -91,17 +123,16 @@ Plota o grafo usando `matplotlib` e salva a figura gerada. As informações de c
 
    ```bash
    pip install networkx numpy pulp matplotlib
-```
 
-2. **Arquivos de Entrada**: 
-    O código espera dois arquivos de entrada no formato de matriz:
+2. **Arquivos de entrada**:
+  - O código espera dois arquivos de entrada no formato de matriz:
 
-- problem.txt: Matriz de conectividade entre os vértices.
-- positions.txt: Posições dos vértices.
+    - problem.txt: Matriz de conectividade entre os vértices.
+    - positions.txt: Posições dos vértices.
+
+- Exemplo de estrutura de um arquivo de entrada:
 
 ```bash
-
-Exemplo de estrutura de um arquivo de entrada:
 
 problem.txt
 
@@ -115,22 +146,23 @@ positions.txt
 2 2
 ```
 
-3. **Execução do script**:
+## 3. Execução do script:
 
-```bash
-
+ ```bash
 Linux:
-- python3 script.py
+python3 script.py
 
 Windows:
-- python script.py
+python script.py
 
 ```
 
-3. **Exemplo de Saída**:
-A saída do código inclui o seguinte conteúdo no arquivo solution.txt:
+## 4. Exemplo de Saída: 
+
+- A saída do código inclui o seguinte conteúdo no arquivo solution.txt:
 
 ```bash
+
 Solucao Otima:
 Vertice 1: Casa
 Vertice 2: Parque
@@ -140,10 +172,13 @@ Custo Total: 57600
 Numero de Habitantes: 1
 Nivel de Felicidade: 1
 Lucro Total: 1
+
 ```
 
-Além disso, um gráfico do problema de otimização será salvo em results/graph.png.
+- Além disso, um gráfico do problema de otimização será salvo em results/graph.png.
 
-4. **Conclusão**:
+## Conclusão: 
 
+```bash 
 Este projeto aplica técnicas de otimização e programação linear inteira para resolver um problema de alocação de recursos urbanos, considerando fatores como custo, felicidade e lucro. A solução é visualizada por meio de um grafo, facilitando a análise e interpretação dos resultados.
+```

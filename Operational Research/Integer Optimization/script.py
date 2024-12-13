@@ -85,14 +85,19 @@ def calculate_diversity(solution, tabu_list):
         diversity_penalty += difference_count * 10
     return diversity_penalty
 
-def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_factor=3):
+def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_factor=3, max_no_improve=100):
     best_solution = initial_solution
     best_cost, _, _ = calculate_cost(A, best_solution)
     tabu_list = [best_solution]  
     current_solution = best_solution
-    prev_best_cost = best_cost  
+    global_best_value = best_cost  
+    no_improve_count = 0
 
     for _ in range(iterations):
+        if no_improve_count == max_no_improve:
+            #print("No improvements had been found")
+            break 
+
         neighbors = get_neighbors(current_solution, N)
         best_neighbor = None
         best_neighbor_cost = float('inf')
@@ -107,20 +112,27 @@ def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_
                 if neighbor_cost < best_neighbor_cost:
                     best_neighbor_cost = neighbor_cost
                     best_neighbor = neighbor
+                    global_best_value = best_neighbor_cost
         
         if best_neighbor:
+            local_neighbors = get_neighbors(best_neighbor, N)
+            for local_neighbor in local_neighbors:
+                local_cost, _, _ = calculate_cost(A, local_neighbor)
+                if local_cost < best_neighbor_cost:
+                    best_neighbor = local_neighbor
+                    best_neighbor_cost = local_cost
+
             current_solution = best_neighbor
             tabu_list.append(current_solution)
             if len(tabu_list) > tenure:
                 tabu_list.pop(0)
 
-        if best_neighbor_cost < prev_best_cost:
-            break  
-
-        if best_neighbor_cost < best_cost:
+        if best_neighbor_cost < best_cost and best_cost < global_best_value:
             best_cost = best_neighbor_cost
             best_solution = current_solution
-            prev_best_cost = best_cost  
+            no_improve_count = 0  
+        else:
+            no_improve_count += 1
 
     return best_solution, best_cost
 
@@ -188,7 +200,7 @@ if __name__ == "__main__":
     for i in range(N):
         model += x_C[i] + x_P[i] + x_F[i] == 1.0
         if i == 0:
-            model += x_C[i] == 1.0  # Vértice 1 deve ser uma Casa
+            model += x_C[i] == 1.0
         for j in range(N):
             if A[i][j] == 1.0:
                 model += x_C[i] + x_F[j] - 1 <= z_CF[i][j]
