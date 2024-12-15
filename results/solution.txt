@@ -1,0 +1,6 @@
+Solução Ótima:
+
+Custo Total: 0
+Numero de Habitantes: 0
+Felicidade: 0
+Lucro: 0

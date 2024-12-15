@@ -1,0 +1,46 @@
+Solução Ótima:
+Vértice 1: Casa
+Vértice 2: Casa
+Vértice 3: Casa
+Vértice 4: Casa
+Vértice 5: Parque
+Vértice 6: Casa
+Vértice 7: Casa
+Vértice 8: Fábrica
+Vértice 9: Parque
+Vértice 10: Fábrica
+Vértice 11: Casa
+Vértice 12: Fábrica
+Vértice 13: Parque
+Vértice 14: Casa
+Vértice 15: Casa
+Vértice 16: Parque
+Vértice 17: Casa
+Vértice 18: Casa
+Vértice 19: Fábrica
+Vértice 20: Casa
+Vértice 21: Casa
+Vértice 22: Casa
+Vértice 23: Casa
+Vértice 24: Casa
+Vértice 25: Casa
+Vértice 26: Casa
+Vértice 27: Fábrica
+Vértice 28: Casa
+Vértice 29: Fábrica
+Vértice 30: Casa
+Vértice 31: Casa
+Vértice 32: Casa
+Vértice 33: Fábrica
+Vértice 34: Casa
+Vértice 35: Fábrica
+Vértice 36: Fábrica
+Vértice 37: Fábrica
+Vértice 38: Casa
+Vértice 39: Fábrica
+Vértice 40: Casa
+
+Custo Total: 902400
+Habitantes: 25
+Felicidade: 0.0
+Lucro: 42.0

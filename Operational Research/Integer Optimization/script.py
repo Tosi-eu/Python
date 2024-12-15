@@ -1,3 +1,4 @@
+import os
 from networkx import Graph, draw, get_node_attributes
 from numpy import array, argwhere
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
@@ -9,6 +10,7 @@ VERTEX_COSTS = {
     "Parque": 12800,
     "Fábrica": 19200
 }
+
 
 def create_binary_vars(N: int):
     try:
@@ -23,17 +25,24 @@ def create_binary_vars(N: int):
 
     return  x_C, x_P, x_F, z_CP, z_CF, z_PF
 
-def read_matrix_from_file(filename: str):
+from numpy import array
+
+def read_matrix_and_positions_from_file(filename):
     try:
         with open(filename, 'r') as file:
-            return array([list(map(float, linha.split())) for linha in file])
+            data = file.read().split("Positions:")
+            
+            matrix = array([[int(x) for x in line.split()] for line in data[0].strip().split("\n")[1:]])
+
+            positions = [eval(line.split(':')[1]) for line in data[1].strip().split("\n")]
+
+            return matrix, positions
     except Exception as e:
-        print(f"Erro ao ler arquivo: {e}")
+        print(e)
         exit(1)
 
 def create_graph(A: array, positions: array, solution: list):
     graph = Graph()
-    profit = 0
 
     node_colors = []
     for i in range(len(A)):
@@ -62,9 +71,9 @@ def create_graph(A: array, positions: array, solution: list):
     pos = get_node_attributes(graph, 'pos')
     edge_colors = [graph[u][v]['color'] for u, v in graph.edges()]
 
-    return graph, profit, pos, edge_colors, node_colors
+    return graph, pos, edge_colors, node_colors
 
-def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_filename="results/graph.png"):
+def save_graph(A, graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_plot_filename, ):
     figure(figsize=(8, 8))
     draw(graph, position, with_labels=True, labels={i: (i+1) for i in range(len(A))}, node_size=105, node_color=node_colors, font_size=6, font_weight='bold', edge_color=edge_colors)
     title("Grafo do Problema de Otimização")
@@ -72,10 +81,9 @@ def plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: li
     legend_text = f"Custo Total: {total_cost}\nHabitantes: {inhabitants}\nFelicidade: {happiness}\nLucro: {profit}"
     text(0.95, 0.05, legend_text, horizontalalignment='right', transform=gca().transAxes, fontsize=10, bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
 
-    savefig(output_filename)
-    show()
+    savefig(output_plot_filename, )
 
-def tabu_search(A, N, initial_solution, iterations=100000, tenure=10, max_no_improve=10):
+def tabu_search(N, initial_solution, iterations=100000, tenure=10, max_no_improve=10):
     best_solution = initial_solution
     best_cost = calculate_cost(best_solution)
     tabu_list = [best_solution]
@@ -148,13 +156,8 @@ def get_neighbors(solution, N):
         neighbors.append(new_solution)
     return neighbors
 
-if __name__ == "__main__":
-    MATRIX_FILENAME = 'problem.txt'
-    POSITIONS_FILENAME = 'positions.txt'
-    OUTPUT_FILENAME = 'results/solution.txt' 
-    
-    A = array(read_matrix_from_file(MATRIX_FILENAME))
-    positions = array(read_matrix_from_file(POSITIONS_FILENAME))
+def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file):
+    A, positions = read_matrix_and_positions_from_file(problem_file)
     N = len(A) 
     inhabitants = 0
     total_cost = 0
@@ -163,11 +166,10 @@ if __name__ == "__main__":
 
     x_C, x_P, x_F, z_CP, z_CF, z_PF = create_binary_vars(N)
 
-    L = lpSum((z_CF[i][j] * A[i][j]) for j in range(N) for i in range(N))
-    inner_sum = [[(z_CP[i][j] - z_PF[i][j]) * A[i][j] for j in range(N)] for i in range(N)]
-    F = lpSum(x_P[i] - x_F[i] + lpSum(inner_sum[i]) for i in range(N)) 
+    L = lpSum(z_CF[i, j] * A[i][j] for i in range(N) for j in range(N))
+    F = lpSum((x_P[i] - x_F[i] + lpSum((z_CP[i, j] - z_PF[i, j]) * A[i][j] for j in range(N))) for i in range(N))
     model += (2 * N ** 2 + 1) * L + F
-
+    
     for i in range(N):
         model += x_C[i] + x_P[i] + x_F[i] == 1
         for j in range(N):
@@ -184,7 +186,7 @@ if __name__ == "__main__":
                 model += x_P[i] >= z_PF[i][j]
                 model += x_F[j] >= z_PF[i][j]
 
-    model += F >= 1
+    model += F >= 0
     model += x_C[0] == 1
     model.solve()
 
@@ -201,22 +203,27 @@ if __name__ == "__main__":
             solution[i] = "Parque"
             total_cost += VERTEX_COSTS["Parque"]
 
-    initial_solution = [solution[i] for i in range(N)]
-    best_solution, best_cost = tabu_search(A, N, initial_solution)
-
-    graph, profit, pos, edge_colors, node_colors = create_graph(A, positions, solution)
+    graph, pos, edge_colors, node_colors = create_graph(A, positions, solution)
 
     makedirs('results', exist_ok=True)
-    plot_graph(graph, pos, node_colors, edge_colors, best_cost, inhabitants, int(F.value()), int(L.value()))
+    save_graph(A, graph, pos, node_colors, edge_colors, total_cost, inhabitants, int(F.value()), int(L.value()), output_graph_filename)
 
     try:
-        with open(OUTPUT_FILENAME, 'w') as file:
+        with open(output_txt_file, 'w') as file:
             file.write("Solução Ótima:\n")
             for i in range(N):
-                file.write(f"Vértice {i+1}: {best_solution[i]}\n")
-            file.write(f"\nCusto Total: {best_cost}\n")
+                file.write(f"Vértice {i+1}: {solution[i]}\n")
+            file.write(f"\nCusto Total: {total_cost}\n")
             file.write(f"Habitantes: {inhabitants}\n")
             file.write(f"Felicidade: {F.value()}\n")
             file.write(f"Lucro: {L.value()}\n")
     except Exception as e:
         print(f"Erro ao salvar resultado: {e}")
+
+if __name__ == "__main__":
+   problems_folder = 'problems'
+
+   for idx, problem_file in enumerate(os.listdir(problems_folder)):
+        if problem_file.endswith(".txt"): 
+            full_path = os.path.join(problems_folder, problem_file)
+            optimize_and_save_graph(full_path, f'results/problem_{os.path.basename(problem_file)}_solved.png', f'results/problem_{os.path.basename(problem_file)}_solved.txt')
