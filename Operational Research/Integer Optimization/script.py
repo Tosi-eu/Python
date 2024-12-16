@@ -1,4 +1,5 @@
 import os
+import time
 from networkx import Graph, draw, get_node_attributes
 from numpy import array, argwhere
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
@@ -73,7 +74,7 @@ def create_graph(A: array, positions: array, solution: list):
 
     return graph, pos, edge_colors, node_colors
 
-def save_graph(A, graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_plot_filename, ):
+def save_graph(A, graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_plot_filename):
     figure(figsize=(8, 8))
     draw(graph, position, with_labels=True, labels={i: (i+1) for i in range(len(A))}, node_size=105, node_color=node_colors, font_size=6, font_weight='bold', edge_color=edge_colors)
     title("Grafo do Problema de Otimização")
@@ -81,7 +82,7 @@ def save_graph(A, graph: Graph, position: array, node_colors: list, edge_colors:
     legend_text = f"Custo Total: {total_cost}\nHabitantes: {inhabitants}\nFelicidade: {happiness}\nLucro: {profit}"
     text(0.95, 0.05, legend_text, horizontalalignment='right', transform=gca().transAxes, fontsize=10, bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
 
-    savefig(output_plot_filename, )
+    savefig(output_plot_filename)
 
 def tabu_search(N, initial_solution, iterations=100000, tenure=10, max_no_improve=10):
     best_solution = initial_solution
@@ -156,18 +157,29 @@ def get_neighbors(solution, N):
         neighbors.append(new_solution)
     return neighbors
 
-def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file):
-    A, positions = read_matrix_and_positions_from_file(problem_file)
-    N = len(A) 
-    inhabitants = 0
-    total_cost = 0
+def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file, testing=False):
+    folder = 'results/'
+        
+    if testing:
+        makedirs('test_results', exist_ok=True)
+        folder = 'test_results/'
+    else:
+        makedirs('results', exist_ok=True)
 
+    start_time = time.time()
+
+    A, positions = read_matrix_and_positions_from_file(problem_file)
+    N = len(A)
+    
     model = LpProblem("Plano Diretor da Cidade", LpMaximize)
 
     x_C, x_P, x_F, z_CP, z_CF, z_PF = create_binary_vars(N)
 
     L = lpSum(z_CF[i, j] * A[i][j] for i in range(N) for j in range(N))
     F = lpSum((x_P[i] - x_F[i] + lpSum((z_CP[i, j] - z_PF[i, j]) * A[i][j] for j in range(N))) for i in range(N))
+    H = lpSum(x_C[i] for i in range(N))
+    C = lpSum(x_C[i] * VERTEX_COSTS['Casa'] + x_F[i] * VERTEX_COSTS["Fábrica"] + x_P[i] * VERTEX_COSTS["Parque"] for i in range(N))
+    
     model += (2 * N ** 2 + 1) * L + F
     
     for i in range(N):
@@ -191,39 +203,54 @@ def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file
     model.solve()
 
     solution = {}
+    initial_solution = []
     for i in range(N):
         if x_C[i].varValue == 1:
             solution[i] = "Casa"
-            total_cost += VERTEX_COSTS["Casa"]
-            inhabitants += 1
+            initial_solution.append("Casa")
         elif x_F[i].varValue == 1:
             solution[i] = "Fábrica"
-            total_cost += VERTEX_COSTS["Fábrica"]
+            initial_solution.append("Fábrica")
         elif x_P[i].varValue == 1:
             solution[i] = "Parque"
-            total_cost += VERTEX_COSTS["Parque"]
+            initial_solution.append("Parque")
 
-    graph, pos, edge_colors, node_colors = create_graph(A, positions, solution)
+    tabu_solution, tabu_cost = tabu_search(N, initial_solution)
 
-    makedirs('results', exist_ok=True)
-    save_graph(A, graph, pos, node_colors, edge_colors, total_cost, inhabitants, int(F.value()), int(L.value()), output_graph_filename)
+    if C.value() < tabu_cost:
+        graph, pos, edge_colors, node_colors = create_graph(A, positions, solution)
+        save_graph(A, graph, pos, node_colors, edge_colors, C.value(), int(H.value()), int(F.value()), int(L.value()), f'{folder}{output_graph_filename}')
+    else:
+        graph, pos, edge_colors, node_colors = create_graph(A, positions, tabu_solution)
+        save_graph(A, graph, pos, node_colors, edge_colors, tabu_cost, int(H.value()), int(F.value()), int(L.value()), f'{folder}{output_graph_filename}')
+
+    execution_time = time.time() - start_time
 
     try:
-        with open(output_txt_file, 'w') as file:
-            file.write("Solução Ótima:\n")
+        with open(f'{folder}{output_txt_file}', 'w') as file:
+            file.write("Solução Ótima do Modelo:\n")
             for i in range(N):
                 file.write(f"Vértice {i+1}: {solution[i]}\n")
-            file.write(f"\nCusto Total: {total_cost}\n")
-            file.write(f"Habitantes: {inhabitants}\n")
+            file.write(f"\nCusto Total: {C.value()}\n")
+            file.write(f"\nMatriz de Adjacência: {A}\n")
+            file.write(f"\nPosições: {positions}\n\n\n")
+            file.write(f"Habitantes: {int(H.value())}\n")
             file.write(f"Felicidade: {F.value()}\n")
             file.write(f"Lucro: {L.value()}\n")
+            file.write(f"Tempo de Execução: {execution_time:.2f} segundos\n")
     except Exception as e:
         print(f"Erro ao salvar resultado: {e}")
 
 if __name__ == "__main__":
-   problems_folder = 'problems'
+   problems_folder = 'problems/'
+   test_folder = 'test_problems/'
+
+   for idx, problem_file in enumerate(os.listdir(problems_folder)):
+        if problem_file.endswith(".txt"): 
+            full_path = os.path.join(test_folder, problem_file)
+            optimize_and_save_graph(full_path, f'problem_{os.path.basename(problem_file)}_solved.png', f'problem_{os.path.basename(problem_file)}_solved.txt', testing=True)
 
    for idx, problem_file in enumerate(os.listdir(problems_folder)):
         if problem_file.endswith(".txt"): 
             full_path = os.path.join(problems_folder, problem_file)
-            optimize_and_save_graph(full_path, f'results/problem_{os.path.basename(problem_file)}_solved.png', f'results/problem_{os.path.basename(problem_file)}_solved.txt')
+            optimize_and_save_graph(full_path, f'problem_{os.path.basename(problem_file)}_solved.png', f'problem_{os.path.basename(problem_file)}_solved.txt', testing=False)

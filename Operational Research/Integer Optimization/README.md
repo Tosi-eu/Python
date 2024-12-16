@@ -8,7 +8,7 @@
 
 O código desenvolvido é uma solução para um problema de otimização de um plano diretor de cidade, onde o objetivo é alocar recursos (casas, parques e fábricas) de maneira a maximizar um valor objetivo, levando em conta restrições de conectividade e custos. O problema é modelado utilizando a programação linear inteira e resolvido com a biblioteca `pulp`.
 
-O problema escolhido para teste foram todos disponibilizados no arquivo problems_2.zip, enviado pelo monitor da disciplina no grupo da disciplina, no Telegram.
+O problema escolhido para teste foram todos disponibilizados no arquivo problems.zip, disponibilizado no e-disciplinas e  o problems_2.zip, enviado pelo monitor da disciplina no grupo da disciplina, no Telegram. Basicamente, o programa itera sobre as duas pastas e armazena os resultados do modelo e imagem do grafo resultante.
 
 ### Funções do Código
 
@@ -45,10 +45,11 @@ Cria um grafo a partir das matrizes de conectividade e das posições dos vérti
 - Valores de lucro e felicidade.
 - As cores dos nós e arestas.
 
-#### `plot_graph(graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_filename="results/graph.png")`
+#### `save_graph(A, graph: Graph, position: array, node_colors: list, edge_colors: list, total_cost: int, inhabitants: int, happiness: int, profit: int, output_plot_filename)`
 Plota o grafo usando `matplotlib` e salva a figura gerada. As informações de custo total, felicidade e lucro são adicionadas ao gráfico como legenda.
 
 **Parâmetros:**
+- `A`: matriz de adjacências.
 - `graph`: Grafo gerado.
 - `position`: Posições dos nós.
 - `node_colors`: Cores dos nós.
@@ -57,7 +58,7 @@ Plota o grafo usando `matplotlib` e salva a figura gerada. As informações de c
 - `inhabitants`: Número de habitantes (casas).
 - `happiness`: Nível de felicidade.
 - `profit`: Lucro.
-- `output_filename`: Nome do arquivo de saída.
+- `output_plot_filename`: Nome do arquivo de saída.
 
 **Retorno:**
 - Salva a figura gerada no arquivo especificado.
@@ -85,8 +86,20 @@ Calcula o custo total da solução, incluindo felicidade e lucro, com base na al
 - `A`: Matriz de conectividade.
 - `solution`: Solução de alocação de recursos.
 
+
+#### `optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file, testing=False)`
+Executa a busca tabu para encontrar a solução otimizada, levando em conta a penalidade de diversidade.
+
+**Parâmetros:**
+- `problem_file`: arquivo contendo a matriz de adjacências e as posições dos vértices
+- `output_graph_filename`: nome do arquivo PNG do grafo resultante
+- `output_txt_file`: nome do arquivo txt contendo a solução
+- `testing`: boolean para usar os casos de teste
+
 **Retorno:**
-- Custo total da solução, felicidade, número de habitantes e conexões entre parque e fábrica.
+- Melhor solução encontrada.
+- Grafo gerado
+- Solução escrita em arquivo
 
 ## Estrutura do Código
 
@@ -103,8 +116,8 @@ Calcula o custo total da solução, incluindo felicidade e lucro, com base na al
    - A solução é então mapeada para uma alocação de recursos nos vértices, com o cálculo do custo total, felicidade e lucro.
 
 4. **Visualização**:
-   - O grafo é gerado e plotado, destacando as alocações e a conectividade entre os recursos.
-   - A solução e as estatísticas finais (custo total, número de habitantes, felicidade e lucro) são salvas em um arquivo de texto.
+   - O grafo é gerado e salvo em disco, destacando as alocações e a conectividade entre os recursos.
+   - A solução e as estatísticas finais (custo total, número de habitantes, felicidade e lucro) são salvas em um arquivo de texto, assim como aparecem na legenda do grafo.
 
 ## Como Rodar o Código
 
@@ -124,13 +137,12 @@ Calcula o custo total da solução, incluindo felicidade e lucro, com base na al
 
 ```bash
 
-problem.txt
+problem_{n}.txt
 
 0 1 0
 1 0 1
 0 1 0
 
-positions.txt
 0 0
 1 1
 2 2
@@ -162,10 +174,11 @@ Custo Total: 57600
 Numero de Habitantes: 1
 Nivel de Felicidade: 1
 Lucro Total: 1
+Tempo: 123456 segundos
 
 ```
 
-- Além disso, um gráfico do problema de otimização será salvo em results/graph.png.
+- Além disso, um gráfico e um txt referentes ao iésimo-problema será salvo em results/graph.png.
 
 ## Conclusão: 
 
