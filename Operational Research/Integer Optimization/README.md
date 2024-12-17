@@ -11,6 +11,8 @@ O código desenvolvido é uma solução para um problema de otimização de um p
 
 O problema escolhido foi o problem_1.txt, disponibilizado no arquivo problems.zip, mas para teste foram executados todos os arquivos disponibilizados no problems.zip, e também os do problems_2.zip. Basicamente, o programa itera sobre as duas pastas e armazena os resultados do modelo e imagem do grafo resultante. o resultado da execução da instância escolhida por nós fica originalmente armaznada em `results/`, mas com o nome `single_problem_1.png` e `single_problem_1.txt`
 
+A função objetivo do programa original é `Z = (2 * N^2 + 1) * L + F`, o que bastava para otimizar LUCRO e FELICIDADE, apenas. No caso, aqui tivemos uma  otimização também de HABITANTES e CUSTO, na ordem decrescente de prioridade L -> F -> C -> H, resultando em `Z = (2 * N ** 2 + 1) * L + 1e-3 * F - 1e-9 * C + H * 1e-12`, onde as perturbações(pesos) atreladas a cada restrição do modelo garantiram que se houvesse o máximo resultado possível das soluções.
+
 ### Funções do Código
 
 #### `create_binary_vars(N: int)`
@@ -111,6 +113,10 @@ Executa a função de otimização para um dado arquivo
 - `output_txt_file`: nome do arquivo txt contendo a solução
 - `testing`: boolean para usar os casos de teste ou casos reais
 
+**Retorno:**
+- Melhor solução encontrada.
+- Grafo gerado
+- Solução escrita em arquivo
 
 ## Estrutura do Código
 
