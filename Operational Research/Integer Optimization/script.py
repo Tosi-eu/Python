@@ -180,8 +180,8 @@ def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file
     H = lpSum(x_C[i] for i in range(N))
     C = lpSum(x_C[i] * VERTEX_COSTS['Casa'] + x_F[i] * VERTEX_COSTS["Fábrica"] + x_P[i] * VERTEX_COSTS["Parque"] for i in range(N))
     
-    model += (2 * N ** 2 + 1) * L + F
-    
+    model += (2 * N ** 2 + 1) * L + 1e-3 * F - 1e-9 * C + H * 1e-12
+
     for i in range(N):
         model += x_C[i] + x_P[i] + x_F[i] == 1
         for j in range(N):
@@ -231,9 +231,9 @@ def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file
             file.write("Solução Ótima do Modelo:\n")
             for i in range(N):
                 file.write(f"Vértice {i+1}: {solution[i]}\n")
-            file.write(f"\nCusto Total: {C.value()}\n")
             file.write(f"\nMatriz de Adjacência: {A}\n")
             file.write(f"\nPosições: {positions}\n\n\n")
+            file.write(f"\nCusto Total: {C.value()}\n")
             file.write(f"Habitantes: {int(H.value())}\n")
             file.write(f"Felicidade: {F.value()}\n")
             file.write(f"Lucro: {L.value()}\n")
@@ -241,16 +241,25 @@ def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file
     except Exception as e:
         print(f"Erro ao salvar resultado: {e}")
 
+def test_single_file(file_path, output_graph_filename, output_txt_filename, testing):
+
+    if not os.path.exists(file_path):
+        print(f"Arquivo não encontrado: {file_path}")
+        return
+    
+    try:
+        optimize_and_save_graph(file_path, output_graph_filename, output_txt_filename, testing=testing)
+    except Exception as e:
+        print(f"Erro ao testar o arquivo {file_path}: {e}")
+
+
 if __name__ == "__main__":
-   problems_folder = 'problems/'
-   test_folder = 'test_problems/'
+    problems_folder = 'problems/'
+    test_folder = 'test_problems/'
 
-   for idx, problem_file in enumerate(os.listdir(problems_folder)):
-        if problem_file.endswith(".txt"): 
-            full_path = os.path.join(test_folder, problem_file)
-            optimize_and_save_graph(full_path, f'problem_{os.path.basename(problem_file)}_solved.png', f'problem_{os.path.basename(problem_file)}_solved.txt', testing=True)
+    single_test_file = 'problems/problem_1.txt'
 
-   for idx, problem_file in enumerate(os.listdir(problems_folder)):
-        if problem_file.endswith(".txt"): 
-            full_path = os.path.join(problems_folder, problem_file)
-            optimize_and_save_graph(full_path, f'problem_{os.path.basename(problem_file)}_solved.png', f'problem_{os.path.basename(problem_file)}_solved.txt', testing=False)
+    graph_output_file = 'single_problem_1_solved.png'
+    txt_output_file = 'single_problem_1_solved.txt'
+
+    test_single_file(single_test_file, graph_output_file, txt_output_file, False)

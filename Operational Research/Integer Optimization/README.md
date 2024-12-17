@@ -3,12 +3,13 @@
 ## Integrantes:
 - **Guilherme Henrique Galdini Tosi** - N° USP 11781587
 - **Amália Vitória de Melo** - N° USP 13692417
+- **Vinicius Santos Monteiro** - N° USP 11932463
 
 ## Descrição do Algoritmo
 
 O código desenvolvido é uma solução para um problema de otimização de um plano diretor de cidade, onde o objetivo é alocar recursos (casas, parques e fábricas) de maneira a maximizar um valor objetivo, levando em conta restrições de conectividade e custos. O problema é modelado utilizando a programação linear inteira e resolvido com a biblioteca `pulp`.
 
-O problema escolhido para teste foram todos disponibilizados no arquivo problems.zip, disponibilizado no e-disciplinas e  o problems_2.zip, enviado pelo monitor da disciplina no grupo da disciplina, no Telegram. Basicamente, o programa itera sobre as duas pastas e armazena os resultados do modelo e imagem do grafo resultante.
+O problema escolhido foi o problem_1.txt, disponibilizado no arquivo problems.zip, mas para teste foram executados todos os arquivos disponibilizados no problems.zip, e também os do problems_2.zip. Basicamente, o programa itera sobre as duas pastas e armazena os resultados do modelo e imagem do grafo resultante. o resultado da execução da instância escolhida por nós fica originalmente armaznada em `results/`, mas com o nome `single_problem_1.png` e `single_problem_1.txt`
 
 ### Funções do Código
 
@@ -94,12 +95,22 @@ Executa a busca tabu para encontrar a solução otimizada, levando em conta a pe
 - `problem_file`: arquivo contendo a matriz de adjacências e as posições dos vértices
 - `output_graph_filename`: nome do arquivo PNG do grafo resultante
 - `output_txt_file`: nome do arquivo txt contendo a solução
-- `testing`: boolean para usar os casos de teste
+- `testing`: boolean para usar os casos de teste ou casos reais
 
 **Retorno:**
 - Melhor solução encontrada.
 - Grafo gerado
 - Solução escrita em arquivo
+
+#### `test_single_file(file_path, output_graph_filename, output_txt_filename, testing)`
+Executa a função de otimização para um dado arquivo
+
+**Parâmetros:**
+- `file_path`: caminho do arquivo
+- `output_graph_filename`: nome do arquivo PNG do grafo resultante
+- `output_txt_file`: nome do arquivo txt contendo a solução
+- `testing`: boolean para usar os casos de teste ou casos reais
+
 
 ## Estrutura do Código
 
@@ -108,7 +119,8 @@ Executa a busca tabu para encontrar a solução otimizada, levando em conta a pe
    - Funções de criação de variáveis e leitura de arquivos são chamadas.
 
 2. **Modelagem do Problema**:
-   - O problema é modelado como uma programação linear inteira, onde a função objetivo é maximizar o valor de `L` (conectividade dos tipos de recursos) e `F` (restrições de conectividade).
+   - O problema é modelado como uma programação linear inteira, onde a função objetivo é maximizar o valor de `L` (conectividade dos tipos de recursos), `F` (restrições de conectividade),
+     `C`(restrições de custos) e `H`(restrições de população)
    - Restrições de conectividade entre os vértices são adicionadas ao modelo.
 
 3. **Solução**:

@@ -1,46 +1,44 @@
 Solução Ótima do Modelo:
 Vértice 1: Casa
-Vértice 2: Casa
-Vértice 3: Fábrica
-Vértice 4: Fábrica
-Vértice 5: Casa
-Vértice 6: Casa
-Vértice 7: Casa
-Vértice 8: Casa
-Vértice 9: Fábrica
-Vértice 10: Fábrica
+Vértice 2: Fábrica
+Vértice 3: Casa
+Vértice 4: Casa
+Vértice 5: Fábrica
+Vértice 6: Fábrica
+Vértice 7: Parque
+Vértice 8: Parque
+Vértice 9: Casa
+Vértice 10: Casa
 Vértice 11: Casa
-Vértice 12: Casa
-Vértice 13: Casa
-Vértice 14: Fábrica
-Vértice 15: Casa
-Vértice 16: Casa
-Vértice 17: Casa
-Vértice 18: Fábrica
-Vértice 19: Casa
-Vértice 20: Fábrica
-Vértice 21: Casa
-Vértice 22: Parque
-Vértice 23: Fábrica
-Vértice 24: Fábrica
-Vértice 25: Parque
-Vértice 26: Casa
-Vértice 27: Casa
+Vértice 12: Fábrica
+Vértice 13: Fábrica
+Vértice 14: Casa
+Vértice 15: Parque
+Vértice 16: Fábrica
+Vértice 17: Fábrica
+Vértice 18: Casa
+Vértice 19: Fábrica
+Vértice 20: Casa
+Vértice 21: Parque
+Vértice 22: Fábrica
+Vértice 23: Casa
+Vértice 24: Casa
+Vértice 25: Casa
+Vértice 26: Fábrica
+Vértice 27: Parque
 Vértice 28: Parque
-Vértice 29: Casa
-Vértice 30: Fábrica
-Vértice 31: Casa
-Vértice 32: Fábrica
-Vértice 33: Casa
-Vértice 34: Casa
-Vértice 35: Casa
-Vértice 36: Parque
-Vértice 37: Fábrica
-Vértice 38: Fábrica
-Vértice 39: Parque
+Vértice 29: Fábrica
+Vértice 30: Casa
+Vértice 31: Fábrica
+Vértice 32: Casa
+Vértice 33: Fábrica
+Vértice 34: Parque
+Vértice 35: Fábrica
+Vértice 36: Casa
+Vértice 37: Casa
+Vértice 38: Casa
+Vértice 39: Casa
 Vértice 40: Parque
-
-Custo Total: 864000.0
 
 Matriz de Adjacência: [[0 0 0 ... 0 0 0]
  [0 0 0 ... 1 0 0]
@@ -53,7 +51,9 @@ Matriz de Adjacência: [[0 0 0 ... 0 0 0]
 Posições: [[-0.33293409782379413, 0.33331430854136057], [0.8248156494529947, -0.8889840282543485], [-0.02400930654127693, 0.4405831470228339], [-0.3872690955792267, 0.6684041592838341], [-0.8271774894492127, -0.14788225218844528], [0.5183985979232139, 0.6589300884410199], [0.6553072556954543, 0.7507490545812179], [0.37345516889688296, 0.9885373947781103], [-0.6772463802067359, -0.13568722631786112], [0.48192206262831966, -0.25459327060211145], [-0.05331020875969105, -0.29694659708141985], [0.753048474757037, -0.2635881136887028], [-0.20648520754011376, -0.5670924580704856], [0.4660815606331124, 0.29972571252593777], [0.0831178693058457, 0.15630489648406676], [-0.7636908972602474, 0.5250132951363065], [0.09402494636505875, -0.17944664284282197], [0.8360708595322804, 0.011254347205539503], [-0.15975571460616683, -0.8851244940279464], [0.07242752246378074, -0.6052607897458406], [-0.508522336347253, 1.0], [-0.4324534356436566, 0.0325105846881378], [-0.4433967498840362, -0.6725256028086731], [-0.1180086416956237, -0.19192894163683225], [-0.5917989348103242, -0.6016459162072532], [-0.0010715060390643417, 0.5973925403603346], [0.0660500563198847, 0.03711479959478836], [0.9043852998955305, 0.6947278688094256], [0.3039929810753741, -0.5070917500985421], [-0.047949852265771024, -0.3028585928176096], [0.4585225128785073, 0.03139838545631486], [0.24780936301538237, 0.7192794388365366], [-0.3344694575457192, -0.33579247214093816], [0.9177850571528092, 0.4077492550397704], [-0.8439906919342167, -0.5115534306767215], [-0.8806230947977953, -0.7802719847960051], [-0.9007957347833604, 0.15938425262442674], [0.6254655989702822, -0.617385216668638], [-0.41099329506300375, -0.0821530551030382], [0.2632712916145389, 0.3154393063642721]]
 
 
-Habitantes: 21
+
+Custo Total: 832000.0
+Habitantes: 18
 Felicidade: 0.0
 Lucro: 36.0
-Tempo de Execução: 3.16 segundos
+Tempo de Execução: 0.96 segundos
