@@ -1,54 +1,54 @@
 Solução Ótima do Modelo:
 Vértice 1: Casa
 Vértice 2: Fábrica
-Vértice 3: Parque
-Vértice 4: Casa
+Vértice 3: Casa
+Vértice 4: Fábrica
 Vértice 5: Casa
-Vértice 6: Parque
-Vértice 7: Casa
+Vértice 6: Fábrica
+Vértice 7: Fábrica
 Vértice 8: Fábrica
-Vértice 9: Casa
+Vértice 9: Fábrica
 Vértice 10: Parque
 Vértice 11: Casa
 Vértice 12: Casa
 Vértice 13: Casa
-Vértice 14: Parque
+Vértice 14: Casa
 Vértice 15: Fábrica
-Vértice 16: Fábrica
+Vértice 16: Casa
 Vértice 17: Fábrica
-Vértice 18: Casa
-Vértice 19: Fábrica
+Vértice 18: Fábrica
+Vértice 19: Casa
 Vértice 20: Fábrica
 Vértice 21: Casa
 Vértice 22: Casa
 Vértice 23: Fábrica
-Vértice 24: Fábrica
+Vértice 24: Parque
 Vértice 25: Casa
 Vértice 26: Fábrica
 Vértice 27: Casa
 Vértice 28: Fábrica
 Vértice 29: Casa
 Vértice 30: Casa
-Vértice 31: Fábrica
-Vértice 32: Casa
+Vértice 31: Parque
+Vértice 32: Fábrica
 Vértice 33: Casa
-Vértice 34: Casa
+Vértice 34: Fábrica
 Vértice 35: Parque
 Vértice 36: Casa
 Vértice 37: Fábrica
 Vértice 38: Casa
 Vértice 39: Parque
 Vértice 40: Casa
-Vértice 41: Casa
-Vértice 42: Fábrica
-Vértice 43: Fábrica
-Vértice 44: Casa
+Vértice 41: Fábrica
+Vértice 42: Casa
+Vértice 43: Casa
+Vértice 44: Parque
 Vértice 45: Casa
 Vértice 46: Parque
-Vértice 47: Fábrica
+Vértice 47: Casa
 Vértice 48: Casa
 Vértice 49: Parque
-Vértice 50: Fábrica
+Vértice 50: Casa
 
 Matriz de Adjacência: [[0 0 0 ... 0 0 0]
  [0 0 0 ... 0 0 0]
@@ -66,4 +66,4 @@ Custo Total: 1068800.0
 Habitantes: 25
 Felicidade: 0.0
 Lucro: 52.0
-Tempo de Execução: 6.54 segundos
+Tempo de Execução: 4.4992969036102295 segundos

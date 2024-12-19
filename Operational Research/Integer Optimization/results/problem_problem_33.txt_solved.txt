@@ -66,4 +66,4 @@ Custo Total: 1049600.0
 Habitantes: 23
 Felicidade: 1.0
 Lucro: 48.0
-Tempo de Execução: 16.55 segundos
+Tempo de Execução: 17.674487829208374 segundos

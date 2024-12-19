@@ -3,7 +3,7 @@ import time
 from networkx import Graph, draw, get_node_attributes
 from numpy import array, argwhere
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
-from matplotlib.pyplot import figure, text, savefig, show, title, gca
+from matplotlib.pyplot import figure, text, savefig, show, title, gca, imread, axis, imshow
 from os import makedirs
 
 VERTEX_COSTS = {
@@ -83,6 +83,16 @@ def save_graph(A, graph: Graph, position: array, node_colors: list, edge_colors:
     text(0.95, 0.05, legend_text, horizontalalignment='right', transform=gca().transAxes, fontsize=10, bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
 
     savefig(output_plot_filename)
+
+def plot_graph(output_plot_filename: str):
+    try:
+        img = imread(output_plot_filename)
+        imshow(img)
+        show()
+    except FileNotFoundError:
+        print(f"Erro: Arquivo '{output_plot_filename}' não encontrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro ao tentar exibir o grafo: {e}")
 
 def tabu_search(N, initial_solution, iterations=100000, tenure=10, max_no_improve=10):
     best_solution = initial_solution
@@ -166,8 +176,6 @@ def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file
     else:
         makedirs('results', exist_ok=True)
 
-    start_time = time.time()
-
     A, positions = read_matrix_and_positions_from_file(problem_file)
     N = len(A)
     
@@ -180,7 +188,7 @@ def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file
     H = lpSum(x_C[i] for i in range(N))
     C = lpSum(x_C[i] * VERTEX_COSTS['Casa'] + x_F[i] * VERTEX_COSTS["Fábrica"] + x_P[i] * VERTEX_COSTS["Parque"] for i in range(N))
     
-    model += (2 * N ** 2 + 1) * L + 1e-3 * F - 1e-9 * C + H * 1e-12
+    model += (2 * N ** 2 + 1) * L + 1e-1 * F - 1e-7 * C + H * 1e-12
 
     for i in range(N):
         model += x_C[i] + x_P[i] + x_F[i] == 1
@@ -224,8 +232,6 @@ def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file
         graph, pos, edge_colors, node_colors = create_graph(A, positions, tabu_solution)
         save_graph(A, graph, pos, node_colors, edge_colors, tabu_cost, int(H.value()), int(F.value()), int(L.value()), f'{folder}{output_graph_filename}')
 
-    execution_time = time.time() - start_time
-
     try:
         with open(f'{folder}{output_txt_file}', 'w') as file:
             file.write("Solução Ótima do Modelo:\n")
@@ -237,7 +243,7 @@ def optimize_and_save_graph(problem_file, output_graph_filename, output_txt_file
             file.write(f"Habitantes: {int(H.value())}\n")
             file.write(f"Felicidade: {F.value()}\n")
             file.write(f"Lucro: {L.value()}\n")
-            file.write(f"Tempo de Execução: {execution_time:.2f} segundos\n")
+            file.write(f"Tempo de Execução: {model.solutionTime} segundos\n")
     except Exception as e:
         print(f"Erro ao salvar resultado: {e}")
 
@@ -257,9 +263,21 @@ if __name__ == "__main__":
     problems_folder = 'problems/'
     test_folder = 'test_problems/'
 
+    # for idx, problem_file in enumerate(os.listdir(test_folder)):
+    #       if problem_file.endswith(".txt"): 
+    #               full_path = os.path.join(test_folder, problem_file)
+    #               optimize_and_save_graph(full_path, f'problem_{os.path.basename(problem_file)}_solved.png', f'problem_{os.path.basename(problem_file)}_solved.txt', testing=True)
+
+    # for idx, problem_file in enumerate(os.listdir(problems_folder)):
+    #     if problem_file.endswith(".txt"): 
+    #            full_path = os.path.join(problems_folder, problem_file)
+    #            optimize_and_save_graph(full_path, f'problem_{os.path.basename(problem_file)}_solved.png', f'problem_{os.path.basename(problem_file)}_solved.txt', testing=False)
+
     single_test_file = 'problems/problem_1.txt'
 
     graph_output_file = 'single_problem_1_solved.png'
     txt_output_file = 'single_problem_1_solved.txt'
 
     test_single_file(single_test_file, graph_output_file, txt_output_file, False)
+
+    plot_graph(f'results/{graph_output_file}')

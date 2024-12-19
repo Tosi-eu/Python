@@ -1,7 +1,7 @@
 Solução Ótima do Modelo:
 Vértice 1: Casa
 Vértice 2: Casa
-Vértice 3: Casa
+Vértice 3: Fábrica
 Vértice 4: Casa
 Vértice 5: Fábrica
 Vértice 6: Casa
@@ -14,7 +14,7 @@ Vértice 12: Casa
 Vértice 13: Fábrica
 Vértice 14: Casa
 Vértice 15: Casa
-Vértice 16: Fábrica
+Vértice 16: Casa
 Vértice 17: Parque
 Vértice 18: Casa
 Vértice 19: Casa
@@ -22,7 +22,7 @@ Vértice 20: Fábrica
 Vértice 21: Casa
 Vértice 22: Casa
 Vértice 23: Parque
-Vértice 24: Fábrica
+Vértice 24: Parque
 Vértice 25: Casa
 Vértice 26: Casa
 Vértice 27: Casa
@@ -48,7 +48,7 @@ Vértice 46: Fábrica
 Vértice 47: Fábrica
 Vértice 48: Casa
 Vértice 49: Fábrica
-Vértice 50: Parque
+Vértice 50: Fábrica
 
 Matriz de Adjacência: [[0 0 0 ... 0 0 0]
  [0 0 0 ... 0 0 0]
@@ -66,4 +66,4 @@ Custo Total: 1107200.0
 Habitantes: 29
 Felicidade: 1.0
 Lucro: 51.0
-Tempo de Execução: 15.14 segundos
+Tempo de Execução: 17.818577766418457 segundos

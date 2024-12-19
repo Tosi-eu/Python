@@ -3,19 +3,19 @@ Vértice 1: Casa
 Vértice 2: Casa
 Vértice 3: Casa
 Vértice 4: Casa
-Vértice 5: Casa
+Vértice 5: Parque
 Vértice 6: Fábrica
-Vértice 7: Parque
+Vértice 7: Fábrica
 Vértice 8: Casa
 Vértice 9: Casa
 Vértice 10: Fábrica
 Vértice 11: Casa
 Vértice 12: Fábrica
 Vértice 13: Fábrica
-Vértice 14: Casa
-Vértice 15: Fábrica
-Vértice 16: Casa
-Vértice 17: Fábrica
+Vértice 14: Fábrica
+Vértice 15: Casa
+Vértice 16: Fábrica
+Vértice 17: Parque
 Vértice 18: Casa
 Vértice 19: Casa
 Vértice 20: Fábrica
@@ -32,22 +32,22 @@ Vértice 30: Fábrica
 Vértice 31: Casa
 Vértice 32: Casa
 Vértice 33: Fábrica
-Vértice 34: Fábrica
+Vértice 34: Casa
 Vértice 35: Casa
-Vértice 36: Fábrica
+Vértice 36: Casa
 Vértice 37: Fábrica
-Vértice 38: Casa
+Vértice 38: Fábrica
 Vértice 39: Fábrica
 Vértice 40: Fábrica
 Vértice 41: Parque
 Vértice 42: Casa
-Vértice 43: Casa
+Vértice 43: Fábrica
 Vértice 44: Parque
 Vértice 45: Casa
 Vértice 46: Casa
 Vértice 47: Parque
 Vértice 48: Casa
-Vértice 49: Parque
+Vértice 49: Casa
 Vértice 50: Casa
 
 Matriz de Adjacência: [[0 0 0 ... 0 0 0]
@@ -62,8 +62,8 @@ Posições: [[0.3585794161632194, 0.33732828421854055], [-0.025810823498146857, 
 
 
 
-Custo Total: 1068800.0
-Habitantes: 25
+Custo Total: 1062400.0
+Habitantes: 24
 Felicidade: 0.0
 Lucro: 51.0
-Tempo de Execução: 3.73 segundos
+Tempo de Execução: 2.7887179851531982 segundos

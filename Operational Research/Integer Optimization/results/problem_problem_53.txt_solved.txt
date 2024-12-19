@@ -31,8 +31,8 @@ Vértice 29: Fábrica
 Vértice 30: Fábrica
 Vértice 31: Fábrica
 Vértice 32: Casa
-Vértice 33: Fábrica
-Vértice 34: Casa
+Vértice 33: Casa
+Vértice 34: Parque
 Vértice 35: Parque
 Vértice 36: Casa
 Vértice 37: Casa
@@ -45,7 +45,7 @@ Vértice 43: Parque
 Vértice 44: Parque
 Vértice 45: Casa
 Vértice 46: Fábrica
-Vértice 47: Casa
+Vértice 47: Fábrica
 Vértice 48: Parque
 Vértice 49: Fábrica
 Vértice 50: Casa
@@ -62,8 +62,8 @@ Posições: [[0.4643912445301978, -0.12819396446047737], [0.5979669656694672, 0.
 
 
 
-Custo Total: 1088000.0
-Habitantes: 27
+Custo Total: 1075200.0
+Habitantes: 26
 Felicidade: 0.0
 Lucro: 52.0
-Tempo de Execução: 4.29 segundos
+Tempo de Execução: 4.051660537719727 segundos

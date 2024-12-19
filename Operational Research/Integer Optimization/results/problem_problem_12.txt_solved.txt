@@ -30,7 +30,7 @@ Vértice 28: Casa
 Vértice 29: Casa
 Vértice 30: Casa
 Vértice 31: Fábrica
-Vértice 32: Casa
+Vértice 32: Fábrica
 Vértice 33: Fábrica
 Vértice 34: Parque
 Vértice 35: Casa
@@ -43,7 +43,7 @@ Vértice 41: Parque
 Vértice 42: Casa
 Vértice 43: Casa
 Vértice 44: Casa
-Vértice 45: Fábrica
+Vértice 45: Casa
 Vértice 46: Casa
 Vértice 47: Casa
 Vértice 48: Fábrica
@@ -66,4 +66,4 @@ Custo Total: 1088000.0
 Habitantes: 27
 Felicidade: 1.0
 Lucro: 49.0
-Tempo de Execução: 9.78 segundos
+Tempo de Execução: 10.229218006134033 segundos

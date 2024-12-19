@@ -15,8 +15,8 @@ Vértice 13: Fábrica
 Vértice 14: Parque
 Vértice 15: Casa
 Vértice 16: Casa
-Vértice 17: Fábrica
-Vértice 18: Parque
+Vértice 17: Parque
+Vértice 18: Fábrica
 Vértice 19: Casa
 Vértice 20: Fábrica
 Vértice 21: Parque
@@ -56,4 +56,4 @@ Custo Total: 870400.0
 Habitantes: 22
 Felicidade: 1.0
 Lucro: 43.0
-Tempo de Execução: 7.51 segundos
+Tempo de Execução: 6.5024027824401855 segundos

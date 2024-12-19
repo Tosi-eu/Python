@@ -1,40 +1,40 @@
 Solução Ótima do Modelo:
 Vértice 1: Casa
-Vértice 2: Fábrica
-Vértice 3: Casa
-Vértice 4: Casa
-Vértice 5: Casa
-Vértice 6: Parque
-Vértice 7: Parque
-Vértice 8: Casa
-Vértice 9: Casa
-Vértice 10: Fábrica
-Vértice 11: Casa
-Vértice 12: Fábrica
+Vértice 2: Casa
+Vértice 3: Fábrica
+Vértice 4: Fábrica
+Vértice 5: Fábrica
+Vértice 6: Casa
+Vértice 7: Casa
+Vértice 8: Fábrica
+Vértice 9: Fábrica
+Vértice 10: Casa
+Vértice 11: Parque
+Vértice 12: Casa
 Vértice 13: Casa
 Vértice 14: Casa
 Vértice 15: Fábrica
-Vértice 16: Casa
-Vértice 17: Casa
+Vértice 16: Fábrica
+Vértice 17: Fábrica
 Vértice 18: Casa
-Vértice 19: Casa
-Vértice 20: Fábrica
+Vértice 19: Fábrica
+Vértice 20: Casa
 Vértice 21: Casa
-Vértice 22: Fábrica
+Vértice 22: Parque
 Vértice 23: Parque
 Vértice 24: Fábrica
 Vértice 25: Casa
-Vértice 26: Fábrica
-Vértice 27: Casa
+Vértice 26: Casa
+Vértice 27: Fábrica
 Vértice 28: Casa
 Vértice 29: Parque
 Vértice 30: Casa
-Vértice 31: Fábrica
+Vértice 31: Casa
 Vértice 32: Parque
-Vértice 33: Fábrica
+Vértice 33: Casa
 Vértice 34: Parque
 Vértice 35: Casa
-Vértice 36: Fábrica
+Vértice 36: Casa
 Vértice 37: Casa
 Vértice 38: Casa
 Vértice 39: Casa
@@ -56,4 +56,4 @@ Custo Total: 870400.0
 Habitantes: 22
 Felicidade: 0.0
 Lucro: 38.0
-Tempo de Execução: 0.61 segundos
+Tempo de Execução: 0.6646018028259277 segundos

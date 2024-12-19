@@ -5,7 +5,7 @@ Vértice 3: Casa
 Vértice 4: Casa
 Vértice 5: Fábrica
 Vértice 6: Casa
-Vértice 7: Parque
+Vértice 7: Fábrica
 Vértice 8: Casa
 Vértice 9: Fábrica
 Vértice 10: Fábrica
@@ -26,7 +26,7 @@ Vértice 24: Casa
 Vértice 25: Casa
 Vértice 26: Parque
 Vértice 27: Fábrica
-Vértice 28: Fábrica
+Vértice 28: Parque
 Vértice 29: Casa
 Vértice 30: Casa
 Vértice 31: Casa
@@ -34,10 +34,10 @@ Vértice 32: Casa
 Vértice 33: Fábrica
 Vértice 34: Casa
 Vértice 35: Casa
-Vértice 36: Casa
+Vértice 36: Parque
 Vértice 37: Fábrica
 Vértice 38: Parque
-Vértice 39: Parque
+Vértice 39: Casa
 Vértice 40: Fábrica
 
 Matriz de Adjacência: [[0 0 0 ... 0 0 0]
@@ -56,4 +56,4 @@ Custo Total: 844800.0
 Habitantes: 19
 Felicidade: 0.0
 Lucro: 38.0
-Tempo de Execução: 1.12 segundos
+Tempo de Execução: 0.49643898010253906 segundos

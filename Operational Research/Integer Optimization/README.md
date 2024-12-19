@@ -9,9 +9,9 @@
 
 O código desenvolvido é uma solução para um problema de otimização de um plano diretor de cidade, onde o objetivo é alocar recursos (casas, parques e fábricas) de maneira a maximizar um valor objetivo, levando em conta restrições de conectividade e custos. O problema é modelado utilizando a programação linear inteira e resolvido com a biblioteca `pulp`.
 
-O problema escolhido foi o problem_1.txt, disponibilizado no arquivo problems.zip, mas para teste foram executados todos os arquivos disponibilizados no problems.zip, e também os do problems_2.zip. Basicamente, o programa itera sobre as duas pastas e armazena os resultados do modelo e imagem do grafo resultante. o resultado da execução da instância escolhida por nós fica originalmente armaznada em `results/`, mas com o nome `single_problem_1.png` e `single_problem_1.txt`
+O problema escolhido foi o problem_1.txt, disponibilizado no arquivo problems.zip, mas para teste foram executados todos os arquivos disponibilizados no problems.zip, e também os do problems_2.zip. Basicamente, o programa itera sobre as duas pastas e armazena os resultados do modelo e imagem do grafo resultante. o resultado da execução da instância escolhida por nós fica originalmente armaznada em `results/` ou ` test_results/` (a depender do parâmetro testing), mas com o nome `single_problem_1.png` e `single_problem_1.txt`
 
-A função objetivo do programa original é `Z = (2 * N^2 + 1) * L + F`, o que bastava para otimizar LUCRO e FELICIDADE, apenas. No caso, aqui tivemos uma  otimização também de HABITANTES e CUSTO, na ordem decrescente de prioridade L -> F -> C -> H, resultando em `Z = (2 * N ** 2 + 1) * L + 1e-3 * F - 1e-9 * C + H * 1e-12`, onde as perturbações(pesos) atreladas a cada restrição do modelo garantiram que se houvesse o máximo resultado possível das soluções.
+A função objetivo do programa original é `Z = (2 * N^2 + 1) * L + F`, o que bastava para otimizar LUCRO e FELICIDADE, apenas. No caso, aqui tivemos uma  otimização também de HABITANTES e CUSTO, na ordem decrescente de prioridade L -> F -> C -> H, resultando em `Z = (2 * N ** 2 + 1) * L + 1e-1 * F - 1e-7 * C + H * 1e-12`, onde as perturbações(pesos) atreladas a cada restrição do modelo garantiram que se houvesse o máximo resultado possível das soluções.
 
 ### Funções do Código
 
@@ -65,6 +65,15 @@ Plota o grafo usando `matplotlib` e salva a figura gerada. As informações de c
 
 **Retorno:**
 - Salva a figura gerada no arquivo especificado.
+
+#### `plot_graph(output_plot_filename: str)`
+Plota o grafo gerado pela função save_graph, a partir do caminho absluto ou relativo
+
+**Parâmetros:**
+- `output_plot_filename`: caminho do arquivo gerado pela função sabe_graph.
+
+**Retorno:**
+- Plota a imagem do grafo a partir do arquivo do grafo gerado.
 
 #### `tabu_search(A, N, initial_solution, iterations=100000, tenure=10, diversity_factor=3, max_no_improve=100)`
 Executa a busca tabu para encontrar a solução otimizada, levando em conta a penalidade de diversidade.
