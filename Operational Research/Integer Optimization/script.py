@@ -1,10 +1,19 @@
 import os
-import time
 from networkx import Graph, draw, get_node_attributes
 from numpy import array, argwhere
 from pulp import LpProblem, LpVariable, LpMaximize, lpSum
-from matplotlib.pyplot import figure, text, savefig, show, title, gca, imread, axis, imshow
+from matplotlib.pyplot import figure, text, savefig, show, title, gca, imread, imshow
 from os import makedirs
+
+""""
+
+## Integrantes:
+
+- **Guilherme Henrique Galdini Tosi** - N° USP 11781587
+- **Amália Vitória de Melo** - N° USP 13692417
+- **Vinicius Santos Monteiro** - N° USP 11932463
+
+"""
 
 VERTEX_COSTS = {
     "Casa": 25600,
